@@ -4,16 +4,20 @@
  */
 package controller;
 
+import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Delete_Request;
+import model.User;
 
 /**
  *
- * @author HP
+ * @author Admin
  */
 public class DeleteAccountRequestServlet extends HttpServlet {
 
@@ -28,19 +32,6 @@ public class DeleteAccountRequestServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DeleteAccountRequestServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DeleteAccountRequestServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -69,7 +60,27 @@ public class DeleteAccountRequestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            HttpSession session = request.getSession();
+            String reason = request.getParameter("reason");
+            String email = request.getParameter("email");
+            User user = (User) session.getAttribute("user");
+
+            UserDAO userDAO = new UserDAO();
+
+            if (user != null && email.equals(user.getEmail()) && reason != null) {
+                Delete_Request deRequest = new Delete_Request(reason, email, user.getUser_id());
+                int sign = userDAO.addDeleteRequest(deRequest);
+                if(sign > 0) {
+                    request.setAttribute("delete_request_status", "Your request will be processed within 7 days from the time you submit.");
+                    request.setAttribute("color", "green");
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+                    session.invalidate();
+                }
+            }
+        } catch (Exception e) {
+        }
+
     }
 
     /**
