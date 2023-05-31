@@ -79,7 +79,7 @@ public class LoginServlet extends HttpServlet {
 
             if (user != null && remember == null) {
                 session.setAttribute("user", user);
-                session.setMaxInactiveInterval(180);
+                session.setMaxInactiveInterval(360);
                 request.getRequestDispatcher("home.jsp").forward(request, response);
             } else if (user != null && remember != null) {
                 Cookie cEmail = new Cookie("cEmail", email);
@@ -89,7 +89,7 @@ public class LoginServlet extends HttpServlet {
                 pass.setMaxAge(60 * 60);
                 response.addCookie(pass);
                 session.setAttribute("user", user);
-                session.setMaxInactiveInterval(180);
+                session.setMaxInactiveInterval(360);
                 request.getRequestDispatcher("home.jsp").forward(request, response);
             } else {
                 request.setAttribute("loginError", "Email or password is wrong");
