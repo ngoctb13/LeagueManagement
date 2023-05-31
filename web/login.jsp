@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!--son dep trai-->
 <html lang="vi">
     <head>
         <title>Sign in</title>
@@ -14,6 +15,7 @@
         <link rel="stylesheet" href="css/style1.css">
 
     </head>
+    
     <body class="img js-fullheight" style="background-image: url(images/bg_3.jpg);">
         <section class="ftco-section">
             <div class="container">
