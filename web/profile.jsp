@@ -66,37 +66,50 @@
                                                 <i class="fa fa-coffee"></i>
                                                 This is an <strong>.alert</strong>. Use this to show important messages to the user.
                                             </div>-->
-
-                    <form class="form-horizontal"  role="form">
+                    <c:if test="${status.equals('SUCCESS')}">
+                        <div class="alert alert-info alert-dismissable">
+                            <a class="panel-close close" data-dismiss="alert">×</a> 
+                            <i class="fa fa-coffee"></i>
+                            UPDATE PROFILE <strong>SUCCESSFULLY!</strong>.
+                        </div>
+                    </c:if>
+                    <c:if test="${status.equals('FAILED')}">
+                        <div class="alert alert-info alert-dismissable">
+                            <a class="panel-close close" data-dismiss="alert">×</a> 
+                            <i class="fa fa-coffee"></i>
+                            UPDATE PROFILE <strong>FAILED!</strong>.
+                        </div>
+                    </c:if>
+                    <form action="userUpdate" class="form-horizontal"  role="form">
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="${sessionScope.user.email}">
+                                <input name="email" class="form-control" type="text" value="${sessionScope.user.email}">
                             </div>
                         </div> 
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Your Name:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="${sessionScope.user.full_name}">
+                                <input name="full_name" class="form-control" type="text" value="${sessionScope.user.full_name}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Your Phone Number:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="${sessionScope.user.phone_number}">
+                                <input name="phone_number" class="form-control" type="text" value="${sessionScope.user.phone_number}">
                             </div>  
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Address:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="${sessionScope.user.address}">
+                                <input name="address" class="form-control" type="text" value="${sessionScope.user.address}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Your Avatar Link</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="${sessionScope.user.avatar_link}">
+                                <input name="avatar_link" class="form-control" type="text" value="${sessionScope.user.avatar_link}">
                             </div>
                         </div>
                         <div class="form-group">
