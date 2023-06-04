@@ -246,4 +246,24 @@ public class UserDAO extends DBContext {
         }
         return status;
     }
+    public int updateUserProfile(User user) throws Exception {
+        int status = 0;
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("UPDATE `user`SET `full_name` = ?, `phone_number` = ?, `avatar_link` = ?,`address` = ? WHERE `email` = ?;");
+            ps.setString(1, user.getFull_name());            
+            ps.setString(2, user.getPhone_number());            
+            ps.setString(3, user.getAvatar_link());                                               
+            ps.setString(4, user.getAddress());            
+            ps.setString(5, user.getEmail());            
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return status;
+    }
 }
