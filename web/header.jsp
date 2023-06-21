@@ -75,7 +75,7 @@
                                                 </li>
                                                 <li><a href="teamList"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Team</a>
                                                 </li>
-                                                <li><a href="forgotPassword.jsp"><span class="edu-icon edu-money author-log-ic"></span>Change Password</a>
+                                                <li><a href="changePassword.jsp"><span class="edu-icon edu-money author-log-ic"></span>Change Password</a>
                                                 </li>                                      
                                                 <li><a href="logout"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                 </li>
@@ -91,7 +91,7 @@
                                                 </li>
                                                 <li><a href="teamList"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Team</a>
                                                 </li>
-                                                <li><a href="forgotPassword.jsp"><span class="edu-icon edu-money author-log-ic"></span>Change Password</a>
+                                                <li><a href="changePassword.jsp"><span class="edu-icon edu-money author-log-ic"></span>Change Password</a>
                                                 </li>                                      
                                                 <li><a href="logout"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>
                                                 </li>
