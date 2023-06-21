@@ -5,6 +5,7 @@
 package controller;
 
 import dao.UserDAO;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import model.User;
 
 /**
@@ -40,7 +42,17 @@ public class UserUpdateServlet extends HttpServlet {
         String phone_number = request.getParameter("phone_number");
         String address = request.getParameter("address");
         String avatar_link = request.getParameter("avatar_link");
-
+        if (full_name.length() >= 50 || !full_name.matches("[a-zA-Z\\s]+")) {
+        request.setAttribute("status", "FAILED");
+        request.getRequestDispatcher("profile.jsp").forward(request, response);
+        return;
+    }
+        if (phone_number.length() != 10 || !phone_number.matches("\\d+")) {
+        request.setAttribute("status", "FAILED");
+        request.getRequestDispatcher("profile.jsp").forward(request, response);
+        return;
+    }
+       
         UserDAO dao = new UserDAO();
 
         User user = new User(full_name, phone_number, avatar_link, email, address);
