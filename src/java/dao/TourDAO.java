@@ -25,17 +25,18 @@ public class TourDAO extends DBContext{
         try {
             con = getConnection();
             ps = con.prepareStatement("insert into tournament "
-                    + "(tour_name, address, phone_number, start_date, end_date, description, host, type, quantity_of_team) "
-                    + "values (?,?,?,?,?,?,?,?,?)");
+                    + "(tour_name, address, avatar, phone_number, start_date, end_date, description, host, type, quantity_of_team) "
+                    + "values (?,?,?,?,?,?,?,?,?,?)");
             ps.setString(1, t.getTour_name());
             ps.setString(2,t.getAddress());
-            ps.setString(3, t.getPhone_number());
-            ps.setString(4, t.getStart_date());
-            ps.setString(5, t.getEnd_date());
-            ps.setString(6, t.getDescription());
-            ps.setInt(7, t.getHost());
-            ps.setInt(8, t.getType());
-            ps.setInt(9, t.getTeam_quantity());
+            ps.setString(3,t.getAvatar());
+            ps.setString(4, t.getPhone_number());
+            ps.setString(5, t.getStart_date());
+            ps.setString(6, t.getEnd_date());
+            ps.setString(7, t.getDescription());
+            ps.setInt(8, t.getHost());
+            ps.setInt(9, t.getType());
+            ps.setInt(10, t.getTeam_quantity());
             status = ps.executeUpdate();
         } catch (Exception e) {
             throw e;

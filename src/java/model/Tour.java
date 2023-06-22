@@ -52,6 +52,21 @@ public class Tour {
         this.team_quantity = team_quantity;
     }
 
+    public Tour(String tour_name, String address, String avatar, String phone_number, String start_date, String end_date, String description, int host, int type, int team_quantity) {
+        this.tour_name = tour_name;
+        this.address = address;
+        this.avatar = avatar;
+        this.phone_number = phone_number;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.description = description;
+        this.host = host;
+        this.type = type;
+        this.team_quantity = team_quantity;
+    }
+    
+    
+
     public int getTour_id() {
         return tour_id;
     }
