@@ -25,7 +25,11 @@
                 <a href="#"><i class="ti-pie-chart"></i><span>Standings</span></a>
             </li>
             <li>
-                <a href="#"><i class="ti-pie-chart"></i><span>Setting</span></a>
+                <a href="javascript:void(0)"><i class="ti-pie-chart"></i><span>Setting</span></a>
+                <ul class="submenu">
+                    <li><a href="leaugeUpdate.jsp">Leauge Update</a></li>
+                    <li><a href="#">Authorization</a></li>
+                </ul>
             </li>           
         </ul>
     </nav>
