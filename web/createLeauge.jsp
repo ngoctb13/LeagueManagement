@@ -36,7 +36,7 @@
         <!-- main wrapper start -->
         <div class="horizontal-main-wrapper">
             <!-- main header area start -->
-            <jsp:include page="LeaugeLayout/header.jsp"/>
+            <jsp:include page="layout/header.jsp"/>
             <!-- main header area end -->
             <!-- header area start -->
             <div class="header-area header-bottom">
@@ -65,33 +65,45 @@
             <div class="main-content-inner">
                 <div class="container">
                     <div class="row">
+                        <div class="col-2"></div>
                         <div class="col-lg-8 mt-5">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="header-title">Create tournament</h4>
-                                    <form action="leaugeCreate">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Tournament Name</label>
-                                            <input type="text" class="form-control" id="tour_name" name="tour_name" placeholder="Enter tournament name">                                          
-                                        </div>
-
+                                    <form action="leaugeCreate" method="post" enctype="multipart/form-data">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="col-lg-6 mt-4">
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Tournament Hotline</label>
-                                                    <input type="text" class="form-control" id="tour_phone" name="tour_phone" placeholder="Enter tournament hotline">
+                                                    <label for="exampleInputEmail1">Tournament Name</label>
+                                                    <input type="text" class="form-control" id="tour_name" name="tour_name" placeholder="Enter tournament name">                                          
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Tournament Hotline</label>
+                                                            <input type="text" class="form-control" id="tour_phone" name="tour_phone" placeholder="Enter tournament hotline">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail1">Quantity</label>
+                                                            <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity of tour">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Tournament Location</label>
+                                                    <input type="text" class="form-control" id="tour_address" name="tour_address" placeholder="Enter tournament location">
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Quantity</label>
-                                                    <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity of tour">
+                                            <div class="col-lg-6">
+                                                <div class="card">
+                                                    <div class="card-body">                                                       
+                                                        <img src="images/logo_4.png" class="avatar" alt="avatar">
+                                                        <input type="file" name="avatar_leauge" class="form-control">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Tournament Location</label>
-                                            <input type="text" class="form-control" id="tour_address" name="tour_address" placeholder="Enter tournament location">
                                         </div>
                                         <div class="form-group">
                                             <label for="example-date-input" class="col-form-label">Start Date</label>
@@ -112,17 +124,7 @@
                         </div>
                         <!-- Statistics area end -->
                         <!-- Advertising area start -->
-                        <div class="col-lg-4 mt-5">
-                            <div class="card">
-                                <div class="card-body">
-                                    <form method="post" action="fileuploadservlet" enctype="multipart/form-data">
-                                        <img src="images/logo_4.png" class="avatar" alt="avatar">
-                                        <input type="file" class="form-control">
-                                        <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>

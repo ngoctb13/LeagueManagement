@@ -95,7 +95,7 @@
                     <!-- Social Campain area start -->                    
                     <!-- Social Campain area end -->
                     <!-- Statistics area start -->                        
-                    <div class="col-2"></div>
+                    <div class="col-3"></div>
                     <div class="col-lg-8 mt-4">
                         <div class="cover card">
                             <div class="card-body"">
@@ -106,35 +106,47 @@
                                 </div>
                                 <img src="https://myleague.vn/content/images/sport/football/cover.png?id=200" style="width: 1500px">
                                 <div class="col-12 mt-5">
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Tournament Name</label>
-                                        <input type="text" class="form-control" id="tour_name" name="tour_name" value="${gotTour.tour_name}" placeholder="Enter tournament name" readonly>                                          
-                                    </div>
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Tournament Hotline</label>
-                                                <input type="text" class="form-control" id="tour_phone" name="tour_phone" value="${gotTour.phone_number}" placeholder="Enter tournament hotline" readonly>
+                                        <div class="col-lg-4">
+                                            <div class="card">
+                                                <div class="card-body">                                                       
+                                                    <img src="images/${gotTour.avatar}" class="avatar" alt="avatar">
+                                                    <!--<input type="file" name="avatar_leauge" class="form-control">-->
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-lg-7">
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Quantity</label>
-                                                <input type="text" class="form-control" id="quantity" name="quantity" value="${gotTour.team_quantity}" placeholder="Enter quantity of tour" readonly>
+                                                <label for="exampleInputEmail1">Tournament Name</label>
+                                                <input type="text" class="form-control" id="tour_name" name="tour_name" value="${gotTour.tour_name}" placeholder="Enter tournament name" readonly>                                          
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="example-date-input" class="col-form-label">Start Date</label>
-                                                <input class="form-control" type="date" name="start_date" value="${gotTour.start_date}" id="start_date" readonly>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Tournament Hotline</label>
+                                                        <input type="text" class="form-control" id="tour_phone" name="tour_phone" value="${gotTour.phone_number}" placeholder="Enter tournament hotline" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Quantity</label>
+                                                        <input type="text" class="form-control" id="quantity" name="quantity" value="${gotTour.team_quantity}" placeholder="Enter quantity of tour" readonly>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="example-date-input" class="col-form-label">End Date</label>
-                                                <input class="form-control" type="date" name="end_date" value="${gotTour.end_date}" id="end_date" readonly>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="example-date-input" class="col-form-label">Start Date</label>
+                                                        <input class="form-control" type="date" name="start_date" value="${gotTour.start_date}" id="start_date" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="example-date-input" class="col-form-label">End Date</label>
+                                                        <input class="form-control" type="date" name="end_date" value="${gotTour.end_date}" id="end_date" readonly>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -158,9 +170,9 @@
                     <!-- testimonial area start -->
 
                     <!-- testimonial area end -->
-                </div>
+                </div>               
                 <div class="row col-10">
-                    <div class="col-2"></div>
+                    <div class="col-3"></div>
                     <div class="form-group col-lg-8 mt-4">
                         <label for="exampleInputEmail1">Description Of Leauge:</label>
                         <textarea name="description" class="form-control" rows="10" aria-label="With textarea" readonly=""></textarea>
