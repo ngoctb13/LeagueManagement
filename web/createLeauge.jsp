@@ -6,22 +6,22 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>srtdash - SEO Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/png" href="../assets_1/images/icon/favicon.ico">
-        <link rel="stylesheet" href="../assets_1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../assets_1/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../assets_1/css/themify-icons.css">
-        <link rel="stylesheet" href="../assets_1/css/metisMenu.css">
-        <link rel="stylesheet" href="../assets_1/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="../assets_1/css/slicknav.min.css">
+        <link rel="shortcut icon" type="image/png" href="assets_1/images/icon/favicon.ico">
+        <link rel="stylesheet" href="assets_1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets_1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets_1/css/themify-icons.css">
+        <link rel="stylesheet" href="assets_1/css/metisMenu.css">
+        <link rel="stylesheet" href="assets_1/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets_1/css/slicknav.min.css">
         <!-- amchart css -->
         <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
         <!-- others css -->
-        <link rel="stylesheet" href="../assets_1/css/typography.css">
-        <link rel="stylesheet" href="../assets_1/css/default-css.css">
-        <link rel="stylesheet" href="../assets_1/css/styles.css">
-        <link rel="stylesheet" href="../assets_1/css/responsive.css">
+        <link rel="stylesheet" href="assets_1/css/typography.css">
+        <link rel="stylesheet" href="assets_1/css/default-css.css">
+        <link rel="stylesheet" href="assets_1/css/styles.css">
+        <link rel="stylesheet" href="assets_1/css/responsive.css">
         <!-- modernizr css -->
-        <script src="../assets_1/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="assets_1/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
 
     <body class="body-bg">
@@ -36,7 +36,7 @@
         <!-- main wrapper start -->
         <div class="horizontal-main-wrapper">
             <!-- main header area start -->
-            <jsp:include page="../LeaugeManage/layout/header.jsp"/>
+            <jsp:include page="LeaugeLayout/header.jsp"/>
             <!-- main header area end -->
             <!-- header area start -->
             <div class="header-area header-bottom">
@@ -69,7 +69,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="header-title">Create tournament</h4>
-                                    <form>
+                                    <form action="leaugeCreate">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Tournament Name</label>
                                             <input type="text" class="form-control" id="tour_name" name="tour_name" placeholder="Enter tournament name">                                          
@@ -91,7 +91,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Tournament Location</label>
-                                            <input type="text" class="form-control" id="tour_phone" name="tour_phone" placeholder="Enter tournament hotline">
+                                            <input type="text" class="form-control" id="tour_address" name="tour_address" placeholder="Enter tournament location">
                                         </div>
                                         <div class="form-group">
                                             <label for="example-date-input" class="col-form-label">Start Date</label>
@@ -99,7 +99,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="example-date-input" class="col-form-label">End Date</label>
-                                            <input class="form-control" type="date" name="start_date" value="" id="start_date">
+                                            <input class="form-control" type="date" name="end_date" value="" id="end_date">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Description</label>
@@ -116,7 +116,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <form method="post" action="fileuploadservlet" enctype="multipart/form-data">
-                                        <img src="../images/logo_4.png" class="avatar" alt="avatar">
+                                        <img src="images/logo_4.png" class="avatar" alt="avatar">
                                         <input type="file" class="form-control">
                                         <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
                                     </form>
@@ -136,14 +136,14 @@
 
         <!-- offset area end -->
         <!-- jquery latest version -->
-        <script src="../assets_1/js/vendor/jquery-2.2.4.min.js"></script>
+        <script src="assets_1/js/vendor/jquery-2.2.4.min.js"></script>
         <!-- bootstrap 4 js -->
-        <script src="../assets_1/js/popper.min.js"></script>
-        <script src="../assets_1/js/bootstrap.min.js"></script>
-        <script src="../assets_1/js/owl.carousel.min.js"></script>
-        <script src="../assets_1/js/metisMenu.min.js"></script>
-        <script src="../assets_1/js/jquery.slimscroll.min.js"></script>
-        <script src="../assets_1/js/jquery.slicknav.min.js"></script>
+        <script src="assets_1/js/popper.min.js"></script>
+        <script src="assets_1/js/bootstrap.min.js"></script>
+        <script src="assets_1/js/owl.carousel.min.js"></script>
+        <script src="assets_1/js/metisMenu.min.js"></script>
+        <script src="assets_1/js/jquery.slimscroll.min.js"></script>
+        <script src="assets_1/js/jquery.slicknav.min.js"></script>
 
         <!-- start chart js -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
@@ -159,16 +159,16 @@
         <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
         <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
         <!-- all line chart activation -->
-        <script src="../assets_1/js/line-chart.js"></script>
+        <script src="assets_1/js/line-chart.js"></script>
         <!-- all pie chart -->
-        <script src="../assets_1/js/pie-chart.js"></script>
+        <script src="assets_1/js/pie-chart.js"></script>
         <!-- all bar chart -->
-        <script src="../assets_1/js/bar-chart.js"></script>
+        <script src="assets_1/js/bar-chart.js"></script>
         <!-- all map chart -->
-        <script src="../assets_1/js/maps.js"></script>
+        <script src="assets_1/js/maps.js"></script>
         <!-- others plugins -->
-        <script src="../assets_1/js/plugins.js"></script>
-        <script src="../assets_1/js/scripts.js"></script>
+        <script src="assets_1/js/plugins.js"></script>
+        <script src="assets_1/js/scripts.js"></script>
     </body>
 
 </html>
