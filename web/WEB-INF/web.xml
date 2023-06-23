@@ -64,6 +64,10 @@
         <servlet-name>TeamProfileServlet</servlet-name>
         <servlet-class>controller.TeamProfileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InviteMemberServlet</servlet-name>
+        <servlet-class>controller.InviteMemberServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>TeamProfileServlet</servlet-name>
         <url-pattern>/teamProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InviteMemberServlet</servlet-name>
+        <url-pattern>/inviteMember</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
