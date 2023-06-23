@@ -71,7 +71,7 @@
                                             <ul role="menu" class="dropdown-menu py-3 px-4 mr-3">                                                
                                                 <li><a href="profile.jsp"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                 </li>
-                                                <li><a href="#"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Tour</a>
+                                                <li><a href="myLeauge"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Tour</a>
                                                 </li>
                                                 <li><a href="teamList"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Team</a>
                                                 </li>
@@ -87,7 +87,7 @@
                                                 </li>
                                                 <li><a href="profile.jsp"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                 </li>
-                                                <li><a href="#"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Tour</a>
+                                                <li><a href="myLeauge"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Tour</a>
                                                 </li>
                                                 <li><a href="teamList"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Team</a>
                                                 </li>
