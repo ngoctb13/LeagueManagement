@@ -47,7 +47,7 @@
                             <p>For the convenience of management as well as building their own tournaments, we provide a solution to help you accomplish that.</p>
                             <div id="date-countdown"></div>
                             <p>
-                                <a href="#" class="btn btn-primary py-3 px-4 mr-3">Organize Tournament</a>
+                                <a href="createLeauge.jsp" class="btn btn-primary py-3 px-4 mr-3">Organize Tournament</a>
                                 <a href="#" class="btn btn-primary py-3 px-4 mr-3">Build Your Team</a>
                             </p>  
                         </div>

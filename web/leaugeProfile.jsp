@@ -6,22 +6,22 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>srtdash - SEO Dashboard</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/png" href="../assets_1/images/icon/favicon.ico">
-        <link rel="stylesheet" href="../assets_1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../assets_1/css/font-awesome.min.css">
-        <link rel="stylesheet" href="../assets_1/css/themify-icons.css">
-        <link rel="stylesheet" href="../assets_1/css/metisMenu.css">
-        <link rel="stylesheet" href="../assets_1/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="../assets_1/css/slicknav.min.css">
+        <link rel="shortcut icon" type="image/png" href="assets_1/images/icon/favicon.ico">
+        <link rel="stylesheet" href="assets_1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets_1/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets_1/css/themify-icons.css">
+        <link rel="stylesheet" href="assets_1/css/metisMenu.css">
+        <link rel="stylesheet" href="assets_1/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="assets_1/css/slicknav.min.css">
         <!-- amchart css -->
         <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
         <!-- others css -->
-        <link rel="stylesheet" href="../assets_1/css/typography.css">
-        <link rel="stylesheet" href="../assets_1/css/default-css.css">
-        <link rel="stylesheet" href="../assets_1/css/styles.css">
-        <link rel="stylesheet" href="../assets_1/css/responsive.css">
+        <link rel="stylesheet" href="assets_1/css/typography.css">
+        <link rel="stylesheet" href="assets_1/css/default-css.css">
+        <link rel="stylesheet" href="assets_1/css/styles.css">
+        <link rel="stylesheet" href="assets_1/css/responsive.css">
         <!-- modernizr css -->
-        <script src="../assets_1/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="assets_1/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <style>
         .cover {
@@ -40,38 +40,14 @@
         <!-- main wrapper start -->
         <div class="horizontal-main-wrapper">
             <!-- main header area start -->
-            <div class="mainheader-area">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-3">
-                            <div class="logo">
-                                <a href="index.html"><img src="../assets_1/images/icon/logo2.png" alt="logo"></a>
-                            </div>
-                        </div>
-                        <!-- profile info & task notification -->
-                        <div class="col-md-9 clearfix text-right">                        
-                            <div class="clearfix d-md-inline-block d-block">
-                                <div class="user-profile m-0">
-                                    <img class="avatar user-thumb" src="../assets_1/images/author/avatar.png" alt="avatar">
-                                    <h4 class="user-name dropdown-toggle" data-toggle="dropdown">Kumkum Rai <i class="fa fa-angle-down"></i></h4>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Message</a>
-                                        <a class="dropdown-item" href="#">Settings</a>
-                                        <a class="dropdown-item" href="#">Log Out</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <jsp:include page="layout/header.jsp"/>
             <!-- main header area end -->
             <!-- header area start -->
             <div class="header-area header-bottom">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-12  d-none d-lg-block">
-                            <jsp:include page="../LeaugeManage/layout/navbar.jsp"/>
+                            <jsp:include page="layout/navbar.jsp"/>
                         </div>
 
                     </div>
@@ -119,7 +95,7 @@
                     <!-- Social Campain area start -->                    
                     <!-- Social Campain area end -->
                     <!-- Statistics area start -->                        
-                    <div class="col-2"></div>
+                    <div class="col-3"></div>
                     <div class="col-lg-8 mt-4">
                         <div class="cover card">
                             <div class="card-body"">
@@ -130,28 +106,50 @@
                                 </div>
                                 <img src="https://myleague.vn/content/images/sport/football/cover.png?id=200" style="width: 1500px">
                                 <div class="col-12 mt-5">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Tournament Name</label>
-                                            <input type="text" class="form-control" id="tour_name" name="tour_name" placeholder="Enter tournament name">                                          
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Tournament Hotline</label>
-                                                    <input type="text" class="form-control" id="tour_phone" name="tour_phone" placeholder="Enter tournament hotline">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="exampleInputEmail1">Quantity</label>
-                                                    <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity of tour">
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="card">
+                                                <div class="card-body">                                                       
+                                                    <img src="images/${gotTour.avatar}" class="avatar" alt="avatar">
+                                                    <!--<input type="file" name="avatar_leauge" class="form-control">-->
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Tournament Name</label>
-                                            <input type="text" class="form-control" id="tour_name" name="tour_name" placeholder="Enter tournament name">                                          
+                                        <div class="col-lg-7">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Tournament Name</label>
+                                                <input type="text" class="form-control" id="tour_name" name="tour_name" value="${gotTour.tour_name}" placeholder="Enter tournament name" readonly>                                          
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Tournament Hotline</label>
+                                                        <input type="text" class="form-control" id="tour_phone" name="tour_phone" value="${gotTour.phone_number}" placeholder="Enter tournament hotline" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail1">Quantity</label>
+                                                        <input type="text" class="form-control" id="quantity" name="quantity" value="${gotTour.team_quantity}" placeholder="Enter quantity of tour" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="example-date-input" class="col-form-label">Start Date</label>
+                                                        <input class="form-control" type="date" name="start_date" value="${gotTour.start_date}" id="start_date" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="example-date-input" class="col-form-label">End Date</label>
+                                                        <input class="form-control" type="date" name="end_date" value="${gotTour.end_date}" id="end_date" readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -172,9 +170,9 @@
                     <!-- testimonial area start -->
 
                     <!-- testimonial area end -->
-                </div>
+                </div>               
                 <div class="row col-10">
-                    <div class="col-2"></div>
+                    <div class="col-3"></div>
                     <div class="form-group col-lg-8 mt-4">
                         <label for="exampleInputEmail1">Description Of Leauge:</label>
                         <textarea name="description" class="form-control" rows="10" aria-label="With textarea" readonly=""></textarea>
@@ -192,14 +190,14 @@
 
     <!-- offset area end -->
     <!-- jquery latest version -->
-    <script src="../assets_1/js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="assets_1/js/vendor/jquery-2.2.4.min.js"></script>
     <!-- bootstrap 4 js -->
-    <script src="../assets_1/js/popper.min.js"></script>
-    <script src="../assets_1/js/bootstrap.min.js"></script>
-    <script src="../assets_1/js/owl.carousel.min.js"></script>
-    <script src="../assets_1/js/metisMenu.min.js"></script>
-    <script src="../assets_1/js/jquery.slimscroll.min.js"></script>
-    <script src="../assets_1/js/jquery.slicknav.min.js"></script>
+    <script src="assets_1/js/popper.min.js"></script>
+    <script src="assets_1/js/bootstrap.min.js"></script>
+    <script src="assets_1/js/owl.carousel.min.js"></script>
+    <script src="assets_1/js/metisMenu.min.js"></script>
+    <script src="assets_1/js/jquery.slimscroll.min.js"></script>
+    <script src="assets_1/js/jquery.slicknav.min.js"></script>
 
     <!-- start chart js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
@@ -215,16 +213,16 @@
     <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
     <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
     <!-- all line chart activation -->
-    <script src="../assets_1/js/line-chart.js"></script>
+    <script src="assets_1/js/line-chart.js"></script>
     <!-- all pie chart -->
-    <script src="../assets_1/js/pie-chart.js"></script>
+    <script src="assets_1/js/pie-chart.js"></script>
     <!-- all bar chart -->
-    <script src="../assets_1/js/bar-chart.js"></script>
+    <script src="assets_1/js/bar-chart.js"></script>
     <!-- all map chart -->
-    <script src="../assets_1/js/maps.js"></script>
+    <script src="assets_1/js/maps.js"></script>
     <!-- others plugins -->
-    <script src="../assets_1/js/plugins.js"></script>
-    <script src="../assets_1/js/scripts.js"></script>
+    <script src="assets_1/js/plugins.js"></script>
+    <script src="assets_1/js/scripts.js"></script>
 </body>
 
 </html>
