@@ -3,14 +3,20 @@
     Created on : Jun 21, 2023, 12:11:00 AM
     Author     : Admin
 --%>
-
+<%@page import="dao.TourDAO"%>
+<%@page import="model.Tour"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
+
+<%
+    Tour recentTour = (Tour) session.getAttribute("recentTour");    
+%>
 <div class="horizontal-menu">
     <nav>
         <ul id="nav_menu">
             <li>
-                <a href="dashboard.jsp"><i class="ti-dashboard"></i><span>Dashboard</span></a>               
+                <a href="leaugeProfile?tour_id=<%=recentTour.getTour_id()%>"><i class="ti-dashboard"></i><span>Dashboard</span></a>               
             </li>
             <li class="">
                 <a href="#"><i class="ti-layout-sidebar-left"></i><span>Registered Team List</span></a>               
@@ -27,7 +33,7 @@
             <li>
                 <a href="javascript:void(0)"><i class="ti-pie-chart"></i><span>Setting</span></a>
                 <ul class="submenu">
-                    <li><a href="leaugeUpdate.jsp">Leauge Update</a></li>
+                    <li><a href="leaugeSetting.jsp?tour_id=<%=recentTour.getTour_id()%>">Leauge Update</a></li>
                     <li><a href="#">Authorization</a></li>
                 </ul>
             </li>           
