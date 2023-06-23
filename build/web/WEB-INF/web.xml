@@ -56,6 +56,10 @@
         <servlet-name>ListAllTeamServlet</servlet-name>
         <servlet-class>controller.ListAllTeamServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeamDetailServlet</servlet-name>
+        <servlet-class>controller.TeamDetailServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>ListAllTeamServlet</servlet-name>
         <url-pattern>/listAllTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamDetailServlet</servlet-name>
+        <url-pattern>/teamDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
