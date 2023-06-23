@@ -63,7 +63,7 @@ public class TeamProfileServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(teamProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -82,7 +82,7 @@ public class TeamProfileServlet extends HttpServlet {
             response.setContentType("text/html;charset=UTF-8");
        
         } catch (Exception ex) {
-            Logger.getLogger(teamProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamProfileServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
