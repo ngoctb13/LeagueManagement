@@ -36,6 +36,7 @@
 
 
               </head>
+         <% User user = (User) session.getAttribute("user"); %>
 
     <body>
         <jsp:include page="header.jsp"></jsp:include>
@@ -48,7 +49,7 @@
                             <div id="date-countdown"></div>
                             <p>
                                 <a href="createLeauge.jsp" class="btn btn-primary py-3 px-4 mr-3">Organize Tournament</a>
-                                <a href="#" class="btn btn-primary py-3 px-4 mr-3">Build Your Team</a>
+                                <a href="createTeam.jsp" class="btn btn-primary py-3 px-4 mr-3">Build Your Team</a>
                             </p>  
                         </div>
                     </div>
@@ -461,5 +462,3 @@
     </body>
 
 </html>
-
-

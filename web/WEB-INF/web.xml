@@ -52,6 +52,10 @@
         <servlet-name>LeaugeCreateServlet</servlet-name>
         <servlet-class>controller.LeaugeCreateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MyLeaugeListServlet</servlet-name>
+        <servlet-class>controller.MyLeaugeListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>LeaugeCreateServlet</servlet-name>
         <url-pattern>/leaugeCreate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyLeaugeListServlet</servlet-name>
+        <url-pattern>/myLeauge</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
