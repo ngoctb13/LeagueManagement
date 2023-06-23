@@ -68,6 +68,10 @@
         <servlet-name>InviteMemberServlet</servlet-name>
         <servlet-class>controller.InviteMemberServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InvitationListServlet</servlet-name>
+        <servlet-class>controller.InvitationListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>InviteMemberServlet</servlet-name>
         <url-pattern>/inviteMember</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InvitationListServlet</servlet-name>
+        <url-pattern>/invitationList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
