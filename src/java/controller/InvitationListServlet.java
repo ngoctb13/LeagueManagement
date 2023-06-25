@@ -4,10 +4,14 @@
  */
 package controller;
 
+import dao.TeamDAO;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,8 +19,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Invitation;
+
 import model.Invite_member;
+import model.Team;
 import model.User;
 
 /**
@@ -39,12 +44,30 @@ public class InvitationListServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-        UserDAO userdao=new UserDAO();
-        int user_id=user.getUser_id();
-        List<Invitation> invitation= userdao.getListInvitationByUserID(user_id);
-        request.setAttribute("invitation",invitation );
+        UserDAO userdao = new UserDAO();
+        int user_id = user.getUser_id();
+
+        List<String> teamNames = new ArrayList<>();
+        // Iterate over the player list and populate the teamMap
+//        session.setAttribute("userId", user_id);
+        List<Invite_member> invitation = userdao.getListInvitationByUserID(user_id);
+        for (Invite_member var : invitation) {
+            int teamId = var.getTeamID();
+            String teamName = getTeamName(teamId); // Assuming you have the getTeamName() method
+            teamNames.add(teamName);
+        }
+        request.setAttribute("teamNames", teamNames);
+        request.setAttribute("invitation", invitation);
         request.getRequestDispatcher("invitation.jsp").forward(request, response);
-       
+
+    }
+
+    public String getTeamName(int teamId) throws Exception {
+        TeamDAO dao = new TeamDAO();
+        Team team = dao.getTeamByID(teamId);
+        String teamName = team.getTeam_name();
+
+        return teamName;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -59,7 +82,7 @@ public class InvitationListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+       try {
             processRequest(request, response);
         } catch (Exception ex) {
             Logger.getLogger(InvitationListServlet.class.getName()).log(Level.SEVERE, null, ex);
