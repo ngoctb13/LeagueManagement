@@ -53,16 +53,12 @@
         <servlet-class>controller.LeaugeCreateServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>MyLeaugeListServlet</servlet-name>
-        <servlet-class>controller.MyLeaugeListServlet</servlet-class>
+        <servlet-name>TournamentServlet</servlet-name>
+        <servlet-class>controller.TournamentServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LeaugeProfileServlet</servlet-name>
-        <servlet-class>controller.LeaugeProfileServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LeaugeSettingServlet</servlet-name>
-        <servlet-class>controller.LeaugeSettingServlet</servlet-class>
+        <servlet-name>LeaugeList</servlet-name>
+        <servlet-class>controller.LeaugeList</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -79,6 +75,7 @@
     <servlet-mapping>
         <servlet-name>UserManagementServlet</servlet-name>
         <url-pattern>/user</url-pattern>
+        <url-pattern>/userDetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserUpdateServlet</servlet-name>
@@ -114,19 +111,18 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LeaugeCreateServlet</servlet-name>
-        <url-pattern>/leaugeCreate</url-pattern>
+        <url-pattern>/createLeauge</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>MyLeaugeListServlet</servlet-name>
-        <url-pattern>/myLeauge</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LeaugeProfileServlet</servlet-name>
+        <servlet-name>TournamentServlet</servlet-name>
+        <url-pattern>/tournament</url-pattern>
         <url-pattern>/leaugeProfile</url-pattern>
+        <url-pattern>/leaugeList</url-pattern>
+        <url-pattern>/leaugeDetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LeaugeSettingServlet</servlet-name>
-        <url-pattern>/leaugeSetting</url-pattern>
+        <servlet-name>LeaugeList</servlet-name>
+        <url-pattern>/LeaugeList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

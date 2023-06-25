@@ -60,7 +60,7 @@
                                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                     <c:if test="${sessionScope.user != null}">                                       
                                         <li class="active"><a href="home.jsp" class="nav-link">Home</a></li>
-                                        <li><a href="#" class="nav-link">Tournament</a></li>
+                                        <li><a href="tournament" class="nav-link">Tournament</a></li>
                                         <li><a href="team.jsp" class="nav-link">Team</a></li>
                                         <li><a href="blog.jsp" class="nav-link">Blog</a></li>
                                         <li><a href="contact.jsp" class="nav-link">Contact</a></li>                           
