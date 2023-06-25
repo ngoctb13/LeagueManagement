@@ -13,21 +13,27 @@ public class Join_Team_Request {
     int userID;
     int teamID;
     String status;
+    String shirt_number;
+    String position;
 
     public Join_Team_Request() {
     }
 
-    public Join_Team_Request(int RequestID, int userID, int teamID, String status) {
+    public Join_Team_Request(int RequestID, int userID, int teamID, String status, String shirt_number, String position) {
         this.RequestID = RequestID;
         this.userID = userID;
         this.teamID = teamID;
         this.status = status;
+        this.shirt_number = shirt_number;
+        this.position = position;
     }
-    public Join_Team_Request(int userID, int teamID, String status) {
+    public Join_Team_Request(int userID, int teamID, String status, String shirt_number, String position) {
        
         this.userID = userID;
         this.teamID = teamID;
         this.status = status;
+        this.shirt_number = shirt_number;
+        this.position = position;
     }
 
     public int getRequestID() {
@@ -61,6 +67,25 @@ public class Join_Team_Request {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public String getShirt_number() {
+        return shirt_number;
+    }
+
+    public void setShirt_number(String shirt_number) {
+        this.shirt_number = shirt_number;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+    
+
+    
 @Override
     public String toString() {
         return "Invite_member{" + "inviteID=" + RequestID + "userID=" + userID + ", teamID=" + teamID + ", status=" + status +  '}';

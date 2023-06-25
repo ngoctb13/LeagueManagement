@@ -44,7 +44,7 @@
     <body>
 
 
-        <div class="hero overlay" style="background-image: url('images/bg_3.jpg'); width: 100%; height: 735px;"  >
+        <div class="hero overlay" style="background-image: url('images/bg_3.jpg'); width: 100%; height: 1102.5px;"  >
 
 
             <header class="site-navbar py-4" role="banner">

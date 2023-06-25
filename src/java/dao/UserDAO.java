@@ -191,14 +191,16 @@ public class UserDAO extends DBContext {
         return status;
     }
 
-    public int addJoinTeamRequest(Join_Team_Request a) throws Exception {
+   public int addJoinTeamRequest(Join_Team_Request a) throws Exception {
         int status = 0;
         try {
             con = getConnection();
-            ps = con.prepareStatement("insert into team_join_request ( user_id, team_id, status) values (?,?,?)");
+            ps = con.prepareStatement("insert into team_join_request ( user_id, team_id, status, shirt_number, position) values (?,?,?,?,?)");
             ps.setInt(1, a.getUserID());
             ps.setInt(2, a.getTeamID());
             ps.setString(3, a.getStatus());
+            ps.setString(4, a.getShirt_number());
+            ps.setString(5, a.getPosition());
             status = ps.executeUpdate();
         } catch (Exception e) {
             throw e;
