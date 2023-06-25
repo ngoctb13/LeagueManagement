@@ -15,7 +15,7 @@ import model.Player;
  * @author HP
  */
 public class PlayerDAO extends DBContext {
-     private Connection con;
+    private Connection con;
     private PreparedStatement ps;
     private ResultSet rs;
     public int addPlayer(Player a) throws Exception {
