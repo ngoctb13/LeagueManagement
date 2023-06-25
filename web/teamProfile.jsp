@@ -1,3 +1,4 @@
+<%@page import="model.Team"%>
 <%@page import="model.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -37,8 +38,97 @@
 
 
     </head>
-
+    <%
+        Team recentTeam = (Team) session.getAttribute("recentTeam");
+    %>
     <body>
+        <style>
+            .modal1,.modal5,.modal9{
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                background: rgb(0, 0, 0, 0.6);
+                z-index: 3;
+            }
+            .modal_inner form{
+                width: 50%;
+                margin: 10% auto;
+                text-align: center;
+                justify-content: center;
+                border: 1px solid #de536f;
+                background-color: #de536f ;
+                border-radius: 15px;
+            }
+            .modal_inner form table{
+                width: 100%;
+            }
+            .modal_inner form table tr th{
+                width: 30%;
+                color: white;
+                border: none;
+
+            }
+            .modal_inner label{
+                color: white;
+                font-size: 17px;
+                font-weight: bold;
+
+            }
+            .modal_inner form table tr td{
+                width: 70%;
+                margin-right: 10px;
+                border: none;
+
+            }
+            .modal_inner form table tr td input, .modal_inner form input {
+                padding: 10px;
+                border-radius: 10px;
+                border: none;
+                width: 90%;
+                margin: 10px 0;
+
+            }
+            .hide{
+                display: none;
+            }
+            .icon_exit{
+                width: 100%;
+            }
+            .icon_exit span{
+                padding: 10px;
+                float: right;
+                margin: 10px 10px 0 10px;
+            }
+            .icon_exit span:hover{
+                border: 1px dashed #333;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .row_card{
+                padding: 0;
+            }
+        </style>
+
+        <div class="modal1 hide">
+            <div class="modal_inner">
+                <form id="myForm" action="joinTeamRequest" method=""><div class="modal_header3">
+                        <div class="icon_exit"><span class="fa fa-times"></span></div>
+                        <table class="table">
+                            <tr>
+                                <th><label for="" >Enter Your Shirt Number: </label></th>
+                                <td><input type="text" name="shirt_number" id="" value= "" required="Not empty"></td>
+                            </tr>
+                            <tr>
+                                <th><label for="">Enter Your Position: </label></th>
+                                <td><input type="text" name="position" id="" value= "" required="Not empty"></td>
+                            </tr>
+                        </table>    
+                        <input type="submit" name="" id="" value= "Submit" style="width: 30%;">
+
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <div class="site-wrap">
 
@@ -90,17 +180,17 @@
                         </form>
                     </div>
 
-                    
-                        <div class="container btn_thamgiadoibong" id = "joinButton" >
-                            <form action="joinTeamRequest" method="" >
-                            <div class="row">
-                                <div  style="z-index: 0;">
-                                    <button type="submit" onclick="changeText()">Tham gia đội</button>
-                                </div>
+
+                    <div class="container btn_thamgiadoibong" id = "joinButton" >
+
+                        <div class="row">
+                            <div  style="z-index: 0;" class="thamgiadoi">
+                                <button type="submit" >Tham gia đội</button>
                             </div>
-                                </form>
                         </div>
-                    
+
+                    </div>
+
 
 
                 </div>
@@ -313,12 +403,28 @@
 
 
         <script src="js/main.js"></script>
+        
         <script>
-                                        function changeText() {
-                                            var button = document.getElementById("joinButton");
-                                            button.innerHTML = "Đã gửi yêu cầu";
-                                            button.disabled = true; // (Optional) Disable the button after clicking
-                                        }
+            var form = document.getElementById("myForm");
+            var team_id = '<%= session.getAttribute("team_id")%>';
+            var hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "team_id";
+            hiddenInput.value = team_id;
+            form.appendChild(hiddenInput);
+        </script>
+        <script>
+            var modal = document.querySelector('.modal1')
+            var hienthi = document.querySelector('.thamgiadoi button')
+            var andi = document.querySelector('.icon_exit span')
+
+            function toggModal() {
+                modal.classList.toggle('hide')
+            }
+
+            hienthi.addEventListener('click', toggModal);
+            andi.addEventListener('click', toggModal);
+
         </script>
 
     </body>
