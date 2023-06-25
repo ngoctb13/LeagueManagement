@@ -41,7 +41,7 @@
                                                 <div class="item-content">Time: ${item.start_date}-${item.end_date}</div>
                                             </div>
                                         </div>
-                                        <div class="action-body"><a href="leaugeProfile?id=${item.tour_id}">Show detail</a></div> 
+                                        <div class="action-body"><a href="leaugeProfile?tour_id=${item.tour_id}">Show Profile</a></div> 
                                     </div>
                                 </c:forEach>
                             </c:otherwise>
