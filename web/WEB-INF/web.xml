@@ -76,6 +76,18 @@
         <servlet-name>JoinTeamRequestServlet</servlet-name>
         <servlet-class>controller.JoinTeamRequestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeamListServlet</servlet-name>
+        <servlet-class>controller.TeamListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeamManagementServlet</servlet-name>
+        <servlet-class>controller.TeamManagementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeamUpdateServlet</servlet-name>
+        <servlet-class>controller.TeamUpdateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -151,6 +163,18 @@
     <servlet-mapping>
         <servlet-name>JoinTeamRequestServlet</servlet-name>
         <url-pattern>/joinTeamRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamListServlet</servlet-name>
+        <url-pattern>/teamList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamManagementServlet</servlet-name>
+        <url-pattern>/teamManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamUpdateServlet</servlet-name>
+        <url-pattern>/teamUpdate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
