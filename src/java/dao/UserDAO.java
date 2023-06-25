@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Delete_Request;
 import model.Feedback;
-import model.Invitation;
+
 import model.Invite_member;
 import model.Join_Team_Request;
 import model.User;
@@ -211,24 +211,21 @@ public class UserDAO extends DBContext {
         }
         return status;
     }
-
-    public List<Invitation> getListInvitationByUserID(int input_id) throws Exception {
+    public List<Invite_member> getListInvitationByUserID(int input_id) throws Exception {
         try {
-            String sql = "SELECT full_name, team.email, team_name, message  FROM user\n"
-                    + "JOIN team ON user.user_id = team.coach\n"
-                    + "JOIN team_invite ON team.team_id =team_invite.team_id\n"
-                    + " WHERE team_invite.user_id = ? ";
+            String sql = "SELECT * from team_invite WHERE user_id = ? ";
             con = getConnection();
             ps = con.prepareStatement(sql);
             ps.setInt(1, input_id);
             rs = ps.executeQuery();
-            List<Invitation> list = new ArrayList<>();
+            List<Invite_member> list = new ArrayList<>();
             while (rs.next()) {
-                Invitation invite = new Invitation();
-                invite.setManager(rs.getString("full_name"));
-                invite.setTeam_email(rs.getString("team.email"));
-                invite.setTeam_name(rs.getString("team_name"));
+                Invite_member invite = new Invite_member();
+                invite.setInviteID(rs.getInt("invite_id"));
+                invite.setUserID(rs.getInt("user_id"));
+                invite.setTeamID(rs.getInt("team_id"));
                 invite.setMess(rs.getString("message"));
+                invite.setStatus(rs.getString("status"));
                 list.add(invite);
             }
             return list;
@@ -240,6 +237,35 @@ public class UserDAO extends DBContext {
             closeConnection(con);
         }
     }
+
+//    public List<Invitation> getListInvitationByUserID(int input_id) throws Exception {
+//        try {
+//            String sql = "SELECT full_name, team.email, team_name, message  FROM user\n"
+//                    + "JOIN team ON user.user_id = team.coach\n"
+//                    + "JOIN team_invite ON team.team_id =team_invite.team_id\n"
+//                    + " WHERE team_invite.user_id = ? ";
+//            con = getConnection();
+//            ps = con.prepareStatement(sql);
+//            ps.setInt(1, input_id);
+//            rs = ps.executeQuery();
+//            List<Invitation> list = new ArrayList<>();
+//            while (rs.next()) {
+//                Invitation invite = new Invitation();
+//                invite.setManager(rs.getString("full_name"));
+//                invite.setTeam_email(rs.getString("team.email"));
+//                invite.setTeam_name(rs.getString("team_name"));
+//                invite.setMess(rs.getString("message"));
+//                list.add(invite);
+//            }
+//            return list;
+//        } catch (Exception e) {
+//            throw e;
+//        } finally {
+//            closeResultSet(rs);
+//            closePreparedStatement(ps);
+//            closeConnection(con);
+//        }
+//    }
 
     public List<User> getListUser() throws Exception {
         try {

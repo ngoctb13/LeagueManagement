@@ -1,15 +1,25 @@
+package controller;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
 
+import dao.TeamDAO;
+import dao.UserDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Join_Team_Request;
+
+import model.Team;
+import model.User;
 
 /**
  *
@@ -27,20 +37,23 @@ public class JoinTeamRequestServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet JoinTeamRequestServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet JoinTeamRequestServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            throws ServletException, IOException, Exception {
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+
+        int team_id = Integer.parseInt(request.getParameter("team_id"));
+        int userID = user.getUser_id();
+        String shirt_number = request.getParameter("shirt_number");
+        String position = request.getParameter("position");
+        UserDAO userDAO = new UserDAO();
+        String status = "PENDING";
+        Join_Team_Request JoinRequest = new Join_Team_Request(userID, team_id, status, shirt_number, position);
+        System.out.println(JoinRequest);
+        int r = userDAO.addJoinTeamRequest(JoinRequest);
+        if (r > 0) {
+            request.getRequestDispatcher("teamProfile.jsp").forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -55,7 +68,11 @@ public class JoinTeamRequestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(JoinTeamRequestServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -69,7 +86,11 @@ public class JoinTeamRequestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(JoinTeamRequestServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
