@@ -45,7 +45,7 @@ public class PlayerListServlet extends HttpServlet {
             ArrayList<Player> playerList = playerDAO.getListPlayerByTeam(team_id);
 
             request.setAttribute("playerList", playerList);
-            request.getRequestDispatcher("manage/playList.jsp").forward(request, response);
+            request.getRequestDispatcher("manage/playerList.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(ParticipantListServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

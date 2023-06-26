@@ -41,7 +41,7 @@ public class DeletePlayerServlet extends HttpServlet {
             if (playerDAO.IsTeamManager(user_id, team_id)) {
                 playerDAO.deletePlayer(player_id);
             }
-            request.getRequestDispatcher("home.jsp").forward(request, response);
+            request.getRequestDispatcher("manage/playerList.jsp").forward(request, response);
 
         } catch (Exception ex) {
             Logger.getLogger(ParticipantListServlet.class.getName()).log(Level.SEVERE, null, ex);
