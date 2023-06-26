@@ -53,6 +53,46 @@
         <servlet-class>controller.LeaugeCreateServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ListAllTeamServlet</servlet-name>
+        <servlet-class>controller.ListAllTeamServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeamDetailServlet</servlet-name>
+        <servlet-class>controller.TeamDetailServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeamProfileServlet</servlet-name>
+        <servlet-class>controller.TeamProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InviteMemberServlet</servlet-name>
+        <servlet-class>controller.InviteMemberServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InvitationListServlet</servlet-name>
+        <servlet-class>controller.InvitationListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JoinTeamRequestServlet</servlet-name>
+        <servlet-class>controller.JoinTeamRequestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeamListServlet</servlet-name>
+        <servlet-class>controller.TeamListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeamManagementServlet</servlet-name>
+        <servlet-class>controller.TeamManagementServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeamUpdateServlet</servlet-name>
+        <servlet-class>controller.TeamUpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JoinTeamRequestListServlet</servlet-name>
+        <servlet-class>controller.JoinTeamRequestListServlet</servlet-class>
+      </servlet>
+      <servlet>
         <servlet-name>TournamentServlet</servlet-name>
         <servlet-class>controller.TournamentServlet</servlet-class>
     </servlet>
@@ -156,6 +196,46 @@
         <url-pattern>/leaugeCreate</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ListAllTeamServlet</servlet-name>
+        <url-pattern>/listAllTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamDetailServlet</servlet-name>
+        <url-pattern>/teamDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamProfileServlet</servlet-name>
+        <url-pattern>/teamProfile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InviteMemberServlet</servlet-name>
+        <url-pattern>/inviteMember</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InvitationListServlet</servlet-name>
+        <url-pattern>/invitationList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JoinTeamRequestServlet</servlet-name>
+        <url-pattern>/joinTeamRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamListServlet</servlet-name>
+        <url-pattern>/teamList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamManagementServlet</servlet-name>
+        <url-pattern>/teamManagement</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamUpdateServlet</servlet-name>
+        <url-pattern>/teamUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JoinTeamRequestListServlet</servlet-name>
+        <url-pattern>/joinTeamRequestList</url-pattern>
+      </servlet-mapping>
+        <servlet-mapping>
         <servlet-name>LeaugeProfileServlet</servlet-name>
         <url-pattern>/leaugeProfile</url-pattern>
     </servlet-mapping>

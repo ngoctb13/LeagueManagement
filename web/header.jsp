@@ -61,7 +61,7 @@
                                     <c:if test="${sessionScope.user != null}">                                       
                                         <li class="active"><a href="home.jsp" class="nav-link">Home</a></li>
                                         <li><a href="tournament" class="nav-link">Tournament</a></li>
-                                        <li><a href="team.jsp" class="nav-link">Team</a></li>
+                                        <li><a href="listAllTeam" class="nav-link">Team</a></li>
                                         <li><a href="blog.jsp" class="nav-link">Blog</a></li>
                                         <li><a href="contact.jsp" class="nav-link">Contact</a></li>                           
                                         <a href="#" data-toggle="dropdown" role="button" class="nav-link dropdown-toggle">
@@ -74,6 +74,8 @@
                                                 <li><a href="myLeauge"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Tour</a>
                                                 </li>
                                                 <li><a href="teamList"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Team</a>
+                                                </li>
+                                                <li><a href="invitationList"><span class="edu-icon edu-user-rounded author-log-ic"></span>Invitation</a>
                                                 </li>
                                                 <li><a href="changePassword.jsp"><span class="edu-icon edu-money author-log-ic"></span>Change Password</a>
                                                 </li>                                      
@@ -102,7 +104,7 @@
                                     <c:if test="${sessionScope.user == null}">
                                         <li class="active"><a href="home.jsp" class="nav-link">Home</a></li>
                                         <li><a href="tournament.jsp" class="nav-link">Tournament</a></li>
-                                        <li><a href="team.jsp" class="nav-link">Team</a></li>
+                                        <li><a href="listAllTeam" class="nav-link">Team</a></li>
                                         <li><a href="blog.jsp" class="nav-link">Blog</a></li>
                                         <li><a href="contact.jsp" class="nav-link">Contact</a></li>                                 
                                         <li><a href="login.jsp" class="btn btn-primary py-3 px-4 mr-3">Sign in</a></li>

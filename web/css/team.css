@@ -1,0 +1,123 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Jun 20, 2023, 1:08:55 AM
+    Author     : HP
+*/
+.container form input,.container form button{
+    border: 3px solid wheat;
+    background-color: #ccc;
+    margin: 0 10px;
+    color: #3219196e;
+  }
+  .container form{
+    margin-top: 30px;
+  }
+  .main{
+      margin-top: 3%;
+      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+  } 
+  .main h2{color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.main a{
+    text-decoration: none;
+    color: #ccc;
+}
+.main a:hover{
+    color: rgb(0 255 234 / 40%);
+    border-bottom: 1px dashed #11dce7;
+    font-weight: bolder;
+}
+.sanpham{
+  margin-bottom: 3%;
+}
+.tab_content{
+  width: 100%;
+}
+.pagination{
+  justify-content: right;
+  text-align: right;
+  margin: 0 10px;
+  margin-top: 3%;
+}
+.pagination > li > a {
+  padding: 10px 15px;
+}
+.pagination  li > a:hover{
+  background-color: #ee1e46;
+  color: white;
+  font-weight: bold;
+}
+.card {
+  background-color: #222831;
+  color: #ccc;
+}
+.card > a > img{
+  width: 100%;
+  height: 224px;
+}
+
+.btn-outline-success button:hover{
+  background-color: #ee1e46;
+}
+
+
+
+
+.img1{
+  height: 305px;
+  margin-top: 18%;
+  text-align: center;
+  width: 100%;
+}
+.img1 > img{
+  width: 80%;
+  height: 100%;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+.main_product{
+  display: flex;
+}
+.info h2{
+  font-weight: bold;
+  color: #ee1e46;
+}
+.info{
+  margin-top: 20%;
+}
+
+.table tr td,.table tr th{
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #ee1e46;
+  font-weight: 700;
+}
+
+.btn_thamgiadoibong{
+  margin-top: 18%;
+}
+.btn_thamgiadoibong .row div button{
+  text-decoration: none ;
+  padding: 10px;
+  border: 1px dashed #ccc;
+  color: #ee1e46;
+  background-color: rgba(0, 0, 0, 0);
+}
+.btn_thamgiadoibong .row div button:hover{
+  background-color: #11dce7;
+  color: white;
+}
+.dropdown-toggle{
+    color: #ee1e46;
+}
+
+
+
+

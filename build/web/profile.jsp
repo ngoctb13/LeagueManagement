@@ -50,15 +50,44 @@
 
             <div class="container">
                 <div class="row">
-                    <!-- left column -->
-                    <div class="col-md-3" style="padding-top: 50px;">
-                        <div class="text-center">
-                            <img src="${sessionScope.user.avatar_link}" class="avatar img-circle img-thumbnail" alt="avatar">
-                        <h6>Upload a different photo...</h6>
-
-                        <input type="file" class="form-control">
+                   
+            <!-- left column -->
+            <div class="col-md-3" style="padding-top: 50px;">
+                <div class="text-center">
+                    <div class="anh" style="width: 100%; height: 100%;">
+                        <img src="${sessionScope.user.avatar_link}" id="img" class="avatar img-circle img-thumbnail"
+                            alt="avatar" style="width: 100%; height: 100%;">
                     </div>
+                    <h6>Upload a different photo...</h6>
+                    <form action="uploadAvatar" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="avatarFile" id="addImage" accept="image/png, image/jpeg"
+                            onchange="chooseFile(file)" class="form-control">
+                        <button type="submit" class="btn btn-primary">Upload</button>
+                    </form>
                 </div>
+            </div>
+
+            <div class="col-md-9 personal-info" style="padding-top: 50px;">
+        <script>
+            var imageInput = document.getElementById("addImage");
+            var selectedImage = document.getElementById("img");
+
+            // Add an event listener to the input file element
+            imageInput.addEventListener("change", function(event) {
+            var file = event.target.files[0]; // Get the selected file
+
+            if (file) {
+                var reader = new FileReader(); // Create a FileReader object
+
+                reader.onload = function(e) {
+                selectedImage.src = e.target.result; // Set the source of the image element to the selected file
+                selectedImage.style.display = "block"; // Display the image element
+                };
+
+                reader.readAsDataURL(file); // Read the selected file as a Data URL
+            }
+            });
+        </script> 
 
                 <div class="col-md-9 personal-info" style="padding-top: 50px;">
                     <!--                        <div class="alert alert-info alert-dismissable">
@@ -80,41 +109,50 @@
                             UPDATE PROFILE <strong>FAILED!</strong>.
                         </div>
                     </c:if>
-                    <form action="userUpdate" class="form-horizontal"  role="form">
+                    <form action="userUpdate" class="form-horizontal"  role="form" enctype="multipart/form-data">
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Email:</label>
                             <div class="col-lg-8">
-                                <input name="email" class="form-control" type="text" value="${sessionScope.user.email}">
+                                <input id="user_email" name="email" class="form-control" type="text" value="${sessionScope.user.email}" required onkeyup="emailValidate()">
+                                <div style="text-align:center">
+                                    <span id="email-erorr"></span>
+                                </div>
                             </div>
                         </div> 
 
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Your Name:</label>
                             <div class="col-lg-8">
-                                <input name="full_name" class="form-control" type="text" value="${sessionScope.user.full_name}">
+                                <input id="full_name" name="full_name" class="form-control" type="text" value="${sessionScope.user.full_name}" required onkeyup="validateName()">
+                                <div style="text-align:center">
+                                    <span id="name-erorr"></span>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Your Phone Number:</label>
                             <div class="col-lg-8">
-                                <input name="phone_number" class="form-control" type="text" value="${sessionScope.user.phone_number}">
+                                <input id="phone_number" name="phone_number" class="form-control" type="text" value="${sessionScope.user.phone_number}" required onkeyup="validatePhoneNumber()">
+                                <div style="text-align:center">
+                                    <span id="phone-erorr"></span>
+                                </div>
                             </div>  
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Address:</label>
                             <div class="col-lg-8">
-                                <input name="address" class="form-control" type="text" value="${sessionScope.user.address}">
+                                <input name="address" class="form-control" type="text" value="${sessionScope.user.address}" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-3 control-label">Your Avatar Link</label>
                             <div class="col-lg-8">
-                                <input name="avatar_link" class="form-control" type="text" value="${sessionScope.user.avatar_link}">
+                                <input name="avatar_link" class="form-control" type="text" value="${sessionScope.user.avatar_link}" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-lg-3" style="padding-top: 10px;">
-                                <button type="submit" class="btn btn-primary py-2 px-5">Update</button>
+                                <button type="submit" onclick="return (emailValidate() && validatePassword() && validateName() && validatePhoneNumber())" class="btn btn-primary py-2 px-5">Update</button>
                             </div>
                         </div>                               
                     </form>
@@ -132,7 +170,64 @@
 
         <jsp:include page="footer.jsp"></jsp:include>
         <!-- .site-wrap -->
+        <script type="text/javascript">
+            function emailValidate() {
+                var email = document.getElementById("user_email");
+                var text = document.getElementById("email-erorr");
+                var pattern = /^\S+@\S+\.\S+$/;
 
+
+                if (!email.value.match(pattern)) {
+                    text.innerHTML = "Please enter a valid email!";
+                    text.style.color = "#ff0000";
+                    return false;
+                } else {
+                    text.innerHTML = "";
+                    return true;
+                }
+                if (email.value === "") {
+                    text.innerHTML = "";
+                }
+            }
+
+            function validatePassword() {
+                var password = document.getElementById("password").value;
+                var text = document.getElementById("password-erorr");
+                if (password.length > 20) {
+                    text.innerHTML = "Password should not exceed 20 characters.";
+                    text.style.color = "#ff0000";
+                    return false;
+                } else {
+                    text.innerHTML = "";
+                    return true;
+                }
+            }
+            function validateName() {
+                var full_name = document.getElementById("full_name").value;
+                var text = document.getElementById("name-erorr");
+                if (full_name.length > 50 || !full_name.match(/^[a-zA-Z\s]+$/)) {
+                    text.innerHTML = "Full name must be alphanumeric character and should not exceed 50 characters.";
+                    text.style.color = "#ff0000";
+                    return false;
+                } else {
+                    text.innerHTML = "";
+                    return true;
+                }
+            }
+            function validatePhoneNumber() {
+                var phone_number = document.getElementById("phone_number").value;
+                var text = document.getElementById("phone-erorr");
+                
+                if (phone_number.length !== 10) {
+                    text.innerHTML = "Phone number must be 10 digits!";
+                    text.style.color = "#ff0000";
+                    return false;
+                } else {
+                    text.innerHTML = "";
+                    return true;
+                }
+            }
+        </script>
         <script src="js/jquery-3.3.1.min.js"></script>
         <script src="js/jquery-migrate-3.0.1.min.js"></script>
         <script src="js/jquery-ui.js"></script>
