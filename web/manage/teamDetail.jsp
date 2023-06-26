@@ -137,7 +137,6 @@
                 </form>
             </div>
         </div>
-
         <!--[if lt IE 8]>
                 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
@@ -178,7 +177,6 @@
                                             <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Edit</a>
                                             <a class="nav-link" id="v-pills-browser-tab" data-toggle="pill" href="#v-pills-browser" role="tab" aria-controls="v-pills-browser" aria-selected="false">Request</a>
                                             <a class="nav-link" id="v-pills-invitation-sent-tab" data-toggle="pill" href="#v-pills-invitation-sent" role="tab" aria-controls="v-pills-invitation-sent" aria-selected="false">Invitation Sent</a>
-
                                         </div>                                                                                        
 
                                         <div class="col-lg-10">                                           
@@ -310,13 +308,7 @@
                                                                 </button>  
                                                             </div>
                                                         </div>
-
-
-
-
                                                     </div>
-
-
                                                 </div>
                                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                                     <div class="col-12">
@@ -481,7 +473,6 @@
                                                                     andi.addEventListener('click', toggModal);
 
         </script>
-
     </body>
 
 </html>

@@ -1,4 +1,4 @@
-    <%-- 
+<%-- 
     Document   : sidebar
     Created on : May 27, 2023, 11:45:47 PM
     Author     : Admin
@@ -21,7 +21,8 @@
                         <ul class="collapse">
                             <li class="active"><a href="teamList">Team List</a></li>                         
                         </ul>
-                    </li>                                                                                                  
+                    </li>
+                    <li class="active"><a href="myLeauge">My Leauge</a></li>
                 </ul>
             </nav>
         </div>

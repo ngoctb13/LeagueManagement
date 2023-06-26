@@ -60,7 +60,7 @@
                                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                     <c:if test="${sessionScope.user != null}">                                       
                                         <li class="active"><a href="home.jsp" class="nav-link">Home</a></li>
-                                        <li><a href="#" class="nav-link">Tournament</a></li>
+                                        <li><a href="tournament" class="nav-link">Tournament</a></li>
                                         <li><a href="listAllTeam" class="nav-link">Team</a></li>
                                         <li><a href="blog.jsp" class="nav-link">Blog</a></li>
                                         <li><a href="contact.jsp" class="nav-link">Contact</a></li>                           
@@ -71,7 +71,7 @@
                                             <ul role="menu" class="dropdown-menu py-3 px-4 mr-3">                                                
                                                 <li><a href="profile.jsp"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                 </li>
-                                                <li><a href="#"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Tour</a>
+                                                <li><a href="myLeauge"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Tour</a>
                                                 </li>
                                                 <li><a href="teamList"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Team</a>
                                                 </li>
@@ -89,7 +89,7 @@
                                                 </li>
                                                 <li><a href="profile.jsp"><span class="edu-icon edu-user-rounded author-log-ic"></span>My Profile</a>
                                                 </li>
-                                                <li><a href="#"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Tour</a>
+                                                <li><a href="myLeauge"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Tour</a>
                                                 </li>
                                                 <li><a href="teamList"><span class="edu-icon edu-user-rounded author-log-ic"></span>Manage Your Team</a>
                                                 </li>

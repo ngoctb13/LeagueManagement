@@ -1,6 +1,9 @@
+<%@page import="dao.TourDAO"%>
+<%@page import="model.Tour"%>
 <!doctype html>
 <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -28,6 +31,11 @@
             object-fit: cover;
         }
     </style>
+    <%
+        TourDAO dao = new TourDAO();
+        int tour_id = Integer.parseInt(request.getParameter("tour_id"));
+        Tour gotTour = dao.getTourByID(tour_id);
+    %>
     <body class="body-bg">
         <!--[if lt IE 8]>
                 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -40,14 +48,14 @@
         <!-- main wrapper start -->
         <div class="horizontal-main-wrapper">
             <!-- main header area start -->
-            <jsp:include page="layout/header.jsp"/>
+            <jsp:include page="LeaugeLayout/header.jsp"/>
             <!-- main header area end -->
             <!-- header area start -->
             <div class="header-area header-bottom">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-12  d-none d-lg-block">
-                            <jsp:include page="layout/navbar.jsp"/>
+                            <jsp:include page="LeaugeLayout/navbar.jsp"/>
                         </div>
 
                     </div>
@@ -68,94 +76,96 @@
                         <div class="cover card">
                             <div class="card-body"">                               
                                 <img src="https://myleague.vn/content/images/sport/football/cover.png?id=200" style="height: 300px; width: 1500px">
-                                
+
                                 <div class="col-12 mt-5">
                                     <div class="col-lg-12 mt-5">
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Information</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Format</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Introduction</a>
-                                                    </li>
-                                                </ul>
-                                                <div class="tab-content mt-3" id="myTabContent">
-                                                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                                        <div class="row">
-                                                            <div class="col-lg-4 mt-5">
-                                                                <div class="card">
-                                                                    <div class="card-body">
-                                                                        <form method="post" action="fileuploadservlet" enctype="multipart/form-data">
-                                                                            <img src="images/logo_4.png" class="avatar" alt="avatar">
-                                                                            <input type="file" class="form-control">
-                                                                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Save</button>
-                                                                        </form>
+                                        <form action="leaugeSetting" method="post" enctype="multipart/form-data">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Information</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Format</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Introduction</a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="tab-content mt-3" id="myTabContent">
+                                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                            <div class="row">
+                                                                <div class="col-lg-4 mt-5">
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                            <img src="images/<%=gotTour.getAvatar()%>" class="avatar" alt="avatar">
+                                                                            <input type="file" name="avatar_leauge" class="form-control">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-lg-8 mt-5">
-                                                                <div class="card">
-                                                                    <div class="card-body">
-                                                                        <div class="form-group">
-                                                                            <label for="exampleInputEmail1">Tournament Name</label>
-                                                                            <input type="text" class="form-control" id="tour_name" name="tour_name" placeholder="Enter tournament name">                                          
-                                                                        </div>
+                                                                <div class="col-lg-8 mt-5">
+                                                                    <div class="card">
+                                                                        <div class="card-body">
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Tournament Name</label>
+                                                                                <input type="text" class="form-control" id="tour_name" name="tour_name" value="<%=gotTour.getTour_name()%>">                                          
+                                                                            </div>
 
-                                                                        <div class="row">
-                                                                            <div class="col-md-12">
-                                                                                <div class="form-group">
-                                                                                    <label for="exampleInputEmail1">Tournament Hotline</label>
-                                                                                    <input type="text" class="form-control" id="tour_phone" name="tour_phone" placeholder="Enter tournament hotline">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="exampleInputEmail1">Tournament Hotline</label>
+                                                                                        <input type="text" class="form-control" id="tour_phone" name="tour_phone" value="<%=gotTour.getPhone_number()%>">
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="form-group">
-                                                                            <label for="exampleInputEmail1">Tournament Location</label>
-                                                                            <input type="text" class="form-control" id="tour_address" name="tour_address" placeholder="Enter tournament location">
+                                                                            <div class="form-group">
+                                                                                <label for="exampleInputEmail1">Tournament Location</label>
+                                                                                <input type="text" class="form-control" id="tour_address" name="tour_address" value="<%=gotTour.getAddress()%>">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Competition Type</label>
-                                                            <input type="text" class="form-control" id="tour_name" name="com_type" placeholder="Enter tournament name">                                          
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="example-date-input" class="col-form-label">Start Date</label>
-                                                                    <input class="form-control" type="date" name="start_date" value="" id="start_date">
+                                                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Competition Type</label>
+                                                                <input type="text" class="form-control" value="Loai Truc Tiep">                                          
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="example-date-input" class="col-form-label">Start Date</label>
+                                                                        <input class="form-control" type="date" name="start_date" value="<%=gotTour.getStart_date()%>" id="start_date">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="example-date-input" class="col-form-label">End Date</label>
+                                                                        <input class="form-control" type="date" name="end_date" value="<%=gotTour.getEnd_date()%>" id="end_date">
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="example-date-input" class="col-form-label">End Date</label>
-                                                                    <input class="form-control" type="date" name="start_date" value="" id="start_date">
-                                                                </div>
+                                                            <div class="form-group">
+                                                                <label for="exampleInputEmail1">Number Of Team</label>
+                                                                <input type="text" class="form-control" id="quantity" name="quantity" value="<%=gotTour.getTeam_quantity()%>">
                                                             </div>
                                                         </div>
-                                                        <div class="form-group">
-                                                            <label for="exampleInputEmail1">Number Of Team</label>
-                                                            <input type="text" class="form-control" id="quantity" name="quantity" placeholder="Enter quantity of tour">
-                                                        </div>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                                        <div class="form-group col-lg-12 mt-4">
-                                                            <label for="exampleInputEmail1">Description Of Leauge:</label>
-                                                            <textarea name="description" class="form-control" rows="10" aria-label="With textarea" readonly=""></textarea>
+                                                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                                            <div class="form-group col-lg-12 mt-4">
+                                                                <label for="exampleInputEmail1">Description Of Leauge:</label>
+                                                                <textarea name="description" class="form-control" rows="10" aria-label="With textarea"><%=gotTour.getDescription()%></textarea>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
-                                        </div>
+                                            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>

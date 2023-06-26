@@ -6,15 +6,15 @@ package model;
 
 /**
  *
- * @author HP
+ * @author Admin
  */
 public class Player {
-    int player_id;
-    int user_id;
-    int team_id;
-    String position;
-    String shirt_number;
-    boolean isManager;
+    private int player_id;
+    private int user_id;
+    private int team_id;
+    private String position;
+    private String shirt_number;
+    private boolean isManager;
 
     public Player() {
     }
@@ -27,6 +27,7 @@ public class Player {
         this.shirt_number = shirt_number;
         this.isManager = isManager;
     }
+  
     public Player( int user_id, int team_id, String position, String shirt_number, boolean isManager) {
         
         this.user_id = user_id;
@@ -83,7 +84,6 @@ public class Player {
     public void setIsManager(boolean isManager) {
         this.isManager = isManager;
     }
-
    
     
 }
