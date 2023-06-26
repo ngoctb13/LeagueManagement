@@ -46,4 +46,40 @@ public class ParticipantDAO extends DBContext {
             closeConnection(con);
         }
     }
+    
+    public Boolean IsTourManager (int user_id, int tour_id ) throws Exception{
+         try {
+            String query = "SELECT * FROM manager where user_id = ? AND tour_id = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, user_id);
+            ps.setInt(2, tour_id);
+            rs = ps.executeQuery();
+            
+            return rs.next();
+            
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+
+    public void deleteParticipant(int participant_id) throws Exception {
+        try {
+            String query = "DELETE FROM participant where participant_id = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, participant_id);
+            rs = ps.executeQuery();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
 }

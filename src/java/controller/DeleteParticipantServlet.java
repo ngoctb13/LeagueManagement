@@ -5,24 +5,26 @@
 package controller;
 
 import dao.ParticipantDAO;
+import dao.PlayerDAO;
+import dao.TourDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Participant;
+import model.Tour;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "ParticipantListServlet", urlPatterns = {"/ParticipantListServlet"})
-public class ParticipantListServlet extends HttpServlet {
+public class DeleteParticipantServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +36,27 @@ public class ParticipantListServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, Exception {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         int tour_id = Integer.parseInt(request.getParameter("tour_id"));
+        int paticipant_id = Integer.parseInt(request.getParameter("participant_id"));
+        int user_id = Integer.parseInt(request.getParameter("user_id"));
+
         try {
             ParticipantDAO participantDAO = new ParticipantDAO();
-            ArrayList<Participant> participantList = participantDAO.getListParticipantByTour(tour_id);
+            TourDAO tourDAO = new TourDAO();
+            Tour tour = tourDAO.getTourByID(tour_id);
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            Date startDate = df.parse(tour.getStart_date());
+            java.util.Date date = new java.util.Date();
 
-            request.setAttribute("playerList", participantList);
+            if (startDate.after(date)) {
+                if (participantDAO.IsTourManager(user_id, tour_id)) {
+                    participantDAO.deleteParticipant(paticipant_id);
+                }
+            }
             request.getRequestDispatcher("manage/participantList.jsp").forward(request, response);
+
         } catch (Exception ex) {
             Logger.getLogger(ParticipantListServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,11 +74,7 @@ public class ParticipantListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(ParticipantListServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -78,11 +88,7 @@ public class ParticipantListServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(ParticipantListServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
