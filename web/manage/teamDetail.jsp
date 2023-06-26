@@ -86,23 +86,28 @@
                 cursor: pointer;
             }
         </style>
+        <div class="form-group">
+                        <c:if test="${ms.equals('SUCCESS')}">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> You have successfully updated.    
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span class="fa fa-times"></span>
+                                </button>
+                            </div>
+                        </c:if>
+                        <c:if test="${ms.equals('FAILED')}">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span class="fa fa-times"></span>
+                                </button>
+                            </div>
+                        </c:if>
+                    </div>
 
         <div id="inviteModal" class="modal1 hide">
             <div class="modal_inner">
-                <c:if test="${ms.equals('SUCCESS')}">
-                    <div class="alert alert-info alert-dismissable">
-                        <a class="panel-close close" data-dismiss="alert">×</a> 
-                        <i class="fa fa-coffee"></i>
-                        YOU HAVE SEND INVITATION <strong>SUCCESSFULLY!</strong>.
-                    </div>
-                </c:if>
-                <c:if test="${ms.equals('FAILED')}">
-                    <div class="alert alert-info alert-dismissable">
-                        <a class="panel-close close" data-dismiss="alert">×</a> 
-                        <i class="fa fa-coffee"></i>
-                        YOU HAVE SEND INVITATION <strong>FAILED!</strong>.
-                    </div>
-                </c:if>
+
                 <form action="inviteMember" method="">
                     <div class="modal_header3">
                         <div class="icon_exit"><span class="fa fa-times">
@@ -128,6 +133,7 @@
                         </table>
                         <input type="submit" value="Invite" style="width: 30%;">
                     </div>
+                    
                 </form>
             </div>
         </div>
@@ -171,7 +177,7 @@
                                             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Member</a>
                                             <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Edit</a>
                                             <a class="nav-link" id="v-pills-browser-tab" data-toggle="pill" href="#v-pills-browser" role="tab" aria-controls="v-pills-browser" aria-selected="false">Request</a>
-
+                                            <a class="nav-link" id="v-pills-invitation-sent-tab" data-toggle="pill" href="#v-pills-invitation-sent" role="tab" aria-controls="v-pills-invitation-sent" aria-selected="false">Invitation Sent</a>
 
                                         </div>                                                                                        
 
@@ -364,85 +370,30 @@
                                                                         <tr>
                                                                             <th>Name</th>
                                                                             <th>Email</th>
-                                                                            <th>Role</th>
-                                                                            <th>Type</th>
-                                                                            <th>Status</th>
+                                                                            <th>Shirt number</th>
+                                                                            <th>Position</th>
                                                                             <th></th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
+                                                                        
                                                                         <tr>
-                                                                            <td>Philip Chaney</td>
-                                                                            <td>philip.chaney@gmail.com</td>
-                                                                            <td>Manager</td>
-                                                                            <td>Admin</td>
-                                                                            <td>Active</td>
+                                                                            <td>Do Thi Thanh Thuy</td>
+                                                                            <td>thuy@gmail.com</td>
+                                                                            <td>18</td>
+                                                                            <td>h?u v?</td>
+                                                                            
                                                                             <td class="text-end">
                                                                                 <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
                                                                                 <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
-                                                                            <td>Doris Greene</td>
-                                                                            <td>ms.greene@outlook.com</td>
-                                                                            <td>Writer</td>
-                                                                            <td>Staff</td>
-                                                                            <td>Active</td>
-                                                                            <td class="text-end">
-                                                                                <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
-                                                                                <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Mason Porter</td>
-                                                                            <td>mason_porter@gmail.com</td>
-                                                                            <td>Contributor</td>
-                                                                            <td>Staff</td>
-                                                                            <td>Active</td>
-                                                                            <td class="text-end">
-                                                                                <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
-                                                                                <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Minerva Hooper</td>
-                                                                            <td>minerva.hooper@gmail.com</td>
-                                                                            <td>Administrator</td>
-                                                                            <td>Admin</td>
-                                                                            <td>Disabled</td>
-                                                                            <td class="text-end">
-                                                                                <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
-                                                                                <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Jessie Williams</td>
-                                                                            <td>jessie@gmail.com</td>
-                                                                            <td>Administrator</td>
-                                                                            <td>Admin</td>
-                                                                            <td>Active</td>
-                                                                            <td class="text-end">
-                                                                                <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
-                                                                                <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Peter Benhams</td>
-                                                                            <td>pette@gmail.com</td>
-                                                                            <td>Editor</td>
-                                                                            <td>Staff</td>
-                                                                            <td>Active</td>
-                                                                            <td class="text-end">
-                                                                                <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
-                                                                                <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
-                                                                            </td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>Jose Rodriguez</td>
-                                                                            <td>jose.rodz@gmail.com</td>
-                                                                            <td>Author</td>
-                                                                            <td>Staff</td>
-                                                                            <td>Active</td>
+                                                                            <td>Do Van Son</td>
+                                                                            <td>sondvhe161185@fpt.edu.vn</td>
+                                                                            <td>9</td>
+                                                                            <td>th? môn</td>
+                                                                            
                                                                             <td class="text-end">
                                                                                 <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
                                                                                 <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
@@ -453,7 +404,36 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div> 
+                                                </div>
+                                                                    <div class="tab-pane fade" id="v-pills-invitation-sent" role="tabpanel" aria-labelledby="v-pills-invitation-sent-tab">
+                                                    <div class="col-12">
+                                                        <div class="box box-primary">
+                                                            <div class="box-body">
+                                                                <table width="100%" class="table table-hover" id="dataTables-example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            <th>Email</th>
+                                                                            <th>Message</th>
+                                                                            <th>Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <c:forEach items="${invitationSent}" var="s">
+                                                                        <tr>
+                                                                            <td>${s.userName}</td>
+                                                                            <td>${s.email}</td>
+                                                                            <td>${s.mess}</td>
+                                                                            <td>${s.status}</td>
+                                                                        </tr>
+                                                                        </c:forEach>
+                                                                        
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -501,7 +481,7 @@
                                                                     andi.addEventListener('click', toggModal);
 
         </script>
-  
+
     </body>
 
 </html>
