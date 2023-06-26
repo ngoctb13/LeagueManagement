@@ -13,13 +13,13 @@ public class Player {
     private int user_id;
     private int team_id;
     private String position;
-    private int shirt_number;
+    private String shirt_number;
     private boolean isManager;
 
     public Player() {
     }
 
-    public Player(int player_id, int user_id, int team_id, String position, int shirt_number, boolean isManager) {
+    public Player(int player_id, int user_id, int team_id, String position, String shirt_number, boolean isManager) {
         this.player_id = player_id;
         this.user_id = user_id;
         this.team_id = team_id;
@@ -60,11 +60,11 @@ public class Player {
         this.position = position;
     }
 
-    public int getShirt_number() {
+    public String getShirt_number() {
         return shirt_number;
     }
 
-    public void setShirt_number(int shirt_number) {
+    public void setShirt_number(String shirt_number) {
         this.shirt_number = shirt_number;
     }
 
@@ -75,6 +75,6 @@ public class Player {
     public void setIsManager(boolean isManager) {
         this.isManager = isManager;
     }
-    
+   
     
 }

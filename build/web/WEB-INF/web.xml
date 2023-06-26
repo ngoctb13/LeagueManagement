@@ -64,6 +64,10 @@
         <servlet-name>LeaugeSettingServlet</servlet-name>
         <servlet-class>controller.LeaugeSettingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PlayerListServlet</servlet-name>
+        <servlet-class>controller.PlayerListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>LeaugeSettingServlet</servlet-name>
         <url-pattern>/leaugeSetting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayerListServlet</servlet-name>
+        <url-pattern>/players</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
