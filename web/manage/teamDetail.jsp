@@ -89,7 +89,7 @@
         <div class="form-group">
                         <c:if test="${ms.equals('SUCCESS')}">
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>Success!</strong> You have successfully updated.    
+                                <strong>Success!</strong> You have Sent Invitation.    
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span class="fa fa-times"></span>
                                 </button>
@@ -97,7 +97,7 @@
                         </c:if>
                         <c:if test="${ms.equals('FAILED')}">
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                                <strong>FAILED!</strong> You have not sent invitation.
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span class="fa fa-times"></span>
                                 </button>
@@ -381,7 +381,7 @@
                                                                             <td>Do Thi Thanh Thuy</td>
                                                                             <td>thuy@gmail.com</td>
                                                                             <td>18</td>
-                                                                            <td>h?u v?</td>
+                                                                            <td>Goalkeeper</td>
                                                                             
                                                                             <td class="text-end">
                                                                                 <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
@@ -392,7 +392,7 @@
                                                                             <td>Do Van Son</td>
                                                                             <td>sondvhe161185@fpt.edu.vn</td>
                                                                             <td>9</td>
-                                                                            <td>th? môn</td>
+                                                                            <td>Defender</td>
                                                                             
                                                                             <td class="text-end">
                                                                                 <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
