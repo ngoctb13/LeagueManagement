@@ -54,7 +54,7 @@ public class LeaugeCreateServlet extends HttpServlet {
         //------------------------------------------------------------
         Part part = request.getPart("avatar_leauge");
         String fileName = extractFileName(part);
-        String savePath = "D:\\1_SWP391\\All for Java\\LeagueManagement\\web\\images" + File.separator + fileName;
+        String savePath = "C:\\Users\\admin2\\OneDrive\\Desktop\\SWP\\25.6\\LeagueManagement\\web\\images" + File.separator + fileName;
         File fileSaveDir = new File(savePath);
         part.write(savePath + File.separator);
 //        Part file = request.getPart("avatar_leauge");
@@ -86,9 +86,7 @@ public class LeaugeCreateServlet extends HttpServlet {
         
         int add = dao.addTour(t);
         if (add > 0) {           
-            request.setAttribute("gotTour", t);
-            request.getRequestDispatcher("leaugeProfile.jsp").forward(request, response);
-            request.getRequestDispatcher("leaugeSetting.jsp").forward(request, response);
+           request.getRequestDispatcher("myLeauge").forward(request, response);
         }
 
     }

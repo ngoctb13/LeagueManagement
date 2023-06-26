@@ -2,7 +2,10 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav id="sidebar" class="active">
     <div class="sidebar-header">
+        <a href="home.jsp">
         <img src="images/SOCCER.png" alt="bootraper logo" class="app-logo">
+        </a>
+        
     </div>
     <ul class="list-unstyled components text-secondary">
         
@@ -28,8 +31,10 @@
                 </li>              
             </ul>
         </li>
-
         
+        <li>    
+            <a href="leaugeList"><i class="fas fa-layer-group"></i>Leauge Manager</a>
+        </li>
         <li>    
             <a href="#"><i class="fas fa-cog"></i>Settings</a>
         </li>
