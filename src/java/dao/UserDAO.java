@@ -15,6 +15,7 @@ import model.Feedback;
 
 import model.Invite_member;
 import model.Join_Team_Request;
+import model.Join_Team_Request_List;
 import model.User;
 
 /**
@@ -210,6 +211,33 @@ public class UserDAO extends DBContext {
             closeConnection(con);
         }
         return status;
+    }
+   public List<Join_Team_Request_List> getListJoinRequestByTeamID(int input_id) throws Exception {
+        try {
+            String sql = "SELECT full_name, user.email,shirt_number, position FROM test.user\n"
+                    + "JOIN test.team_join_request ON test.user.user_id=test.team_join_request.user_id\n"
+                    + " where test.team_join_request.team_id = ? ";
+            con = getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, input_id);
+            rs = ps.executeQuery();
+            List<Join_Team_Request_List> list = new ArrayList<>();
+            while (rs.next()) {
+                Join_Team_Request_List invite = new Join_Team_Request_List();
+                invite.setUserName(rs.getString("full_name"));
+                invite.setEmail(rs.getString("user.email"));
+                invite.setShirt_number(rs.getString("shirt_number"));
+                invite.setPosition(rs.getString("position"));
+                list.add(invite);
+            }
+            return list;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
     }
     public List<Invite_member> getListInvitationByUserID(int input_id) throws Exception {
         try {

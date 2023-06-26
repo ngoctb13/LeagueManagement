@@ -14,23 +14,26 @@ public class Player {
     int team_id;
     String position;
     String shirt_number;
+    boolean isManager;
 
     public Player() {
     }
 
-    public Player(int player_id, int user_id, int team_id, String position, String shirt_number) {
+    public Player(int player_id, int user_id, int team_id, String position, String shirt_number, boolean isManager) {
         this.player_id = player_id;
         this.user_id = user_id;
         this.team_id = team_id;
         this.position = position;
         this.shirt_number = shirt_number;
+        this.isManager = isManager;
     }
-     public Player( int user_id, int team_id, String position, String shirt_number) {
-   
+    public Player( int user_id, int team_id, String position, String shirt_number, boolean isManager) {
+        
         this.user_id = user_id;
         this.team_id = team_id;
         this.position = position;
         this.shirt_number = shirt_number;
+        this.isManager = isManager;
     }
 
     public int getPlayer_id() {
@@ -72,5 +75,15 @@ public class Player {
     public void setShirt_number(String shirt_number) {
         this.shirt_number = shirt_number;
     }
+
+    public boolean isIsManager() {
+        return isManager;
+    }
+
+    public void setIsManager(boolean isManager) {
+        this.isManager = isManager;
+    }
+
+   
     
 }

@@ -22,11 +22,12 @@ public class PlayerDAO extends DBContext {
         int status = 0;
         try {
             con = getConnection();
-            ps = con.prepareStatement("insert into player (user_id, team_id, position, shirt_number) values (?,?,?,?)");
+            ps = con.prepareStatement("insert into player (user_id, team_id, position, shirt_number,isManager) values (?,?,?,?,?)");
             ps.setInt(1, a.getUser_id());
             ps.setInt(2, a.getTeam_id());
             ps.setString(3, a.getPosition());
             ps.setString(4, a.getShirt_number());
+            ps.setBoolean(5, false);
             status = ps.executeUpdate();
         } catch (Exception e) {
             throw e;
