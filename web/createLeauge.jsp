@@ -36,7 +36,7 @@
         <!-- main wrapper start -->
         <div class="horizontal-main-wrapper">
             <!-- main header area start -->
-            <jsp:include page="layout/header.jsp"/>
+            <jsp:include page="LeaugeLayout/header.jsp"/>
             <!-- main header area end -->
             <!-- header area start -->
             <div class="header-area header-bottom">

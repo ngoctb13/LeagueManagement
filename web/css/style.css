@@ -5,7 +5,62 @@ body {
   font-weight: 300;
   background-color: #222831;
   font-size: 16px; }
+body.sub-page{
+    background-color: #fff;
+}
+  
+.sub-page .site-navbar{
+   background-color: #1a1e25;
+   position: relative;
+}   
 
+.create-leauge-page .form-control {
+    color: black !important;
+}
+
+/*page tournament*/
+.list-block {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-gap: 20px;
+}
+
+.item-block{
+    padding-bottom: 10px;
+    border: 1px solid #eee;
+}
+
+.item-block img {
+    width: 100%;
+}
+
+.title-body {
+    font-weight: 600;
+    color: black;
+}
+
+.item-block .body {
+    padding: 10px 12px;
+}
+
+.item-block .item-content {
+    font-size: 14px;
+    font-weight: 500;
+}
+.item-block .action-body{
+    text-align: right;
+    margin-right: 12px;
+}
+.item-block .action-body a{
+    background: #ee1e46;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.tournament-detail-page .item-block{
+   border: unset;  
+  }
 ::-moz-selection {
   background: #000;
   color: #fff; }

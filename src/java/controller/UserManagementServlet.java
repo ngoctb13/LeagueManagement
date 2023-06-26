@@ -61,7 +61,7 @@ public class UserManagementServlet extends HttpServlet {
                 user = userDAO.getUserByEmail(email);
                 request.setAttribute("role", rolelist);
                 request.setAttribute("user", user);
-                request.getRequestDispatcher("admin/userdetail.jsp").forward(request, response);
+                request.getRequestDispatcher("admin/userDetail.jsp").forward(request, response);
             }
 
             

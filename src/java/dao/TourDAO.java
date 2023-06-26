@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import model.Team;
 import model.Tour;
 
@@ -142,4 +143,67 @@ public class TourDAO extends DBContext{
             closeConnection(con);
         }
     }
+
+    public List<Tour> getListTour() throws Exception {
+         List<Tour> list_tours = new ArrayList<>();
+        String query = "SELECT * FROM tournament;";
+        try {
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int tour_id = rs.getInt("tour_id");
+                String tour_name = rs.getString("tour_name");
+                String address = rs.getString("address");
+                String avatar = rs.getString("avatar");
+                String phone_number = rs.getString("phone_number");
+                String start_date = rs.getDate("start_date").toString();
+                String end_date = rs.getDate("end_date").toString();
+                String description = rs.getString("description");
+                int team_quantity = rs.getInt("quantity_of_team");
+                int host = rs.getInt("host");
+                list_tours.add(new Tour(tour_id, tour_name, address, avatar, phone_number, start_date, end_date, description, host, host, team_quantity));
+            }
+            con.close();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return list_tours;
+    }
+
+    public Tour getTourDetail(int id) throws Exception {
+        Tour tour = new Tour();
+        String query = "SELECT * FROM tournament WHERE tour_id='"+id+"';";
+        try {
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int tour_id = rs.getInt("tour_id");
+                String tour_name = rs.getString("tour_name");
+                String address = rs.getString("address");
+                String avatar = rs.getString("avatar");
+                String phone_number = rs.getString("phone_number");
+                String start_date = rs.getDate("start_date").toString();
+                String end_date = rs.getDate("end_date").toString();
+                String description = rs.getString("description");
+                int team_quantity = rs.getInt("quantity_of_team");
+                int host = rs.getInt("host");
+                tour = new Tour(tour_id, tour_name, address, avatar, phone_number, start_date, end_date, description, host, host, team_quantity);
+            }
+            con.close();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return tour;
+    }
+    
 }
