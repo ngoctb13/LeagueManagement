@@ -68,6 +68,10 @@
         <servlet-name>PlayerListServlet</servlet-name>
         <servlet-class>controller.PlayerListServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeletePlayerServlet</servlet-name>
+        <servlet-class>controller.DeletePlayerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>PlayerListServlet</servlet-name>
         <url-pattern>/players</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePlayerServlet</servlet-name>
+        <url-pattern>/deletePlayer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
