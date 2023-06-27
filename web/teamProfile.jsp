@@ -125,7 +125,7 @@
                         </table>    
                         <input type="submit" name="" id="" value= "Submit" style="width: 30%;">
 
-                    </div>
+                    </div> 
                 </form>
             </div>
         </div>
