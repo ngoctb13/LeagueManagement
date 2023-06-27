@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <!doctype html>
 <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,7 +24,12 @@
         <!-- modernizr css -->
         <script src="assets_1/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
-
+    <%
+        // Get the current date
+        Date currentDate = new Date();
+        // Convert the current date to a string in the format expected by the date input field
+        String currentDateStr = String.format("%tF", currentDate);
+    %>
     <body class="body-bg">
         <!--[if lt IE 8]>
                 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -36,7 +42,7 @@
         <!-- main wrapper start -->
         <div class="horizontal-main-wrapper">
             <!-- main header area start -->
-            <jsp:include page="LeaugeLayout/header.jsp"/>
+            <jsp:include page="layout/header.jsp"/>
             <!-- main header area end -->
             <!-- header area start -->
             <div class="header-area header-bottom">
@@ -71,6 +77,11 @@
                                 <div class="card-body">
                                     <h4 class="header-title">Create tournament</h4>
                                     <form action="leaugeCreate" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div style="text-align:center">
+                                                <span id="mes"></span>
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-lg-6 mt-4">
                                                 <div class="form-group">
@@ -107,11 +118,17 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="example-date-input" class="col-form-label">Start Date</label>
-                                            <input class="form-control" type="date" name="start_date" value="" id="start_date">
+                                            <input class="form-control" type="date" name="start_date" value="" id="start_date" min="<%= currentDateStr%>" onchange="setEndDateMin()">
+                                            <div style="text-align:center">
+                                                <span id="start_date_mes"></span>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="example-date-input" class="col-form-label">End Date</label>
-                                            <input class="form-control" type="date" name="end_date" value="" id="end_date">
+                                            <input class="form-control" type="date" name="end_date" value="" id="end_date" min="<%= currentDateStr%>">
+                                            <div style="text-align:center">
+                                                <span id="end_date_mes"></span>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Description</label>
@@ -138,6 +155,14 @@
 
         <!-- offset area end -->
         <!-- jquery latest version -->
+        <script>          
+            function setEndDateMin() {
+                var startDateInput = document.getElementById("start_date");
+                var endDateInput = document.getElementById("end_date");
+
+                endDateInput.min = startDateInput.value;
+            }
+        </script>
         <script src="assets_1/js/vendor/jquery-2.2.4.min.js"></script>
         <!-- bootstrap 4 js -->
         <script src="assets_1/js/popper.min.js"></script>

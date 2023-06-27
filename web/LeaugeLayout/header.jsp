@@ -11,7 +11,7 @@
         <div class="row align-items-center">
             <div class="col-md-3">
                 <div class="logo">
-                    <a href="index.html"><img src="images/SOCCER.png" alt="logo"></a>
+                    <a href="home.jsp"><img src="images/SOCCER.png" alt="logo"></a>
                 </div>
             </div>
             <!-- profile info & task notification -->

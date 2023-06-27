@@ -40,14 +40,14 @@
         <!-- main wrapper start -->
         <div class="horizontal-main-wrapper">
             <!-- main header area start -->
-            <jsp:include page="layout/header.jsp"/>
+            <jsp:include page="LeaugeLayout/header.jsp"/>
             <!-- main header area end -->
             <!-- header area start -->
             <div class="header-area header-bottom">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-12  d-none d-lg-block">
-                            <jsp:include page="layout/navbar.jsp"/>
+                            <jsp:include page="LeaugeLayout/navbar.jsp"/>
                         </div>
 
                     </div>
@@ -175,7 +175,7 @@
                     <div class="col-3"></div>
                     <div class="form-group col-lg-8 mt-4">
                         <label for="exampleInputEmail1">Description Of Leauge:</label>
-                        <textarea name="description" class="form-control" rows="10" aria-label="With textarea" readonly=""></textarea>
+                        <textarea name="description" class="form-control" rows="10" aria-label="With textarea" readonly="">${gotTour.description}</textarea>
                     </div>
                 </div>
             </div>
