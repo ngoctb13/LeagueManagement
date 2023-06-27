@@ -61,7 +61,7 @@
                                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                     <li ><a href="home.jsp" class="nav-link">HOME</a></li>
                                     <li><a href="tournament.jsp" class="nav-link">TOURNAMENT</a></li>
-                                    <li><a href="teamList" class="nav-link">TEAM</a></li>
+                                    <li><a href="listAllTeam" class="nav-link">TEAM</a></li>
                                     <li><a href="blog.jsp" class="nav-link">BLOG</a></li>
                                     <li><a href="contact.jsp" class="nav-link">CONTACT</a></li>
 
