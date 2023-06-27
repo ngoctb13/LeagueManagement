@@ -14,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Team;
 import model.User;
@@ -36,15 +37,15 @@ public class TeamProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-       int team_ID= Integer.parseInt(request.getParameter("team_ID"));
-       TeamDAO dao = new TeamDAO();
+       int team_ID= Integer.parseInt(request.getParameter("team_ID"));   
+       HttpSession session = request.getSession();
+        TeamDAO dao = new TeamDAO();
         Team gotTeam = dao.getTeamByID(team_ID);
         UserDAO uDAO= new UserDAO();
         User gotCoach = uDAO.getUserByID(gotTeam.getCoach());
-        
-        
+        session.setAttribute("team_id", team_ID);
         request.setAttribute("gotTeam", gotTeam);
-        request.setAttribute("gotCoach", gotCoach);
+        request.setAttribute("gotCoach", gotCoach);       
         request.getRequestDispatcher("teamProfile.jsp").forward(request, response);
     }
 

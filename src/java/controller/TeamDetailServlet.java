@@ -40,6 +40,7 @@ public class TeamDetailServlet extends HttpServlet {
         HttpSession session = request.getSession();
         int team_id = Integer.parseInt(request.getParameter("team_id"));
         session.setAttribute("team_id", team_id);
+        session.setAttribute("recent_team_id", team_id);
         int coach = Integer.parseInt(request.getParameter("coach"));
 
         UserDAO userDAO = new UserDAO();
