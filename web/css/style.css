@@ -662,6 +662,7 @@ h1, h2, h3, h4, h5,
     min-height: 500px; }
   .hero.overlay:before {
     content: "";
+    height: 1103px;
     position: absolute;
     background: rgba(0, 0, 0, 0.5);
     top: 0;
