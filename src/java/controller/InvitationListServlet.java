@@ -48,15 +48,19 @@ public class InvitationListServlet extends HttpServlet {
         int user_id = user.getUser_id();
 
         List<String> teamNames = new ArrayList<>();
-        // Iterate over the player list and populate the teamMap
-//        session.setAttribute("userId", user_id);
+        List<String> teamEmails = new ArrayList<>();
         List<Invite_member> invitation = userdao.getListInvitationByUserID(user_id);
         for (Invite_member var : invitation) {
             int teamId = var.getTeamID();
-            String teamName = getTeamName(teamId); // Assuming you have the getTeamName() method
+            String teamName = getTeamName(teamId); 
+            String teamEmail = getTeamEmail(teamId); 
             teamNames.add(teamName);
+            teamEmails.add(teamEmail);
+             session.setAttribute("team_id", teamId);
         }
+       
         request.setAttribute("teamNames", teamNames);
+        request.setAttribute("teamEmails", teamEmails);
         request.setAttribute("invitation", invitation);
         request.getRequestDispatcher("invitation.jsp").forward(request, response);
 
@@ -68,6 +72,13 @@ public class InvitationListServlet extends HttpServlet {
         String teamName = team.getTeam_name();
 
         return teamName;
+    }
+     public String getTeamEmail(int teamId) throws Exception {
+        TeamDAO dao = new TeamDAO();
+        Team team = dao.getTeamByID(teamId);
+        String teamEmail = team.getEmail();
+
+        return teamEmail;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

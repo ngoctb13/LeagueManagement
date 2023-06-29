@@ -77,6 +77,8 @@
                                                 </li>
                                                 <li><a href="invitationList"><span class="edu-icon edu-user-rounded author-log-ic"></span>Invitation</a>
                                                 </li>
+                                                <li><a href="joinTeamRequestSent"><span class="edu-icon edu-user-rounded author-log-ic"></span>Request Sent</a>
+                                                </li>
                                                 <li><a href="changePassword.jsp"><span class="edu-icon edu-money author-log-ic"></span>Change Password</a>
                                                 </li>                                      
                                                 <li><a href="logout"><span class="edu-icon edu-locked author-log-ic"></span>Log Out</a>

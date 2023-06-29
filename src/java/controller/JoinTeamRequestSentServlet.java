@@ -8,7 +8,6 @@ import dao.TeamDAO;
 import dao.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,9 +24,9 @@ import model.User;
 
 /**
  *
- * @author Admin
+ * @author HP
  */
-public class TeamDetailServlet extends HttpServlet {
+public class JoinTeamRequestSentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,50 +41,39 @@ public class TeamDetailServlet extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        int team_id = Integer.parseInt(request.getParameter("team_id"));
-        session.setAttribute("team_id", team_id);
-        session.setAttribute("recent_team_id", team_id);
-        int coach = Integer.parseInt(request.getParameter("coach"));
-
-        UserDAO userDAO = new UserDAO();
-        User user = userDAO.getUserByID(coach);
-
+        User user = (User) session.getAttribute("user");
+        UserDAO userdao=new UserDAO();
+        int user_id=user.getUser_id();
+        List<Join_Team_Request> rq= userdao.getListJoinRequestByUserID(user_id);
+        List<String> teamNames = new ArrayList<>();
+        List<String> teamEmails = new ArrayList<>();
+        for (Join_Team_Request var : rq) {
+            int teamId = var.getTeamID();
+            String teamName = getTeamName(teamId); 
+            String teamEmail = getTeamEmail(teamId);
+            teamEmails.add(teamEmail);
+            teamNames.add(teamName);
+             session.setAttribute("team_id", teamId);
+        }
+        request.setAttribute("teamEmails", teamEmails);
+        request.setAttribute("teamNames", teamNames);
+        request.setAttribute("requestSent",rq );
+        request.getRequestDispatcher("requestSentList.jsp").forward(request, response);
+    }
+     public String getTeamName(int teamId) throws Exception {
         TeamDAO dao = new TeamDAO();
-        Team team = dao.getTeamByID(team_id);
-        //==============================
-        List<Join_Team_Request> re = userDAO.getListJoinRequestByTeamID(team_id);
-         List<String> userName = new ArrayList<>();
-         for (Join_Team_Request var : re) {
-            int user_id = var.getUserID();
-            String user_name = getUserName(user_id); 
-            userName.add(user_name);            
-        }
-        //===============================
-        List<Invite_member> invitationSent = userDAO.getListInvitationByTeamID(team_id);
-        List<String> user_name = new ArrayList<>();
-         for (Invite_member var : invitationSent) {
-            int user_id = var.getUserID();
-            String name = getUserName(user_id);
-            user_name.add(name);            
-        }
-        request.setAttribute("user_name", user_name);
-        request.setAttribute("invitationSent", invitationSent);
-        request.setAttribute("TeamRequest", re);
-        request.setAttribute("gotTeam", team);
-        request.setAttribute("team_id", team_id);
-        request.setAttribute("userName", userName);
-        request.setAttribute("gotCoach", user);
-        
-        request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);         
+        Team team = dao.getTeamByID(teamId);
+        String teamName = team.getTeam_name();
+
+        return teamName;
     }
-    
-    public String getUserName(int user_id) throws Exception {
-        UserDAO dao = new UserDAO();
-        User user = dao.getUserByID(user_id);
-        String user_name = user.getFull_name();
-        return user_name;
+     public String getTeamEmail(int teamId) throws Exception {
+        TeamDAO dao = new TeamDAO();
+        Team team = dao.getTeamByID(teamId);
+        String teamEmail = team.getEmail();
+
+        return teamEmail;
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -102,7 +90,7 @@ public class TeamDetailServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(TeamDetailServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JoinTeamRequestSentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -120,7 +108,7 @@ public class TeamDetailServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(TeamDetailServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JoinTeamRequestSentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

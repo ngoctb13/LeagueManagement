@@ -37,7 +37,9 @@ public class TeamProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-       int team_ID= Integer.parseInt(request.getParameter("team_ID"));   
+
+        int team_ID= Integer.parseInt(request.getParameter("team_ID"));   
+
        HttpSession session = request.getSession();
         TeamDAO dao = new TeamDAO();
         Team gotTeam = dao.getTeamByID(team_ID);

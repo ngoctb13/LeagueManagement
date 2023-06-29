@@ -189,26 +189,30 @@
             <div class="box box-primary">
                 <div class="box-body">
 
-                    <table width="100%" class="table table-hover" id="dataTables-example">
+                     <table width="100%" class="table table-hover" id="dataTables-example">
                         <thead>
                             <tr>
 
                                 <th>Team Name</th>
+                                <th>Email</th>
                                 <th>Message</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach items="${invitation}" var="i" varStatus="status">
+                                <c:if test="${i.status.equals('PENDING')}">
                                 <tr>                          
                                     <td>${teamNames[status.index]}</td>
+                                    <td>${teamEmails[status.index]}</td>
                                     <td>${i.mess}</td>
                                     <td>${i.status}</td>
                                     <td class="text-end">
                                         <a id="Accept" href="acceptTeamInvitation.jsp?team_id=${i.teamID}"  class="btn btn-outline-info btn-rounded btnxoa">Accept</a>
-                                        <a href="#" class="btn btn-outline-danger btn-rounded btnxoa">Decline</a>
+                                        <a href="declineTeamInvite" class="btn btn-outline-danger btn-rounded btnxoa">Decline</a>
                                     </td>
                                 </tr>
+                                </c:if>
 
                             </c:forEach>
                         </tbody>
