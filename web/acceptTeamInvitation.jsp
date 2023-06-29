@@ -41,10 +41,7 @@
 
 
     </head>
-    <%
-        TeamDAO dao = new TeamDAO();
-        Team team = new Team();
-    %>
+    
     <body>
 
         <style>
@@ -118,7 +115,7 @@
 
             }
             .hide{
-                display: none;
+                /*display: none;*/
             }
             .icon_exit{
                 width: 100%;
@@ -136,93 +133,35 @@
 
         </style>
         
-<!--            <div class="modal1 hide">
-                <c:forEach items="${invitation}" var="i">
-                <div class="modal_inner" id="responseInvitation">
-                    <form action="responseInvitation?teamID=" method=""><div class="modal_header3">
+            <div class="modal1 hide" >
+               
+                <div class="modal_inner" >
+                    
+                    <form id="myForm" action="responseInvitation" method=""><div class="modal_header3">
 
                             <div class="icon_exit"><span class="fa fa-times"></span></div>
 
                             <table class="table">
                                 <tr>
                                     <th><label for="" >Enter The Shirt Number You Want:</label></th>
-                                    <td><input type="text" name="shirt_number" id="" value= "" required="Not empty"></td>
+                                    <td><input type="text" name="shirt_number" id="" value= "" required></td>
                                 </tr>
                                 <tr>
                                     <th><label for="">Enter The Position You Want:</label></th>
-                                    <td><input type="text" name="position" id="" value= "" required="Not empty"></td>
+                                    <td><input type="text" name="position" id="" value= "" required></td>
                                 </tr>
                             </table>    
-                            <input type="submit" name="" id="" value= "Submit" style="width: 30%;">
+                            <input type="submit" name="" id="submit_invita" value= "Submit" style="width: 30%;" required="">
 
 
                         </div>
-                    </form>>
+                    </form>
+                   
                 </div>
-                     </c:forEach>
-            </div>-->
-       
-        <div class="col-12 content_box">
-            <div class="header_Box">
-                <p>
-                    Invitation to join the Team
-                </p>
-                <div class="header_Box_right">
-                    <div class="col-sm-6 clearfix">
-                        <div class="user-profile pull-right">
-                            <img class="avatar user-thumb" src="assets_1/images/author/avatar.png" alt="avatar">
-                            <h4 class="user-name dropdown-toggle" data-toggle="dropdown">${sessionScope.user.full_name} <i class="fa fa-angle-down"></i></h4>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="home.jsp">Home</a>
-                                <a class="dropdown-item" href="#">Settings</a>
-                                <a class="dropdown-item" href="logout">Log Out</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    
             </div>
-
-
-
-
-
-            <div class="box box-primary">
-                <div class="box-body">
-
-                     <table width="100%" class="table table-hover" id="dataTables-example">
-                        <thead>
-                            <tr>
-
-                                <th>Team Name</th>
-                                <th>Email</th>
-                                <th>Message</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${invitation}" var="i" varStatus="status">
-                                <c:if test="${i.status.equals('PENDING')}">
-                                <tr>                          
-                                    <td>${teamNames[status.index]}</td>
-                                    <td>${teamEmails[status.index]}</td>
-                                    <td>${i.mess}</td>
-                                    <td>${i.status}</td>
-                                    <td class="text-end">
-                                        <a id="Accept" href="acceptTeamInvitation.jsp?team_id=${i.teamID}"  class="btn btn-outline-info btn-rounded btnxoa">Accept</a>
-                                        <a href="declineTeamInvite" class="btn btn-outline-danger btn-rounded btnxoa">Decline</a>
-                                    </td>
-                                </tr>
-                                </c:if>
-
-                            </c:forEach>
-                        </tbody>
-                    </table>
-
-                </div>
-
-            </div>
-
-        </div>
+        
+        
 
 
 
@@ -250,26 +189,43 @@
 
   <script src="js/main.js"></script>
   <script>
-    var modal = document.querySelector('.modal1')
-    var hienthi = document.querySelector('#Accept')
+//    var modal = document.querySelector('.modal1')
+//    var hienthi = document.querySelector('#Accept')
    var andi = document.querySelector('.icon_exit span')
-    var xoa = document.querySelector('.btnxoa')
+//    var xoa = document.querySelector('.btnxoa')
 
-    function toggModal(){
-        modal.classList.toggle('hide')
-    }
-
+//    function toggModal(){
+//        modal.classList.toggle('hide')
+//    }
+//
+//    
+//    andi.addEventListener('click', toggModal);
+//    $('.btnxoa').on('click', function(){
+//        $(this).closest('tr').remove();
+//        
+//    });
+//    hienthi.addEventListener('click', toggModal);
     
-    andi.addEventListener('click', toggModal);
-    $('.btnxoa').on('click', function(){
-        $(this).closest('tr').remove();
-        
-    });
-    hienthi.addEventListener('click', toggModal);
+     var trangchu = document.querySelector('#submit_invita');
+    
+
+    andi.addEventListener('click', function(){
+    window.location.href = 'invitation.jsp';
+});
+
+trangchu.addEventListener('click', function(){
+var objsubmit = document.querySelector('input[name="position"]');
+    var submit = objsubmit.value;
+    if(submit == '' ){
+        alert('vui lòng nhập')
+    }else{
+        window.history.back();
+    }
+});
 
   
 </script>
-        <script>
+<script>
             var form = document.getElementById("myForm");
             var team_id = '<%= session.getAttribute("team_id")%>';
             var hiddenInput = document.createElement("input");
@@ -277,8 +233,8 @@
             hiddenInput.name = "team_id";
             hiddenInput.value = team_id;
             form.appendChild(hiddenInput);
-        </script> 
-
+        </script>
+       
     </body>
 
 </html>

@@ -361,36 +361,24 @@
                                                                     <thead>
                                                                         <tr>
                                                                             <th>Name</th>
-                                                                            <th>Email</th>
                                                                             <th>Shirt number</th>
                                                                             <th>Position</th>
                                                                             <th></th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        
+                                                                        <c:forEach items="${TeamRequest}" var="rq" varStatus="a">
                                                                         <tr>
-                                                                            <td>Do Thi Thanh Thuy</td>
-                                                                            <td>thuy@gmail.com</td>
-                                                                            <td>18</td>
-                                                                            <td>Goalkeeper</td>
+                                                                            <td>${userName[a.index]}</td>
+                                                                            <td>${rq.shirt_number}</td>
+                                                                            <td>${rq.position}</td>
                                                                             
                                                                             <td class="text-end">
                                                                                 <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
                                                                                 <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
                                                                             </td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <td>Do Van Son</td>
-                                                                            <td>sondvhe161185@fpt.edu.vn</td>
-                                                                            <td>9</td>
-                                                                            <td>Defender</td>
-                                                                            
-                                                                            <td class="text-end">
-                                                                                <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
-                                                                                <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
-                                                                            </td>
-                                                                        </tr>
+                                                                        </c:forEach>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -405,16 +393,14 @@
                                                                     <thead>
                                                                         <tr>
                                                                             <th>Name</th>
-                                                                            <th>Email</th>
                                                                             <th>Message</th>
                                                                             <th>Status</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <c:forEach items="${invitationSent}" var="s">
+                                                                        <c:forEach items="${invitationSent}" var="s"  varStatus="a">
                                                                         <tr>
-                                                                            <td>${s.userName}</td>
-                                                                            <td>${s.email}</td>
+                                                                            <td>${user_name[a.index]}</td>
                                                                             <td>${s.mess}</td>
                                                                             <td>${s.status}</td>
                                                                         </tr>
