@@ -40,14 +40,14 @@
         <!-- main wrapper start -->
         <div class="horizontal-main-wrapper">
             <!-- main header area start -->
-            <jsp:include page="layout/header.jsp"/>
+            <jsp:include page="LeaugeLayout/header.jsp"/>
             <!-- main header area end -->
             <!-- header area start -->
             <div class="header-area header-bottom">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-12  d-none d-lg-block">
-                            <jsp:include page="layout/navbar.jsp"/>
+                            <jsp:include page="LeaugeLayout/navbar.jsp"/>
                         </div>
 
                     </div>

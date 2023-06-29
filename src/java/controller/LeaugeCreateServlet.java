@@ -54,7 +54,7 @@ public class LeaugeCreateServlet extends HttpServlet {
         //------------------------------------------------------------
         Part part = request.getPart("avatar_leauge");
         String fileName = extractFileName(part);
-        String savePath = "C:\\Users\\admin2\\OneDrive\\Desktop\\SWP\\25.6\\LeagueManagement\\web\\images" + File.separator + fileName;
+        String savePath = "C:\\Users\\HP\\Documents\\GitHub\\LeagueManagement\\web\\images" + File.separator + fileName;
         File fileSaveDir = new File(savePath);
         part.write(savePath + File.separator);
 //        Part file = request.getPart("avatar_leauge");

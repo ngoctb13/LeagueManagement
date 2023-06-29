@@ -92,7 +92,7 @@
         <servlet-name>JoinTeamRequestListServlet</servlet-name>
         <servlet-class>controller.JoinTeamRequestListServlet</servlet-class>
       </servlet>
-      <servlet>
+  <servlet>
         <servlet-name>TournamentServlet</servlet-name>
         <servlet-class>controller.TournamentServlet</servlet-class>
     </servlet>
