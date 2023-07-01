@@ -248,15 +248,15 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <c:forEach items="${TeamRequest}" var="rq" varStatus="a">
+                                                                        <c:forEach items="${playerList}" var="p" varStatus="a">
                                                                         <tr>
-                                                                            <td>${userName[a.index]}</td>
-                                                                            <td>${rq.shirt_number}</td>
-                                                                            <td>${rq.position}</td>
+                                                                            <td>}</td>
+                                                                            <td>}</td>
+                                                                            <td>${p.shirt_number}</td>
+                                                                            <td>${p.position}</td>
                                                                             
                                                                             <td class="text-end">
-                                                                                <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
-                                                                                <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
+                                                                                
                                                                             </td>
                                                                         </tr>
                                                                         </c:forEach>
