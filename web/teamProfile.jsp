@@ -156,22 +156,22 @@
                             <table class="table">
                                 <tr>
                                     <th><i class="fa-solid fa-user"></i></th>
-                                    <td> Người liên hệ :</td>
+                                    <td> Người liên hệ:</td>
                                     <td>${gotCoach.full_name}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i class="fa-solid fa-phone"></i></th>
-                                    <td> Số điện thoại :</td>
+                                    <td> Số điện thoại:</td>
                                     <td>${gotTeam.phone_number}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i class="fa-solid fa-envelope"></i></th>
-                                    <td>Email :</td>
+                                    <td>Email:</td>
                                     <td> ${gotTeam.email}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row"><i class="fa-solid fa-people-group"></i></th>
-                                    <td >Thành viên :</td>
+                                    <td >Thành viên:</td>
                                     <td> 20 Người</td>
                                 </tr>
 
