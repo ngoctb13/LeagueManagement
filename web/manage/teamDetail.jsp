@@ -254,10 +254,6 @@
                                                                             <td>}</td>
                                                                             <td>${p.shirt_number}</td>
                                                                             <td>${p.position}</td>
-                                                                            
-                                                                            <td class="text-end">
-                                                                                
-                                                                            </td>
                                                                         </tr>
                                                                         </c:forEach>
                                                                     </tbody>
