@@ -235,56 +235,32 @@
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                                    <div class="row">
-
-                                                        <div class="col-lg-6 mt-5">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <div class="media mb-5">
-                                                                        <img class="img-fluid mr-4" src="assets_1/images/media/media1.jpg" alt="image">
-                                                                        <div class="media-body">
-                                                                            <h4 class="mb-3">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                                        </div>
-                                                                    </div>                                                               
-                                                                </div>                                                                                                                             
+                                                    <div class="col-12">
+                                                        <div class="box box-primary">
+                                                            <div class="box-body">
+                                                                <table width="100%" class="table table-hover" id="dataTables-example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            <th>Email</th>
+                                                                            <th>Shirt Number</th>
+                                                                            <th>Position</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <c:forEach items="${playerList}" var="p" varStatus="a">
+                                                                        <tr>
+                                                                            <td>}</td>
+                                                                            <td>}</td>
+                                                                            <td>${p.shirt_number}</td>
+                                                                            <td>${p.position}</td>
+                                                                        </tr>
+                                                                        </c:forEach>
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-6 mt-5">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <div class="media mb-5">
-                                                                        <img class="img-fluid mr-4" src="assets_1/images/media/media1.jpg" alt="image">
-                                                                        <div class="media-body">
-                                                                            <h4 class="mb-3">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                                        </div>
-                                                                    </div>                                                               
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 mt-5">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <div class="media mb-5">
-                                                                        <img class="img-fluid mr-4" src="assets_1/images/media/media1.jpg" alt="image">
-                                                                        <div class="media-body">
-                                                                            <h4 class="mb-3">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                                        </div>
-                                                                    </div>                                                               
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 mt-5">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <div class="media mb-5">
-                                                                        <img class="img-fluid mr-4" src="assets_1/images/media/media1.jpg" alt="image">
-                                                                        <div class="media-body">
-                                                                            <h4 class="mb-3">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                                        </div>
-                                                                    </div>                                                               
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                    </div>
                                                         <style>
                                                             .card_button button{
                                                                 padding: 10px;
@@ -308,7 +284,6 @@
                                                                 </button>  
                                                             </div>
                                                         </div>
-                                                    </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                                     <div class="col-12">
