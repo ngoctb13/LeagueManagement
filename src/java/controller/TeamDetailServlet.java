@@ -4,10 +4,13 @@
  */
 package controller;
 
+import dao.TeamDAO;
 import dao.UserDAO;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,14 +18,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+import model.Invite_member;
+import model.Join_Team_Request;
+import model.Team;
 import model.User;
 
 /**
  *
  * @author Admin
  */
-public class UserUpdateServlet extends HttpServlet {
+public class TeamDetailServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,40 +42,50 @@ public class UserUpdateServlet extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String full_name = request.getParameter("full_name");
-        String email = request.getParameter("email");
-        String phone_number = request.getParameter("phone_number");
-        String address = request.getParameter("address");
-        String avatar_link = request.getParameter("avatar_link");
-        if (full_name.length() >= 50 || !full_name.matches("[a-zA-Z\\s]+")) {
-        request.setAttribute("status", "FAILED");
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
-        return;
-    }
-        if (phone_number.length() != 10 || !phone_number.matches("\\d+")) {
-        request.setAttribute("status", "FAILED");
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
-        return;
-    }
-       
-        UserDAO dao = new UserDAO();
+        int team_id = Integer.parseInt(request.getParameter("team_id"));
+        session.setAttribute("team_id", team_id);
+        session.setAttribute("recent_team_id", team_id);
+        int coach = Integer.parseInt(request.getParameter("coach"));
 
-        User user = new User(full_name, phone_number, avatar_link, email, address);
+        UserDAO userDAO = new UserDAO();
+        User user = userDAO.getUserByID(coach);
 
-        int update = dao.updateUserProfile(user);
-
-        if (update > 0) {
-            User update_session = dao.getUserByEmail(email);
-            session.setAttribute("user", update_session);
-            session.setMaxInactiveInterval(1800);
-            
-            request.setAttribute("status", "SUCCESS");
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
-        } else {
-            request.setAttribute("status", "FAIlED");
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
+        TeamDAO dao = new TeamDAO();
+        Team team = dao.getTeamByID(team_id);
+        //==============================
+        List<Join_Team_Request> re = userDAO.getListJoinRequestByTeamID(team_id);
+         List<String> userName = new ArrayList<>();
+         for (Join_Team_Request var : re) {
+            int user_id = var.getUserID();
+            String user_name = getUserName(user_id); 
+            userName.add(user_name);            
         }
+        //===============================
+        List<Invite_member> invitationSent = userDAO.getListInvitationByTeamID(team_id);
+        List<String> user_name = new ArrayList<>();
+         for (Invite_member var : invitationSent) {
+            int user_id = var.getUserID();
+            String name = getUserName(user_id);
+            user_name.add(name);            
+        }
+        request.setAttribute("user_name", user_name);
+        request.setAttribute("invitationSent", invitationSent);
+        request.setAttribute("TeamRequest", re);
+        request.setAttribute("gotTeam", team);
+        request.setAttribute("team_id", team_id);
+        request.setAttribute("userName", userName);
+        request.setAttribute("gotCoach", user);
+        
+        request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);         
     }
+    
+    public String getUserName(int user_id) throws Exception {
+        UserDAO dao = new UserDAO();
+        User user = dao.getUserByID(user_id);
+        String user_name = user.getFull_name();
+        return user_name;
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -87,7 +102,7 @@ public class UserUpdateServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(UserUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamDetailServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -105,7 +120,7 @@ public class UserUpdateServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(UserUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamDetailServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

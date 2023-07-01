@@ -4,8 +4,8 @@
  */
 package controller;
 
+import dao.PlayerDAO;
 import dao.UserDAO;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -15,14 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+import model.Player;
 import model.User;
 
 /**
  *
- * @author Admin
+ * @author HP
  */
-public class UserUpdateServlet extends HttpServlet {
+public class ResponseInvitationServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,41 +34,33 @@ public class UserUpdateServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, Exception {
-        response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        String full_name = request.getParameter("full_name");
-        String email = request.getParameter("email");
-        String phone_number = request.getParameter("phone_number");
-        String address = request.getParameter("address");
-        String avatar_link = request.getParameter("avatar_link");
-        if (full_name.length() >= 50 || !full_name.matches("[a-zA-Z\\s]+")) {
-        request.setAttribute("status", "FAILED");
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
-        return;
-    }
-        if (phone_number.length() != 10 || !phone_number.matches("\\d+")) {
-        request.setAttribute("status", "FAILED");
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
-        return;
-    }
-       
-        UserDAO dao = new UserDAO();
-
-        User user = new User(full_name, phone_number, avatar_link, email, address);
-
-        int update = dao.updateUserProfile(user);
-
-        if (update > 0) {
-            User update_session = dao.getUserByEmail(email);
-            session.setAttribute("user", update_session);
-            session.setMaxInactiveInterval(1800);
+            throws ServletException, IOException {
+        try {
+            response.setContentType("text/html;charset=UTF-8");
+            HttpSession session = request.getSession();
+            User user = (User) session.getAttribute("user");
+            int userID=user.getUser_id();
+            String shirt_number=request.getParameter("shirt_number");
+            String position=request.getParameter("position");
+            int team_id = Integer.parseInt(request.getParameter("team_id"));
+            boolean isManager=false;
+            UserDAO userDao = new UserDAO();
             
-            request.setAttribute("status", "SUCCESS");
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
-        } else {
-            request.setAttribute("status", "FAIlED");
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
+            PlayerDAO dao = new PlayerDAO();
+            
+            Player player= new Player(userID,team_id,position,shirt_number,isManager);
+            int accept=userDao.updateStatus1(userID);
+            int p= dao.addPlayer(player);
+            if (p > 0) {
+                request.setAttribute("message", "SUCCESS");
+                request.getRequestDispatcher("invitation.jsp").forward(request, response);
+            } else {
+                request.setAttribute("message", "FAILED");
+                request.getRequestDispatcher("invitation.jsp").forward(request, response);
+            } 
+            
+        } catch (Exception ex) {
+            Logger.getLogger(ResponseInvitationServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -84,11 +76,7 @@ public class UserUpdateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(UserUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -102,11 +90,7 @@ public class UserUpdateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(UserUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

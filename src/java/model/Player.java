@@ -27,6 +27,15 @@ public class Player {
         this.shirt_number = shirt_number;
         this.isManager = isManager;
     }
+  
+    public Player( int user_id, int team_id, String position, String shirt_number, boolean isManager) {
+        
+        this.user_id = user_id;
+        this.team_id = team_id;
+        this.position = position;
+        this.shirt_number = shirt_number;
+        this.isManager = isManager;
+    }
 
     public int getPlayer_id() {
         return player_id;

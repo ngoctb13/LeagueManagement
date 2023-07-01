@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Delete_Request;
 import model.Feedback;
+
+import model.Invite_member;
+import model.Join_Team_Request;
+import model.Join_Team_Request_List;
 import model.User;
 
 /**
@@ -167,6 +171,196 @@ public class UserDAO extends DBContext {
             closeConnection(con);
         }
         return status;
+    }
+    public int addInvitation(Invite_member a) throws Exception {
+        int status = 0;
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("insert IGNORE INTO team_invite ( team_id, user_id, message, status) values (?,?,?,?)");
+            ps.setInt(1, a.getTeamID());
+            ps.setInt(2, a.getUserID());
+            ps.setString(3, a.getMess());
+            ps.setString(4, a.getStatus());
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return status;
+    }
+
+    public int addJoinTeamRequest(Join_Team_Request a) throws Exception {
+        int status = 0;
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("insert IGNORE INTO team_join_request ( user_id, team_id, status, shirt_number, position) values (?,?,?,?,?)");
+            ps.setInt(1, a.getUserID());
+            ps.setInt(2, a.getTeamID());
+            ps.setString(3, a.getStatus());
+            ps.setString(4, a.getShirt_number());
+            ps.setString(5, a.getPosition());
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return status;
+    }
+
+
+    public int updateStatus(int input_id) throws Exception {
+        int status = 0;
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("update team_invite set status = 'DECLINE' where user_id = ?");
+            ps.setInt(1, input_id);
+            
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return status;
+    }
+    public int updateStatus1(int input_id) throws Exception {
+        int status = 0;
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("update team_invite set status = 'ACCEPT' where user_id = ?");
+            ps.setInt(1, input_id);
+            
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return status;
+    }
+    public List<Invite_member> getListInvitationByUserID(int input_id) throws Exception {
+        try {
+            String sql = "SELECT * from team_invite WHERE user_id = ? ";
+            con = getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, input_id);
+            rs = ps.executeQuery();
+            List<Invite_member> list = new ArrayList<>();
+            while (rs.next()) {
+                Invite_member invite = new Invite_member();
+                invite.setInviteID(rs.getInt("invite_id"));
+                invite.setUserID(rs.getInt("user_id"));
+                invite.setTeamID(rs.getInt("team_id"));
+                invite.setMess(rs.getString("message"));
+                invite.setStatus(rs.getString("status"));
+                list.add(invite);
+            }
+            return list;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+
+    public List<Join_Team_Request> getListJoinRequestByUserID(int input_id) throws Exception {
+        try {
+            String sql = "SELECT * from team_join_request WHERE user_id = ? ";
+            con = getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, input_id);
+            rs = ps.executeQuery();
+            List<Join_Team_Request> list = new ArrayList<>();
+            while (rs.next()) {
+                Join_Team_Request rq = new Join_Team_Request();
+                rq.setUserID(rs.getInt("user_id"));
+                rq.setTeamID(rs.getInt("team_id"));
+                rq.setStatus(rs.getString("status"));
+                rq.setShirt_number(rs.getString("shirt_number"));
+                rq.setPosition(rs.getString("position"));
+                list.add(rq);
+            }
+            return list;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+
+    public List<Join_Team_Request> getListJoinRequestByTeamID(int input_id) throws Exception {
+        try {
+            String sql = "SELECT * from team_join_request WHERE team_id = ? ";
+            con = getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, input_id);
+            rs = ps.executeQuery();
+            List<Join_Team_Request> list = new ArrayList<>();
+            while (rs.next()) {
+                Join_Team_Request rq = new Join_Team_Request();
+                rq.setUserID(rs.getInt("user_id"));
+                rq.setTeamID(rs.getInt("team_id"));
+                rq.setStatus(rs.getString("status"));
+                rq.setShirt_number(rs.getString("shirt_number"));
+                rq.setPosition(rs.getString("position"));
+                list.add(rq);
+            }
+            return list;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+    public static void main(String[] args) throws Exception {
+        Join_Team_Request j=new Join_Team_Request(2,6,"Pending","12","Striker");
+        UserDAO dao=new UserDAO();
+        List<Join_Team_Request>list=dao.getListJoinRequestByTeamID(2);
+        System.out.println(list.toString());
+       
+    }
+
+    public List<Invite_member> getListInvitationByTeamID(int input_id) throws Exception {
+        try {
+            String sql = "SELECT * from team_invite WHERE team_id = ? ";
+            con = getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, input_id);
+            rs = ps.executeQuery();
+            List<Invite_member> list = new ArrayList<>();
+            while (rs.next()) {
+                Invite_member invite = new Invite_member();
+                invite.setInviteID(rs.getInt("invite_id"));
+                invite.setUserID(rs.getInt("user_id"));
+                invite.setTeamID(rs.getInt("team_id"));
+                invite.setMess(rs.getString("message"));
+                invite.setStatus(rs.getString("status"));
+                list.add(invite);
+            }
+            return list;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
     }
 
     public List<User> getListUser() throws Exception {

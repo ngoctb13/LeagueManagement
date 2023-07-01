@@ -18,7 +18,7 @@
                 </div>
                 <div class="search-box pull-left">
                     <form action="#">
-                        <input type="text" name="search" placeholder="Search..." required>
+                        <input type="text" name="search" placeholder="Search..." >
                         <i class="ti-search"></i>
                     </form>
                 </div>

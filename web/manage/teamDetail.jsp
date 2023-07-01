@@ -14,6 +14,8 @@
         <link rel="stylesheet" href="assets_1/css/metisMenu.css">
         <link rel="stylesheet" href="assets_1/css/owl.carousel.min.css">
         <link rel="stylesheet" href="assets_1/css/slicknav.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="assets_1/css/responsive.css">
         <!-- amchart css -->
         <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
         <!-- others css -->
@@ -26,6 +28,115 @@
     </head>
 
     <body>
+        <style>
+            .modal1,.modal5,.modal9{
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                background: rgb(0, 0, 0, 0.6);
+                z-index: 3;
+            }
+            .modal_inner form{
+                width: 50%;
+                margin: 10% auto;
+                text-align: center;
+                justify-content: center;
+                border: 1px solid #de536f;
+                background-color: #de536f ;
+                border-radius: 15px;
+            }
+            .modal_inner form table{
+                width: 100%;
+            }
+            .modal_inner form table tr th{
+                width: 30%;
+                color: white;
+            }
+            .modal_inner label{
+                color: white;
+                font-size: 17px;
+                font-weight: bold;
+            }
+            .modal_inner form table tr td{
+                width: 70%;
+                margin-right: 10px;
+            }
+            .modal_inner form table tr td input, .modal_inner form input {
+                padding: 10px;
+                border-radius: 10px;
+                border: none;
+                width: 90%;
+                margin: 10px 0;
+
+            }
+            .hide{
+                display: none;
+            }
+            .icon_exit{
+                width: 100%;
+            }
+            .icon_exit span{
+                padding: 10px;
+                float: right;
+                margin: 10px 10px 0 10px;
+            }
+            .icon_exit span:hover{
+                border: 1px dashed #333;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+        </style>
+        <div class="form-group">
+                        <c:if test="${ms.equals('SUCCESS')}">
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <strong>Success!</strong> You have Sent Invitation.    
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span class="fa fa-times"></span>
+                                </button>
+                            </div>
+                        </c:if>
+                        <c:if test="${ms.equals('FAILED')}">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <strong>FAILED!</strong> You have not sent invitation.
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span class="fa fa-times"></span>
+                                </button>
+                            </div>
+                        </c:if>
+                    </div>
+
+        <div id="inviteModal" class="modal1 hide">
+            <div class="modal_inner">
+
+                <form action="inviteMember" method="">
+                    <div class="modal_header3">
+                        <div class="icon_exit"><span class="fa fa-times">
+                            </span>
+                        </div>
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    <label for="emailInput">Enter user's email please:</label>
+                                </th>
+                                <td>
+                                    <input type="text" name="email" id="emailInput" required="required">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label for="messageInput">Messages:</label>
+                                </th>
+                                <td>
+                                    <input type="text" name="message" id="messageInput" required="required">
+                                </td>
+                            </tr>
+                        </table>
+                        <input type="submit" value="Invite" style="width: 30%;">
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
         <!--[if lt IE 8]>
                 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
@@ -64,13 +175,16 @@
                                             <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Detail</a>
                                             <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Member</a>
                                             <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Edit</a>
-                                        </div>
-                                        <div class="col-lg-8">                                           
+                                            <a class="nav-link" id="v-pills-browser-tab" data-toggle="pill" href="#v-pills-browser" role="tab" aria-controls="v-pills-browser" aria-selected="false">Request</a>
+                                            <a class="nav-link" id="v-pills-invitation-sent-tab" data-toggle="pill" href="#v-pills-invitation-sent" role="tab" aria-controls="v-pills-invitation-sent" aria-selected="false">Invitation Sent</a>
+                                        </div>                                                                                        
+
+                                        <div class="col-lg-10">                                           
                                             <div class="tab-content" id="v-pills-tabContent">
                                                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            <c:if test="${status.equals('success')}">
+                                                            <c:if test="${status.equals('SUCCESS')}">
                                                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                                                     <strong>Success!</strong> You have successfully updated.    
                                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -78,7 +192,7 @@
                                                                     </button>
                                                                 </div>
                                                             </c:if>
-                                                            <c:if test="${status.equals('failed')}">
+                                                            <c:if test="${status.equals('FAILED')}">
                                                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                                                     <strong>Oh snap!</strong> Change a few things up and try submitting again.
                                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -121,61 +235,55 @@
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                                    <div class="row">
-
-                                                        <div class="col-lg-6 mt-5">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <div class="media mb-5">
-                                                                        <img class="img-fluid mr-4" src="assets_1/images/media/media1.jpg" alt="image">
-                                                                        <div class="media-body">
-                                                                            <h4 class="mb-3">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                                        </div>
-                                                                    </div>                                                               
-                                                                </div>                                                                                                                             
+                                                    <div class="col-12">
+                                                        <div class="box box-primary">
+                                                            <div class="box-body">
+                                                                <table width="100%" class="table table-hover" id="dataTables-example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            <th>Email</th>
+                                                                            <th>Shirt Number</th>
+                                                                            <th>Position</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <c:forEach items="${playerList}" var="p" varStatus="a">
+                                                                        <tr>
+                                                                            <td>}</td>
+                                                                            <td>}</td>
+                                                                            <td>${p.shirt_number}</td>
+                                                                            <td>${p.position}</td>
+                                                                        </tr>
+                                                                        </c:forEach>
+                                                                    </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-6 mt-5">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <div class="media mb-5">
-                                                                        <img class="img-fluid mr-4" src="assets_1/images/media/media1.jpg" alt="image">
-                                                                        <div class="media-body">
-                                                                            <h4 class="mb-3">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                                        </div>
-                                                                    </div>                                                               
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 mt-5">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <div class="media mb-5">
-                                                                        <img class="img-fluid mr-4" src="assets_1/images/media/media1.jpg" alt="image">
-                                                                        <div class="media-body">
-                                                                            <h4 class="mb-3">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                                        </div>
-                                                                    </div>                                                               
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6 mt-5">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <div class="media mb-5">
-                                                                        <img class="img-fluid mr-4" src="assets_1/images/media/media1.jpg" alt="image">
-                                                                        <div class="media-body">
-                                                                            <h4 class="mb-3">Media heading</h4> Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-                                                                        </div>
-                                                                    </div>                                                               
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
                                                     </div>
+                                                        <style>
+                                                            .card_button button{
+                                                                padding: 10px;
+                                                                width: 50%;
+                                                                background-color: white;
+                                                                color: black;
+                                                                font-weight: bold;
+                                                                border-radius: 10px ;
+                                                            }
+                                                            .card_button button:hover{
+                                                                background-color: #007bff;
+                                                                border: none;
+                                                                color: white;
+                                                            }
+                                                        </style>
 
-
+                                                        <div class="col-lg-6 mt-5">
+                                                            <div class=" card_button" >
+                                                                <button onclick="addMember()">
+                                                                    Invite Member
+                                                                </button>  
+                                                            </div>
+                                                        </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                                     <div class="col-12">
@@ -219,7 +327,66 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>                                       
+                                                </div> 
+                                                <div class="tab-pane fade" id="v-pills-browser" role="tabpanel" aria-labelledby="v-pills-browser-tab">
+                                                    <div class="col-12">
+                                                        <div class="box box-primary">
+                                                            <div class="box-body">
+                                                                <table width="100%" class="table table-hover" id="dataTables-example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            <th>Shirt number</th>
+                                                                            <th>Position</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <c:forEach items="${TeamRequest}" var="rq" varStatus="a">
+                                                                        <tr>
+                                                                            <td>${userName[a.index]}</td>
+                                                                            <td>${rq.shirt_number}</td>
+                                                                            <td>${rq.position}</td>
+                                                                            
+                                                                            <td class="text-end">
+                                                                                <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
+                                                                                <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                        </c:forEach>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                                    <div class="tab-pane fade" id="v-pills-invitation-sent" role="tabpanel" aria-labelledby="v-pills-invitation-sent-tab">
+                                                    <div class="col-12">
+                                                        <div class="box box-primary">
+                                                            <div class="box-body">
+                                                                <table width="100%" class="table table-hover" id="dataTables-example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            <th>Message</th>
+                                                                            <th>Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <c:forEach items="${invitationSent}" var="s"  varStatus="a">
+                                                                        <tr>
+                                                                            <td>${user_name[a.index]}</td>
+                                                                            <td>${s.mess}</td>
+                                                                            <td>${s.status}</td>
+                                                                        </tr>
+                                                                        </c:forEach>
+                                                                        
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -254,6 +421,19 @@
         <!-- others plugins -->
         <script src="assets_1/js/plugins.js"></script>
         <script src="assets_1/js/scripts.js"></script>
+        <script>
+                                                                    var modal = document.querySelector('.modal1');
+                                                                    var hienthi = document.querySelector('.card_button button');
+                                                                    var andi = document.querySelector('.icon_exit span');
+
+                                                                    function toggModal() {
+                                                                        modal.classList.toggle('hide');
+                                                                    }
+
+                                                                    hienthi.addEventListener('click', toggModal);
+                                                                    andi.addEventListener('click', toggModal);
+
+        </script>
     </body>
 
 </html>

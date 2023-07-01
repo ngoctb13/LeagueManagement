@@ -4,10 +4,12 @@
  */
 package controller;
 
+import dao.TeamDAO;
 import dao.UserDAO;
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,14 +17,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+import model.Invite_member;
+import model.Join_Team_Request;
+import model.Team;
 import model.User;
 
 /**
  *
- * @author Admin
+ * @author HP
  */
-public class UserUpdateServlet extends HttpServlet {
+public class JoinTeamRequestSentServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,39 +41,38 @@ public class UserUpdateServlet extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String full_name = request.getParameter("full_name");
-        String email = request.getParameter("email");
-        String phone_number = request.getParameter("phone_number");
-        String address = request.getParameter("address");
-        String avatar_link = request.getParameter("avatar_link");
-        if (full_name.length() >= 50 || !full_name.matches("[a-zA-Z\\s]+")) {
-        request.setAttribute("status", "FAILED");
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
-        return;
-    }
-        if (phone_number.length() != 10 || !phone_number.matches("\\d+")) {
-        request.setAttribute("status", "FAILED");
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
-        return;
-    }
-       
-        UserDAO dao = new UserDAO();
-
-        User user = new User(full_name, phone_number, avatar_link, email, address);
-
-        int update = dao.updateUserProfile(user);
-
-        if (update > 0) {
-            User update_session = dao.getUserByEmail(email);
-            session.setAttribute("user", update_session);
-            session.setMaxInactiveInterval(1800);
-            
-            request.setAttribute("status", "SUCCESS");
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
-        } else {
-            request.setAttribute("status", "FAIlED");
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
+        User user = (User) session.getAttribute("user");
+        UserDAO userdao=new UserDAO();
+        int user_id=user.getUser_id();
+        List<Join_Team_Request> rq= userdao.getListJoinRequestByUserID(user_id);
+        List<String> teamNames = new ArrayList<>();
+        List<String> teamEmails = new ArrayList<>();
+        for (Join_Team_Request var : rq) {
+            int teamId = var.getTeamID();
+            String teamName = getTeamName(teamId); 
+            String teamEmail = getTeamEmail(teamId);
+            teamEmails.add(teamEmail);
+            teamNames.add(teamName);
+             session.setAttribute("team_id", teamId);
         }
+        request.setAttribute("teamEmails", teamEmails);
+        request.setAttribute("teamNames", teamNames);
+        request.setAttribute("requestSent",rq );
+        request.getRequestDispatcher("requestSentList.jsp").forward(request, response);
+    }
+     public String getTeamName(int teamId) throws Exception {
+        TeamDAO dao = new TeamDAO();
+        Team team = dao.getTeamByID(teamId);
+        String teamName = team.getTeam_name();
+
+        return teamName;
+    }
+     public String getTeamEmail(int teamId) throws Exception {
+        TeamDAO dao = new TeamDAO();
+        Team team = dao.getTeamByID(teamId);
+        String teamEmail = team.getEmail();
+
+        return teamEmail;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -87,7 +90,7 @@ public class UserUpdateServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(UserUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JoinTeamRequestSentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -105,7 +108,7 @@ public class UserUpdateServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(UserUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JoinTeamRequestSentServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

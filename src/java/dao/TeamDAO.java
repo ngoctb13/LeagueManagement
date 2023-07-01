@@ -43,6 +43,34 @@ public class TeamDAO extends DBContext {
         }
         return status;
     }
+    public ArrayList<Team> getListAllTeam() throws Exception {
+        try {
+            String query = "SELECT * FROM team";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+            ArrayList<Team> list = new ArrayList<>();
+            while (rs.next()) {
+                Team team = new Team();
+                team.setTeam_id(rs.getInt("team_id"));
+                team.setTeam_name(rs.getString("team_name"));
+                team.setPhone_number(rs.getString("phone_number"));
+                team.setEmail(rs.getString("email"));
+                team.setAddress(rs.getString("address"));
+                team.setDescription(rs.getString("description"));
+                team.setCoach(rs.getInt("coach"));
+                team.setTour(rs.getInt("tour"));
+                list.add(team);
+            }
+            return list;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
     
     public ArrayList<Team> getListTeamByCoach(int coach) throws Exception {
         try {

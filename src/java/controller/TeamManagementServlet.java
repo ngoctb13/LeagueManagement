@@ -4,10 +4,11 @@
  */
 package controller;
 
-import dao.UserDAO;
-import java.io.File;
+import dao.TeamDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,14 +16,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
+import model.Team;
 import model.User;
 
 /**
  *
  * @author Admin
  */
-public class UserUpdateServlet extends HttpServlet {
+public class TeamManagementServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,38 +38,27 @@ public class UserUpdateServlet extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String full_name = request.getParameter("full_name");
-        String email = request.getParameter("email");
-        String phone_number = request.getParameter("phone_number");
-        String address = request.getParameter("address");
-        String avatar_link = request.getParameter("avatar_link");
-        if (full_name.length() >= 50 || !full_name.matches("[a-zA-Z\\s]+")) {
-        request.setAttribute("status", "FAILED");
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
-        return;
-    }
-        if (phone_number.length() != 10 || !phone_number.matches("\\d+")) {
-        request.setAttribute("status", "FAILED");
-        request.getRequestDispatcher("profile.jsp").forward(request, response);
-        return;
-    }
-       
-        UserDAO dao = new UserDAO();
+        TeamDAO dao = new TeamDAO();
+        User user = (User) session.getAttribute("user");
 
-        User user = new User(full_name, phone_number, avatar_link, email, address);
+        if (user != null) {
+            String name = request.getParameter("team_name");
+            String email = request.getParameter("email");
+            String address = request.getParameter("address");
+            String phone_number = request.getParameter("phone_number");
+            String description = request.getParameter("description");
+            int coach = user.getUser_id();
 
-        int update = dao.updateUserProfile(user);
+            Team team = new Team(name, phone_number, email, address, description, coach);
 
-        if (update > 0) {
-            User update_session = dao.getUserByEmail(email);
-            session.setAttribute("user", update_session);
-            session.setMaxInactiveInterval(1800);
-            
-            request.setAttribute("status", "SUCCESS");
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
+            int add = dao.addTeam(team);
+
+            if (add > 0) {
+                request.setAttribute("your_team", team);
+                request.getRequestDispatcher("manage/team.jsp").forward(request, response);
+            }
         } else {
-            request.setAttribute("status", "FAIlED");
-            request.getRequestDispatcher("profile.jsp").forward(request, response);
+            response.sendRedirect("login.jsp");
         }
     }
 
@@ -87,7 +77,7 @@ public class UserUpdateServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(UserUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamManagementServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -105,7 +95,7 @@ public class UserUpdateServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(UserUpdateServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamManagementServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
