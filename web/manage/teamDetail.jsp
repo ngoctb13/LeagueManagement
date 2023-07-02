@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>${gotTeam.team_name} Profile</title>
+        <title>${gotTeam.team_name}Profile</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/png" href="assets_1/images/icon/favicon.ico">
         <link rel="stylesheet" href="assets_1/css/bootstrap.min.css">
@@ -87,23 +87,23 @@
             }
         </style>
         <div class="form-group">
-                        <c:if test="${ms.equals('SUCCESS')}">
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>Success!</strong> You have Sent Invitation.    
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span class="fa fa-times"></span>
-                                </button>
-                            </div>
-                        </c:if>
-                        <c:if test="${ms.equals('FAILED')}">
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>FAILED!</strong> You have not sent invitation.
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span class="fa fa-times"></span>
-                                </button>
-                            </div>
-                        </c:if>
-                    </div>
+            <c:if test="${ms.equals('SUCCESS')}">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Success!</strong> You have Sent Invitation.    
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+            </c:if>
+            <c:if test="${ms.equals('FAILED')}">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>FAILED!</strong> You have not sent invitation.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+            </c:if>
+        </div>
 
         <div id="inviteModal" class="modal1 hide">
             <div class="modal_inner">
@@ -133,7 +133,7 @@
                         </table>
                         <input type="submit" value="Invite" style="width: 30%;">
                     </div>
-                    
+
                 </form>
             </div>
         </div>
@@ -235,55 +235,70 @@
                                                     </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                                    <div class="col-lg-6 mt-5">
+                                                        <div class=" card_button" >
+                                                            <button onclick="addMember()">
+                                                                Invite Member
+                                                            </button>  
+                                                        </div>
+                                                    </div>
                                                     <div class="col-12">
                                                         <div class="box box-primary">
                                                             <div class="box-body">
                                                                 <table width="100%" class="table table-hover" id="dataTables-example">
                                                                     <thead>
                                                                         <tr>
+                                                                            <th>teamid</th>
+                                                                            <th>userid</th>
+                                                                            <th>playerid</th>
                                                                             <th>Name</th>
                                                                             <th>Email</th>
                                                                             <th>Shirt Number</th>
                                                                             <th>Position</th>
+                                                                            <th></th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
                                                                         <c:forEach items="${playerList}" var="p" varStatus="a">
-                                                                        <tr>
-                                                                            <td>}</td>
-                                                                            <td>}</td>
-                                                                            <td>${p.shirt_number}</td>
-                                                                            <td>${p.position}</td>
-                                                                        </tr>
+                                                                            <tr>
+                                                                                <td>${p.team_id}</td>
+                                                                                <td>${p.user_id}</td>
+                                                                                <td>${p.player_id}</td>
+                                                                                <td>${p.full_name}</td>
+                                                                                <td>${p.email}</td>
+                                                                                <td>${p.shirt_number}</td>
+                                                                                <td>${p.position}</td>
+                                                                                <td>
+                                                                                    <form action="deletePlayer?team_id=${p.team_id}&user_id=${p.user_id}&player_id=${p.player_id}" method="">
+                                                                                        <div class=" card_button" >
+                                                                                            <button type="submit">
+                                                                                                Delete Member
+                                                                                            </button> 
+                                                                                        </div>
+                                                                                    </form>
+                                                                                </td>
+                                                                            </tr>
                                                                         </c:forEach>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                        <style>
-                                                            .card_button button{
-                                                                padding: 10px;
-                                                                width: 50%;
-                                                                background-color: white;
-                                                                color: black;
-                                                                font-weight: bold;
-                                                                border-radius: 10px ;
-                                                            }
-                                                            .card_button button:hover{
-                                                                background-color: #007bff;
-                                                                border: none;
-                                                                color: white;
-                                                            }
-                                                        </style>
-
-                                                        <div class="col-lg-6 mt-5">
-                                                            <div class=" card_button" >
-                                                                <button onclick="addMember()">
-                                                                    Invite Member
-                                                                </button>  
-                                                            </div>
-                                                        </div>
+                                                    <style>
+                                                        .card_button button{
+                                                            padding: 10px;
+                                                            width: 50%;
+                                                            background-color: white;
+                                                            color: black;
+                                                            font-weight: bold;
+                                                            border-radius: 10px ;
+                                                        }
+                                                        .card_button button:hover{
+                                                            background-color: #007bff;
+                                                            border: none;
+                                                            color: white;
+                                                        }
+                                                    </style>
                                                 </div>
                                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                                     <div class="col-12">
@@ -343,16 +358,16 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <c:forEach items="${TeamRequest}" var="rq" varStatus="a">
-                                                                        <tr>
-                                                                            <td>${userName[a.index]}</td>
-                                                                            <td>${rq.shirt_number}</td>
-                                                                            <td>${rq.position}</td>
-                                                                            
-                                                                            <td class="text-end">
-                                                                                <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
-                                                                                <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
-                                                                            </td>
-                                                                        </tr>
+                                                                            <tr>
+                                                                                <td>${userName[a.index]}</td>
+                                                                                <td>${rq.shirt_number}</td>
+                                                                                <td>${rq.position}</td>
+
+                                                                                <td class="text-end">
+                                                                                    <a href="" class="btn btn-outline-info btn-rounded">Accept</a>
+                                                                                    <a href="" class="btn btn-outline-danger btn-rounded">Decline</a>
+                                                                                </td>
+                                                                            </tr>
                                                                         </c:forEach>
                                                                     </tbody>
                                                                 </table>
@@ -360,7 +375,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                                    <div class="tab-pane fade" id="v-pills-invitation-sent" role="tabpanel" aria-labelledby="v-pills-invitation-sent-tab">
+                                                <div class="tab-pane fade" id="v-pills-invitation-sent" role="tabpanel" aria-labelledby="v-pills-invitation-sent-tab">
                                                     <div class="col-12">
                                                         <div class="box box-primary">
                                                             <div class="box-body">
@@ -374,13 +389,13 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <c:forEach items="${invitationSent}" var="s"  varStatus="a">
-                                                                        <tr>
-                                                                            <td>${user_name[a.index]}</td>
-                                                                            <td>${s.mess}</td>
-                                                                            <td>${s.status}</td>
-                                                                        </tr>
+                                                                            <tr>
+                                                                                <td>${user_name[a.index]}</td>
+                                                                                <td>${s.mess}</td>
+                                                                                <td>${s.status}</td>
+                                                                            </tr>
                                                                         </c:forEach>
-                                                                        
+
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -422,17 +437,16 @@
         <script src="assets_1/js/plugins.js"></script>
         <script src="assets_1/js/scripts.js"></script>
         <script>
-                                                                    var modal = document.querySelector('.modal1');
-                                                                    var hienthi = document.querySelector('.card_button button');
-                                                                    var andi = document.querySelector('.icon_exit span');
+                                                                var modal = document.querySelector('.modal1');
+                                                                var hienthi = document.querySelector('.card_button button');
+                                                                var andi = document.querySelector('.icon_exit span');
 
-                                                                    function toggModal() {
-                                                                        modal.classList.toggle('hide');
-                                                                    }
+                                                                function toggModal() {
+                                                                    modal.classList.toggle('hide');
+                                                                }
 
-                                                                    hienthi.addEventListener('click', toggModal);
-                                                                    andi.addEventListener('click', toggModal);
-
+                                                                hienthi.addEventListener('click', toggModal);
+                                                                andi.addEventListener('click', toggModal);
         </script>
     </body>
 

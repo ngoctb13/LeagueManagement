@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import model.Player;
+import model.DTO.PlayerProfile;
 import model.Team;
 
 /**
@@ -17,11 +18,11 @@ import model.Team;
  * @author HP
  */
 public class PlayerDAO extends DBContext {
-  
+
     private Connection con;
     private PreparedStatement ps;
     private ResultSet rs;
-  
+
     public int addPlayer(Player a) throws Exception {
         int status = 0;
         try {
@@ -33,7 +34,7 @@ public class PlayerDAO extends DBContext {
             ps.setString(4, a.getShirt_number());
             ps.setBoolean(5, false);
             status = ps.executeUpdate();
-          } catch (Exception e) {
+        } catch (Exception e) {
             throw e;
         } finally {
             closeResultSet(rs);
@@ -42,7 +43,7 @@ public class PlayerDAO extends DBContext {
         }
         return status;
     }
-  
+
     public ArrayList<Player> getListPlayerByTeam(int team_id) throws Exception {
         try {
             String query = "SELECT * FROM player where team_id = ?";
@@ -71,21 +72,56 @@ public class PlayerDAO extends DBContext {
             closeConnection(con);
         }
     }
-    
-    public Boolean IsTeamManager (int user_id, int team_id ) throws Exception{
-         try {
+
+    public ArrayList<PlayerProfile> getListPlayerProfileByTeam(int team_id) throws Exception {
+        try {
+            String query = "SELECT u.full_name,u.email,u.user_id, p.player_id, p.team_id, p.shirt_number, p.positon, p.isManager \n"
+                    + "FROM test.user as u \n"
+                    + "Join test.player as p \n"
+                    + "On u.user_id = p.user_id\n"
+                    + "Where p.team_id = ?;";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, team_id);
+            rs = ps.executeQuery();
+            ArrayList<PlayerProfile> list = new ArrayList<>();
+            while (rs.next()) {
+                PlayerProfile playerProfile = new PlayerProfile();
+                playerProfile.setPlayer_id(rs.getInt("player_id"));
+                playerProfile.setUser_id(rs.getInt("user_id"));
+                playerProfile.setTeam_id(rs.getInt("team_id"));
+                playerProfile.setFull_name(rs.getString("full_name"));
+                playerProfile.setEmail(rs.getString("email"));
+                playerProfile.setPosition(rs.getString("positon"));
+                playerProfile.setShirt_number(rs.getString("shirt_number"));
+                playerProfile.setIsManager(rs.getBoolean("isManager"));
+                list.add(playerProfile);
+            }
+            return list;
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+
+    public Boolean IsTeamManager(int user_id, int team_id) throws Exception {
+        try {
             String query = "SELECT * FROM player where user_id = ? AND team_id = ?";
             con = getConnection();
             ps = con.prepareStatement(query);
             ps.setInt(1, user_id);
             ps.setInt(2, team_id);
             rs = ps.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 return rs.getBoolean("isManager");
             }
             return false;
-            
+
         } catch (Exception e) {
             throw e;
         } finally {

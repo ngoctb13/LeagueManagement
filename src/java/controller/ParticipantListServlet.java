@@ -16,12 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Participant;
+import model.DTO.ParticipantProfile;
 
 /**
  *
  * @author Admin
  */
-@WebServlet(name = "ParticipantListServlet", urlPatterns = {"/ParticipantListServlet"})
+@WebServlet(name = "ParticipantListServlet", urlPatterns = {"/participantList"})
 public class ParticipantListServlet extends HttpServlet {
 
     /**
@@ -39,10 +40,10 @@ public class ParticipantListServlet extends HttpServlet {
         int tour_id = Integer.parseInt(request.getParameter("tour_id"));
         try {
             ParticipantDAO participantDAO = new ParticipantDAO();
-            ArrayList<Participant> participantList = participantDAO.getListParticipantByTour(tour_id);
+            ArrayList<ParticipantProfile> participantList = participantDAO.getListParticipantProfileByTour(tour_id);
 
-            request.setAttribute("playerList", participantList);
-            request.getRequestDispatcher("manage/participantList.jsp").forward(request, response);
+            request.setAttribute("participantList", participantList);
+            request.getRequestDispatcher("participantList.jsp").forward(request, response);
         } catch (Exception ex) {
             Logger.getLogger(ParticipantListServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

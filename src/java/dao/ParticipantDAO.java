@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import model.Participant;
+import model.DTO.ParticipantProfile;
 
 /**
  *
@@ -29,7 +30,7 @@ public class ParticipantDAO extends DBContext {
             ps.setInt(1, tour_id);
             rs = ps.executeQuery();
             ArrayList<Participant> list = new ArrayList<>();
-            while (rs.next()) {       
+            while (rs.next()) {
                 Participant participant = new Participant();
                 participant.setParticipant_id(rs.getInt("participant_id"));
                 participant.setTour_id(rs.getInt("tour_id"));
@@ -46,18 +47,51 @@ public class ParticipantDAO extends DBContext {
             closeConnection(con);
         }
     }
-    
-    public Boolean IsTourManager (int user_id, int tour_id ) throws Exception{
-         try {
+
+    public ArrayList<ParticipantProfile> getListParticipantProfileByTour(int tour_id) throws Exception {
+        try {
+            String query = "select t.team_id, t.team_name, t.phone_number, t.email, t.description, p.participant_id, p.tour_id \n"
+                    + "from test.team as t\n"
+                    + "join test.participant as p\n"
+                    + "on t.team_id = p.team_id\n"
+                    + "where p.tour_id = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, tour_id);
+            rs = ps.executeQuery();
+            ArrayList<ParticipantProfile> list = new ArrayList<>();
+            while (rs.next()) {
+                ParticipantProfile participantProfile = new ParticipantProfile();
+                participantProfile.setParticipant_id(rs.getInt("participant_id"));
+                participantProfile.setTour_id(rs.getInt("tour_id"));
+                participantProfile.setTeam_id(rs.getInt("team_id"));
+                participantProfile.setTeam_name(rs.getString("team_name"));
+                participantProfile.setEmail(rs.getString("email"));
+                participantProfile.setPhone_number(rs.getString("phone_number"));
+                participantProfile.setDescription(rs.getString("description"));
+                list.add(participantProfile);
+            }
+            return list;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+
+    public Boolean IsTourManager(int user_id, int tour_id) throws Exception {
+        try {
             String query = "SELECT * FROM manager where user_id = ? AND tour_id = ?";
             con = getConnection();
             ps = con.prepareStatement(query);
             ps.setInt(1, user_id);
             ps.setInt(2, tour_id);
             rs = ps.executeQuery();
-            
+
             return rs.next();
-            
+
         } catch (Exception e) {
             throw e;
         } finally {
@@ -81,5 +115,11 @@ public class ParticipantDAO extends DBContext {
             closePreparedStatement(ps);
             closeConnection(con);
         }
+    }
+    
+    public static void main(String[] args) throws Exception {
+        ParticipantDAO dao = new ParticipantDAO();
+        ArrayList<ParticipantProfile> list = dao.getListParticipantProfileByTour(1);
+        System.out.println(list);
     }
 }
