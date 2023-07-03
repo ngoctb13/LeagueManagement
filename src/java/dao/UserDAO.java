@@ -11,11 +11,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Delete_Request;
-import model.Feedback;
-
 import model.Invite_member;
 import model.Join_Team_Request;
-import model.Join_Team_Request_List;
 import model.User;
 
 /**
@@ -214,7 +211,7 @@ public class UserDAO extends DBContext {
     }
 
 
-    public int updateStatus(int input_id) throws Exception {
+    public int updateStatusDeclineTeamInvite(int input_id) throws Exception {
         int status = 0;
         try {
             con = getConnection();
@@ -231,7 +228,7 @@ public class UserDAO extends DBContext {
         }
         return status;
     }
-    public int updateStatus1(int input_id) throws Exception {
+    public int updateStatusAcceptTeamInvite(int input_id) throws Exception {
         int status = 0;
         try {
             con = getConnection();
@@ -247,6 +244,65 @@ public class UserDAO extends DBContext {
             closeConnection(con);
         }
         return status;
+    }
+    public int updateStatusAcceptTeamRequest(int input_id) throws Exception {
+        int status = 0;
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("update team_join_request set status = 'ACCEPT' where user_id = ?");
+            ps.setInt(1, input_id);
+            
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return status;
+    }
+    public int updateStatusDeclineTeamRequest(int input_id) throws Exception {
+        int status = 0;
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("update team_join_request set status = 'DECLINE' where user_id = ?");
+            ps.setInt(1, input_id);
+            
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return status;
+    }
+    public Join_Team_Request getRequestByRequestID(int input_id) throws Exception {
+        Join_Team_Request teamRequest = new Join_Team_Request() ;
+        String query = "SELECT * FROM team_join_request WHERE request_id = ?";
+        try {
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, input_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                teamRequest.setRequestID(rs.getInt("request_id"));
+                teamRequest.setUserID( rs.getInt("user_id"));
+                teamRequest.setTeamID(rs.getInt("team_id"));
+                teamRequest.setStatus(rs.getString("status"));
+                teamRequest.setShirt_number(rs.getString("shirt_number"));
+                teamRequest.setPosition(rs.getString("position"));
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return teamRequest;
     }
     public List<Invite_member> getListInvitationByUserID(int input_id) throws Exception {
         try {
@@ -312,6 +368,7 @@ public class UserDAO extends DBContext {
             List<Join_Team_Request> list = new ArrayList<>();
             while (rs.next()) {
                 Join_Team_Request rq = new Join_Team_Request();
+                rq.setRequestID(rs.getInt("request_id"));
                 rq.setUserID(rs.getInt("user_id"));
                 rq.setTeamID(rs.getInt("team_id"));
                 rq.setStatus(rs.getString("status"));
