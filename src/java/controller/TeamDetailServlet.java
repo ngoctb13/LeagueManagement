@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.PlayerDAO;
 import dao.TeamDAO;
 import dao.UserDAO;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Invite_member;
 import model.Join_Team_Request;
+import model.DTO.PlayerProfile;
 import model.Team;
 import model.User;
 
@@ -54,38 +56,42 @@ public class TeamDetailServlet extends HttpServlet {
         Team team = dao.getTeamByID(team_id);
         //==============================
         List<Join_Team_Request> re = userDAO.getListJoinRequestByTeamID(team_id);
-         List<String> userName = new ArrayList<>();
-         for (Join_Team_Request var : re) {
+        List<String> userName = new ArrayList<>();
+        for (Join_Team_Request var : re) {
             int user_id = var.getUserID();
-            String user_name = getUserName(user_id); 
-            userName.add(user_name);            
+            String user_name = getUserName(user_id);
+            userName.add(user_name);
         }
         //===============================
         List<Invite_member> invitationSent = userDAO.getListInvitationByTeamID(team_id);
         List<String> user_name = new ArrayList<>();
-         for (Invite_member var : invitationSent) {
+        for (Invite_member var : invitationSent) {
             int user_id = var.getUserID();
             String name = getUserName(user_id);
-            user_name.add(name);            
+            user_name.add(name);
         }
+        //==============================
+        PlayerDAO playerDAO = new PlayerDAO();
+        ArrayList<PlayerProfile> playerList = playerDAO.getListPlayerProfileByTeam(team_id);
+        //==============================
         request.setAttribute("user_name", user_name);
+        request.setAttribute("playerList", playerList);
         request.setAttribute("invitationSent", invitationSent);
         request.setAttribute("TeamRequest", re);
         request.setAttribute("gotTeam", team);
         request.setAttribute("team_id", team_id);
         request.setAttribute("userName", userName);
         request.setAttribute("gotCoach", user);
-        
-        request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);         
+
+        request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);
     }
-    
+
     public String getUserName(int user_id) throws Exception {
         UserDAO dao = new UserDAO();
         User user = dao.getUserByID(user_id);
         String user_name = user.getFull_name();
         return user_name;
     }
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

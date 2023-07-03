@@ -22,7 +22,7 @@
                 <a href="#"><i class="ti-layout-sidebar-left"></i><span>Registered Team List</span></a>               
             </li>
             <li>
-                <a href="#"><i class="ti-pie-chart"></i><span>Participant List</span></a>
+                <a href="participantList?tour_id=<%=recentTour.getTour_id()%>"><i class="ti-pie-chart"></i><span>Participant List</span></a>
             </li>
             <li>
                 <a href="#"><i class="ti-pie-chart"></i><span>Matches</span></a>
