@@ -9,7 +9,7 @@ package model;
  * @author HP
  */
 public class Join_Team_Request {
-    int RequestID;
+    int requestID;
     int userID;
     int teamID;
     String status;
@@ -19,8 +19,8 @@ public class Join_Team_Request {
     public Join_Team_Request() {
     }
 
-    public Join_Team_Request(int RequestID, int userID, int teamID, String status, String shirt_number, String position) {
-        this.RequestID = RequestID;
+    public Join_Team_Request(int requestID, int userID, int teamID, String status, String shirt_number, String position) {
+        this.requestID = requestID;
         this.userID = userID;
         this.teamID = teamID;
         this.status = status;
@@ -37,11 +37,11 @@ public class Join_Team_Request {
     }
 
     public int getRequestID() {
-        return RequestID;
+        return requestID;
     }
 
-    public void setRequestID(int RequestID) {
-        this.RequestID = RequestID;
+    public void setRequestID(int requestID) {
+        this.requestID = requestID;
     }
 
     public int getUserID() {
@@ -88,6 +88,6 @@ public class Join_Team_Request {
     
 @Override
     public String toString() {
-        return "Invite_member{" + "inviteID=" + RequestID + "userID=" + userID + ", teamID=" + teamID + ", status=" + status +  '}';
+        return "Invite_member{" + "requestID=" + requestID + "userID=" + userID + ", teamID=" + teamID + ", status=" + status +  '}';
     }
 }

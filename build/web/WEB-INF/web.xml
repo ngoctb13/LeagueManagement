@@ -91,8 +91,8 @@
     <servlet>
         <servlet-name>JoinTeamRequestListServlet</servlet-name>
         <servlet-class>controller.JoinTeamRequestListServlet</servlet-class>
-      </servlet>
-  <servlet>
+    </servlet>
+    <servlet>
         <servlet-name>TournamentServlet</servlet-name>
         <servlet-class>controller.TournamentServlet</servlet-class>
     </servlet>
@@ -100,7 +100,7 @@
         <servlet-name>LeaugeList</servlet-name>
         <servlet-class>controller.LeaugeList</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>MyLeaugeListServlet</servlet-name>
         <servlet-class>controller.MyLeaugeListServlet</servlet-class>
     </servlet>
@@ -123,6 +123,26 @@
     <servlet>
         <servlet-name>DeleteParticipantServlet</servlet-name>
         <servlet-class>controller.DeleteParticipantServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResponseInvitationServlet</servlet-name>
+        <servlet-class>controller.ResponseInvitationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeclineTeamInviteServlet</servlet-name>
+        <servlet-class>controller.DeclineTeamInviteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>JoinTeamRequestSentServlet</servlet-name>
+        <servlet-class>controller.JoinTeamRequestSentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ResponseTeamRequestServlet</servlet-name>
+        <servlet-class>controller.ResponseTeamRequestServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeclineTeamRequestServlet</servlet-name>
+        <servlet-class>controller.DeclineTeamRequestServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -234,8 +254,8 @@
     <servlet-mapping>
         <servlet-name>JoinTeamRequestListServlet</servlet-name>
         <url-pattern>/joinTeamRequestList</url-pattern>
-      </servlet-mapping>
-        <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>LeaugeProfileServlet</servlet-name>
         <url-pattern>/leaugeProfile</url-pattern>
     </servlet-mapping>
@@ -250,6 +270,26 @@
     <servlet-mapping>
         <servlet-name>DeleteParticipantServlet</servlet-name>
         <url-pattern>/deleteParticipant</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResponseInvitationServlet</servlet-name>
+        <url-pattern>/responseInvitation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeclineTeamInviteServlet</servlet-name>
+        <url-pattern>/declineTeamInvite</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>JoinTeamRequestSentServlet</servlet-name>
+        <url-pattern>/joinTeamRequestSent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResponseTeamRequestServlet</servlet-name>
+        <url-pattern>/responseTeamRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeclineTeamRequestServlet</servlet-name>
+        <url-pattern>/declineTeamRequest</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

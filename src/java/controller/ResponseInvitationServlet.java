@@ -49,7 +49,7 @@ public class ResponseInvitationServlet extends HttpServlet {
             PlayerDAO dao = new PlayerDAO();
             
             Player player= new Player(userID,team_id,position,shirt_number,isManager);
-            int accept=userDao.updateStatus1(userID);
+            int accept=userDao.updateStatusAcceptTeamInvite(userID);
             int p= dao.addPlayer(player);
             if (p > 0) {
                 request.setAttribute("message", "SUCCESS");
