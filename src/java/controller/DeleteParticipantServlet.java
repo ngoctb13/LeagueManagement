@@ -38,25 +38,24 @@ public class DeleteParticipantServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        int tour_id = Integer.parseInt(request.getParameter("tour_id"));
-        int paticipant_id = Integer.parseInt(request.getParameter("participant_id"));
         int user_id = Integer.parseInt(request.getParameter("user_id"));
+        int participant_id = Integer.parseInt(request.getParameter("participant_id"));
+        int tour_id = Integer.parseInt(request.getParameter("tour_id"));
 
         try {
             ParticipantDAO participantDAO = new ParticipantDAO();
             TourDAO tourDAO = new TourDAO();
             Tour tour = tourDAO.getTourByID(tour_id);
-            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             Date startDate = df.parse(tour.getStart_date());
             java.util.Date date = new java.util.Date();
 
             if (startDate.after(date)) {
                 if (participantDAO.IsTourManager(user_id, tour_id)) {
-                    participantDAO.deleteParticipant(paticipant_id);
+                    participantDAO.deleteParticipant(participant_id);
                 }
             }
-            request.getRequestDispatcher("manage/participantList.jsp").forward(request, response);
-
+            response.sendRedirect("participantList?tour_id="+tour_id);
         } catch (Exception ex) {
             Logger.getLogger(ParticipantListServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

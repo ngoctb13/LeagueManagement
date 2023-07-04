@@ -57,7 +57,7 @@ public class PlayerDAO extends DBContext {
                 player.setPlayer_id(rs.getInt("player_id"));
                 player.setUser_id(rs.getInt("user_id"));
                 player.setTeam_id(rs.getInt("team_id"));
-                player.setPosition(rs.getString("position"));
+                player.setPosition(rs.getString("positon"));
                 player.setShirt_number(rs.getString("shirt_number"));
                 player.setIsManager(rs.getBoolean("isManager"));
                 list.add(player);
@@ -131,13 +131,23 @@ public class PlayerDAO extends DBContext {
         }
     }
 
-    public void deletePlayer(int player_id) throws Exception {
+    public Boolean isPlayerCanBeDelete(int player_id) throws Exception {
         try {
-            String query = "DELETE FROM player where player_id = ?";
+            String query = "SELECT * FROM player where player_id = ?";
             con = getConnection();
             ps = con.prepareStatement(query);
             ps.setInt(1, player_id);
             rs = ps.executeQuery();
+            Player player = new Player();
+            while (rs.next()) {
+                player.setPlayer_id(rs.getInt("player_id"));
+                player.setUser_id(rs.getInt("user_id"));
+                player.setTeam_id(rs.getInt("team_id"));
+                player.setPosition(rs.getString("positon"));
+                player.setShirt_number(rs.getString("shirt_number"));
+                player.setIsManager(rs.getBoolean("isManager"));
+            }
+            return !player.isIsManager();
         } catch (Exception e) {
             throw e;
         } finally {
@@ -145,5 +155,25 @@ public class PlayerDAO extends DBContext {
             closePreparedStatement(ps);
             closeConnection(con);
         }
+    }
+
+    public void deletePlayer(int player_id) throws Exception {
+        try {
+            String query = "DELETE FROM player where player_id = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, player_id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        PlayerDAO dao = new PlayerDAO();
+        System.out.println(dao.isPlayerCanBeDelete(2));
     }
 }

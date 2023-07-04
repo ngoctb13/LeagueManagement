@@ -3,12 +3,15 @@
     Created on : Jul 2, 2023, 9:08:07 PM
     Author     : Admin
 --%>
+<%@page import="model.User"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
 <!DOCTYPE html>
 <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+    <%
+        User user = (User) session.getAttribute("user");
+    %>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -65,53 +68,53 @@
             <!-- page title area end -->
             <div class="main-content-inner">
                 <div class="container">   
-                        <div class="col-12">
-                            <div class="box box-primary">
-                                <div class="box-body">
-                                    <table width="100%" class="table table-hover" id="dataTables-example">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>Team Name</th>
-                                                <th>Email</th>
-                                                <th>Phone Number</th>
-                                                <th>Description</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <c:forEach items="${participantList}" var="pl" varStatus="a">
+                    <div class="col-12">
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <table width="100%" class="table table-hover" id="dataTables-example">
+                                    <thead>
+                                        <tr>
+                                            <th>Index</th>
+                                            <th>Team Name</th>
+                                            <th>Email</th>
+                                            <th>Phone Number</th>
+                                            <th>Description</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${participantList}" var="p" varStatus="a">
                                             <tr>
                                                 <td>${a.index +1}</td>
-                                                <td>${pl.team_name}</td>
-                                                <td>${pl.email}</td>
-                                                <td>${pl.phone_number}</td>
-                                                <td>${pl.description}</td>
+                                                <td>${p.team_name}</td>
+                                                <td>${p.email}</td>
+                                                <td>${p.phone_number}</td>
+                                                <td>${p.description}</td>
                                                 <td>
-                                                    2
+                                                    <a href="#" onclick="showMess(${p.tour_id},<%=user.getUser_id()%>,${p.participant_id})">Delete Participant</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
-                            <style>
-                                .card_button button{
-                                    padding: 10px;
-                                    width: 50%;
-                                    background-color: white;
-                                    color: black;
-                                    font-weight: bold;
-                                    border-radius: 10px ;
-                                }
-                                .card_button button:hover{
-                                    background-color: #007bff;
-                                    border: none;
-                                    color: white;
-                                }
-                            </style>
                         </div>
+                        <style>
+                            .card_button button{
+                                padding: 10px;
+                                width: 50%;
+                                background-color: white;
+                                color: black;
+                                font-weight: bold;
+                                border-radius: 10px ;
+                            }
+                            .card_button button:hover{
+                                background-color: #007bff;
+                                border: none;
+                                color: white;
+                            }
+                        </style>
+                    </div>
                 </div>
             </div>
         </div>
@@ -119,43 +122,50 @@
         <!-- footer area start-->
 
         <!-- footer area end-->
-    <!-- main wrapper start -->
-    <!-- offset area start -->
+        <!-- main wrapper start -->
+        <!-- offset area start -->
+        <script>
+            function showMess(tour_id, user_id, paticipant_id) {
+                var option = confirm('Are you sure to delete this participant?');
+                if (option === true) {
+                    window.location.href = 'deleteParticipant?tour_id=' + tour_id + '&user_id=' + user_id + '&participant_id=' + paticipant_id;
+                }
+            }
+        </script>
+        <!-- offset area end -->
+        <!-- jquery latest version -->
+        <script src="assets_1/js/vendor/jquery-2.2.4.min.js"></script>
+        <!-- bootstrap 4 js -->
+        <script src="assets_1/js/popper.min.js"></script>
+        <script src="assets_1/js/bootstrap.min.js"></script>
+        <script src="assets_1/js/owl.carousel.min.js"></script>
+        <script src="assets_1/js/metisMenu.min.js"></script>
+        <script src="assets_1/js/jquery.slimscroll.min.js"></script>
+        <script src="assets_1/js/jquery.slicknav.min.js"></script>
 
-    <!-- offset area end -->
-    <!-- jquery latest version -->
-    <script src="assets_1/js/vendor/jquery-2.2.4.min.js"></script>
-    <!-- bootstrap 4 js -->
-    <script src="assets_1/js/popper.min.js"></script>
-    <script src="assets_1/js/bootstrap.min.js"></script>
-    <script src="assets_1/js/owl.carousel.min.js"></script>
-    <script src="assets_1/js/metisMenu.min.js"></script>
-    <script src="assets_1/js/jquery.slimscroll.min.js"></script>
-    <script src="assets_1/js/jquery.slicknav.min.js"></script>
-
-    <!-- start chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <!-- start highcharts js -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <!-- start amcharts -->
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
-    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
-    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-    <!-- all line chart activation -->
-    <script src="assets_1/js/line-chart.js"></script>
-    <!-- all pie chart -->
-    <script src="assets_1/js/pie-chart.js"></script>
-    <!-- all bar chart -->
-    <script src="assets_1/js/bar-chart.js"></script>
-    <!-- all map chart -->
-    <script src="assets_1/js/maps.js"></script>
-    <!-- others plugins -->
-    <script src="assets_1/js/plugins.js"></script>
-    <script src="assets_1/js/scripts.js"></script>
-</body>
+        <!-- start chart js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+        <!-- start highcharts js -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <!-- start amcharts -->
+        <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+        <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+        <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+        <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+        <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+        <!-- all line chart activation -->
+        <script src="assets_1/js/line-chart.js"></script>
+        <!-- all pie chart -->
+        <script src="assets_1/js/pie-chart.js"></script>
+        <!-- all bar chart -->
+        <script src="assets_1/js/bar-chart.js"></script>
+        <!-- all map chart -->
+        <script src="assets_1/js/maps.js"></script>
+        <!-- others plugins -->
+        <script src="assets_1/js/plugins.js"></script>
+        <script src="assets_1/js/scripts.js"></script>
+    </body>
 </html>
