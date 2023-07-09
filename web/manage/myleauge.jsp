@@ -57,19 +57,65 @@
                 <div class="main-content-inner">
                     <div class="card-area">
                         <div class="row">
-                            <c:forEach items="${tourList}" var="t">
-                                <div class="col-lg-4 col-md-6 mt-5">
-                                    <div class="card card-bordered">
-                                        <img class="card-img-top img-fluid" src="images/${t.avatar}" alt="image">
-                                        <div class="card-body">
-                                            <h5 class="title">Team Name: ${t.tour_name}</h5>
-                                            <h5 class="title">Address: ${t.address}</h5>
-                                            <h5 class="title">Description: ${t.description}</h5>                                            
-                                            <a href="leaugeProfile?tour_id=${t.tour_id}" class="btn btn-primary">View Profile</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
+                            <%--<c:forEach items="${tourList}" var="t">--%>
+                            <!--                                <div class="col-lg-4 col-md-6 mt-5">
+                                                                <div class="card card-bordered">
+                                                                    <img class="card-img-top img-fluid" src="images/${t.avatar}" alt="image">
+                                                                    <div class="card-body">
+                                                                        <h5 class="title">Team Name: ${t.tour_name}</h5>
+                                                                        <h5 class="title">Address: ${t.address}</h5>
+                                                                        <h5 class="title">Description: ${t.description}</h5>                                            
+                                                                        <a href="leaugeProfile?tour_id=${t.tour_id}" class="btn btn-primary">View Profile</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>-->
+                            <%--</c:forEach>--%>
+<!--                            <p>
+                                <a href="">Create New</a>
+                            </p>-->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            My League ID
+                                        </th>
+                                        <th>
+                                            My League Name
+                                        </th>
+                                        <th>
+                                            C
+                                        </th>
+                                        <th>
+                                            D
+                                        </th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        
+                                        <td>
+                                            A
+                                        </td>
+                                        <td>
+                                            B
+                                        </td>
+                                        <td>
+                                            C
+                                        </td>
+                                        <td>
+                                            D
+                                        </td>
+                                        <td>
+                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

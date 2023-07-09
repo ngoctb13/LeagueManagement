@@ -23,6 +23,8 @@
                         </ul>
                     </li>
                     <li class="active"><a href="myLeauge">My Leauge</a></li>
+                    <li class=""><a href="myLeauge">Giai dau toi tham gia</a></li>
+                    <li class=""><a href="myLeauge">Giai dau toi tao ra</a></li>
                 </ul>
             </nav>
         </div>
