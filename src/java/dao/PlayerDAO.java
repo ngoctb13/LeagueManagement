@@ -27,7 +27,7 @@ public class PlayerDAO extends DBContext {
         int status = 0;
         try {
             con = getConnection();
-            ps = con.prepareStatement("insert into player (user_id, team_id, position, shirt_number,isManager) values (?,?,?,?,?)");
+            ps = con.prepareStatement("insert into player (user_id, team_id, positon, shirt_number,isManager) values (?,?,?,?,?)");
             ps.setInt(1, a.getUser_id());
             ps.setInt(2, a.getTeam_id());
             ps.setString(3, a.getPosition());
@@ -174,6 +174,8 @@ public class PlayerDAO extends DBContext {
 
     public static void main(String[] args) throws Exception {
         PlayerDAO dao = new PlayerDAO();
-        System.out.println(dao.isPlayerCanBeDelete(2));
+        Player p = new Player(7, 5, "p", "s", true);
+        int x = dao.addPlayer(p);
+        System.out.println(x);
     }
 }

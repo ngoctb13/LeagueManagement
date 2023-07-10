@@ -70,9 +70,9 @@
                                                                 </div>
                                                             </div>-->
                             <%--</c:forEach>--%>
-<!--                            <p>
-                                <a href="">Create New</a>
-                            </p>-->
+                            <!--                            <p>
+                                                            <a href="">Create New</a>
+                                                        </p>-->
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -88,32 +88,32 @@
                                         <th>
                                             D
                                         </th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
-                                    <tr>
-                                        
-                                        <td>
-                                            A
-                                        </td>
-                                        <td>
-                                            B
-                                        </td>
-                                        <td>
-                                            C
-                                        </td>
-                                        <td>
-                                            D
-                                        </td>
-                                        <td>
-                                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                        </td>
-                                    </tr>
-                                    
+                                    <c:forEach items="${requestScope.tourList}" var="t">
+                                        <tr>
+
+                                            <td>
+                                                ${t.tour_id}
+                                            </td>
+                                            <td>
+                                                ${t.tour_name}
+                                            </td>
+                                            <td>
+                                                C
+                                            </td>
+                                            <td>
+                                                D
+                                            </td>
+                                            <td>
+                                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

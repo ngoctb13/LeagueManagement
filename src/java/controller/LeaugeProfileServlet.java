@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.TeamDAO;
 import dao.TourDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.Team;
 import model.Tour;
 
 /**
@@ -40,6 +43,11 @@ public class LeaugeProfileServlet extends HttpServlet {
         Tour gotTour = dao.getTourByID(tour_id);
         session.setAttribute("recentTour", gotTour);
         
+        //this code is transient
+        TeamDAO tDao = new TeamDAO();
+        List<Team> teamList = tDao.getListAllTeam();
+        
+        request.setAttribute("teamList", teamList);
         request.setAttribute("gotTour", gotTour);
         request.getRequestDispatcher("leaugeProfile.jsp").forward(request, response);
     }

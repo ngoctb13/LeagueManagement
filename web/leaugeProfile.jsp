@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -65,17 +67,16 @@
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="requestJoinLeauge">
+                                    <form action="requestJoinLeauge" method="POST">
                                         <div class="row">
                                             <div class="col-4">
                                                 <label for="cars">Select your team: </label>
                                             </div>
                                             <div class="col-4">
                                                 <select name="cars" id="cars">
-                                                    <option value="volvo">Volvo</option>
-                                                    <option value="saab">Saab</option>
-                                                    <option value="mercedes">Mercedes</option>
-                                                    <option value="audi">Audi</option>
+                                                    <c:forEach items="${requestScope.teamList}" var="t">
+                                                        <option value="${t.team_id}">${t.team_name}</option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>                                          
                                         </div>                                        
