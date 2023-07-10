@@ -5,21 +5,18 @@
 
 package controller;
 
-import dao.TourJoinRequestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.TourJoinRequest;
 
 /**
  *
  * @author asus
  */
-public class AcceptRequestJoinTour extends HttpServlet {
+public class MyTourDetail extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +33,10 @@ public class AcceptRequestJoinTour extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AcceptRequestJoinTour</title>");  
+            out.println("<title>Servlet MyTourDetail</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AcceptRequestJoinTour at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet MyTourDetail at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,27 +53,7 @@ public class AcceptRequestJoinTour extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String id = request.getParameter("id");
-
-        try {
-            int request_id = Integer.parseInt(id);
-
-            TourJoinRequestDAO tDAO = new TourJoinRequestDAO();
-            TourJoinRequest tour = tDAO.GetTourJoinRequestByID(request_id);
-            
-            tour.setStatus(0);
-            tDAO.updateTour(tour);
-            
-            List<TourJoinRequest> list0 = tDAO.FindStatus(tour.getTour_id(), 0);
-            List<TourJoinRequest> list1 = tDAO.FindStatus(tour.getTour_id(), 1);
-            String notice = "";
-            request.setAttribute("notice", notice);
-            request.setAttribute("list0", list0);
-            request.setAttribute("list1", list1);
-            
-            request.getRequestDispatcher("manage/tourRequest.jsp").forward(request, response);
-        } catch (Exception e) {
-        }
+        request.getRequestDispatcher("manage/LeaugeDetail.jsp").forward(request, response);
     } 
 
     /** 

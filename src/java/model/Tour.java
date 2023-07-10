@@ -22,6 +22,8 @@ public class Tour {
     private int host;
     private int type;
     private int team_quantity;
+    private int team_id;
+    int status;
 
     public Tour() {
     }
@@ -64,9 +66,26 @@ public class Tour {
         this.type = type;
         this.team_quantity = team_quantity;
     }
-    
-    
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+    
+    
+    public int getTeam_id() {
+        return team_id;
+    }
+
+    public void setTeam_id(int team_id) {
+        this.team_id = team_id;
+    }
+    
+    
+    
     public int getTour_id() {
         return tour_id;
     }

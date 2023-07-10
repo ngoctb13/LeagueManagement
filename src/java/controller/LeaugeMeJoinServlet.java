@@ -5,7 +5,9 @@
 
 package controller;
 
+import dao.PlayerDAO;
 import dao.TourDAO;
+import dao.TourJoinRequestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,7 +17,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Player;
 import model.Tour;
+import model.TourJoinRequest;
 import model.User;
 
 /**
@@ -64,10 +71,32 @@ public class LeaugeMeJoinServlet extends HttpServlet {
         TourDAO dao = new TourDAO();
         User user = (User) session.getAttribute("user");            
         int userid = user.getUser_id();
-
-
-        request.getRequestDispatcher("manage/myleauge.jsp").forward(request, response);
+        
+        
+        try {
+            TourDAO tuaDAO = new TourDAO();
+            PlayerDAO pDAO = new PlayerDAO();
+            List<Player> playerList = pDAO.FindMyTeam(userid);
+            TourJoinRequestDAO tDAO = new TourJoinRequestDAO();
+            List<TourJoinRequest> listJoin = new ArrayList<>();
+            List<Tour> listTour = new ArrayList<>();
+            for (Player player : playerList) {
+                List<TourJoinRequest> t = tDAO.GetTourJoinByTeamID(player.getTeam_id());
+                listJoin.addAll(t);
+            }
+            for (TourJoinRequest tourJoinRequest : listJoin) {
+                Tour x = tuaDAO.getTourByID(tourJoinRequest.getTour_id());
+                x.setTeam_id(tourJoinRequest.getTeam_id());
+                x.setStatus(tourJoinRequest.getStatus());
+                listTour.add(x);
+            }
+            request.setAttribute("list", listTour);
+            request.getRequestDispatcher("manage/leaugeMeJoin.jsp").forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(LeaugeMeJoinServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     } 
+    
 
     /** 
      * Handles the HTTP <code>POST</code> method.

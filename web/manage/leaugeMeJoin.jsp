@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Tour Request</title>
+        <title>My Leauge Created</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/png" href="assets_1/images/icon/favicon.ico">
         <link rel="stylesheet" href="assets_1/css/bootstrap.min.css">
@@ -26,7 +26,7 @@
     </head>
 
     <body>
-        
+
         <div class="page-container">
             <!-- sidebar menu area start -->
 
@@ -49,103 +49,75 @@
                 <div class="main-content-inner">
                     <div class="card-area">
                         <div class="row">
-                            
-                            <h5>Accepted======================================================</h5>
+
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>
-                                            Request ID
+                                            League ID
+                                        </th>
+                                        <th>
+                                            League Name
                                         </th>
                                         <th>
                                             Team ID
                                         </th>
                                         <th>
-                                            Team Name
+                                            Address
                                         </th>
                                         <th>
-                                            Tour ID
+                                            Phone Number
+                                        </th>
+                                        <th>
+                                            Start Date
+                                        </th>
+                                        <th>
+                                            Host ID
+                                        </th>
+                                        <th>
+                                            Team Quantity
                                         </th>
                                         <th>
                                             Status
-                                        </th>
+                                        </th>   
                                         <th>
                                             
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${requestScope.list0}" var="t">
+                                    <c:forEach items="${requestScope.list}" var="t">
                                         <tr>
 
                                             <td>
-                                                ${t.request_id}
-                                            </td>
-                                            <td>
-                                                ${t.team.team_id}
-                                            </td>
-                                            <td>
-                                                ${t.team.team_name}
-                                            </td>
-                                            <td>
                                                 ${t.tour_id}
+                                            </td>
+                                            <td>
+                                                ${t.tour_name}
+                                            </td>
+                                            <td>
+                                                ${t.team_id}
+                                            </td>
+                                            <td>
+                                                ${t.address}
+                                            </td>
+                                            <td>
+                                                ${t.phone_number}
+                                            </td>
+                                            <td>
+                                                ${t.start_date}
+                                            </td>
+                                            <td>
+                                                ${t.host}
+                                            </td>
+                                            <td>
+                                                ${t.team_quantity}
                                             </td>
                                             <td>
                                                 ${t.status}
                                             </td>
                                             <td>
-                                                <a href="DeclineRequestJoinTour?id=${t.request_id}" >Decline</a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                            <h5>Not accepted yet=================================================</h5>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Request ID
-                                        </th>
-                                        <th>
-                                            Team ID
-                                        </th>
-                                        <th>
-                                            Team Name
-                                        </th>
-                                        <th>
-                                            Tour ID
-                                        </th>
-                                        <th>
-                                            Status
-                                        </th>
-                                        <th>
-                                            
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${requestScope.list1}" var="t">
-                                        <tr>
-
-                                            <td>
-                                                ${t.request_id}
-                                            </td>
-                                            <td>
-                                                ${t.team.team_id}
-                                            </td>
-                                            <td>
-                                                ${t.team.team_name}
-                                            </td>
-                                            <td>
-                                                ${t.tour_id}
-                                            </td>
-                                            <td>
-                                                ${t.status}
-                                            </td>
-                                            <td>
-                                                
-                                                <a href="AcceptRequestJoinTour?id=${t.request_id}" >Accept</a>
+                                                <a href="TourDetail?tourId=${t.tour_id}" >Details</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

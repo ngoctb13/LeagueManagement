@@ -69,10 +69,12 @@ public class SendRequestJoinTour extends HttpServlet {
             int tourid = Integer.parseInt(tour_id);
 
             TourJoinRequestDAO tDAO = new TourJoinRequestDAO();
-            List<TourJoinRequest> list = tDAO.FindStatus(tourid, 1);
+            List<TourJoinRequest> list0 = tDAO.FindStatus(tourid, 0);
+            List<TourJoinRequest> list1 = tDAO.FindStatus(tourid, 1);
             String notice = "";
             request.setAttribute("notice", notice);
-            request.setAttribute("list", list);
+            request.setAttribute("list0", list0);
+            request.setAttribute("list1", list1);
             
             request.getRequestDispatcher("manage/tourRequest.jsp").forward(request, response);
 

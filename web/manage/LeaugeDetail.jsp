@@ -1,3 +1,6 @@
+
+
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -26,7 +29,7 @@
     </head>
 
     <body>
-        
+
         <div class="page-container">
             <!-- sidebar menu area start -->
 
@@ -49,60 +52,21 @@
                 <div class="main-content-inner">
                     <div class="card-area">
                         <div class="row">
-                            
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            League ID
-                                        </th>
-                                        <th>
-                                            League Name
-                                        </th>
-                                        <th>
-                                            Address
-                                        </th>
-                                        <th>
-                                            Phone Number
-                                        </th>
-                                        <th>
-                                            Quantity Team
-                                        </th> 
-                                        <th>
-                                            
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach items="${requestScope.tourList}" var="t">
-                                        <tr>
-
-                                            <td>
-                                                ${t.tour_id}
-                                            </td>
-                                            <td>
-                                                ${t.tour_name}
-                                            </td>
-                                            <td>
-                                                ${t.address}
-                                            </td>
-                                            <td>
-                                                ${t.phone_number}
-                                            </td>
-                                            <td>
-                                                ${t.team_quantity}
-                                            </td>
-                                            <td>
-                                                
-                                                <a href="joinTour?tourId=${t.getTour_id()}" >Request</a> |
-                                                <a href="Edit" >Edit</a> |
-                                                <a href="Details" >Details</a> |
-                                                <a href="Delete" >Delete</a>
-                                            </td>
-                                        </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
+                            <h1>Leauge Details</h1>
+                            <dl class="row">
+                                <dt class = "col-sm-2">
+                                    A
+                                </dt>
+                                <dd class = "col-sm-10">
+                                    B
+                                </dd>
+                                <dt class = "col-sm-2">
+                                    C
+                                </dt>
+                                <dd class = "col-sm-10">
+                                    D
+                                </dd>
+                            </dl>
                         </div>
                     </div>
                 </div>

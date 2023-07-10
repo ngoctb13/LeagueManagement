@@ -156,6 +156,10 @@
         <servlet-name>DeclineRequestJoinTour</servlet-name>
         <servlet-class>controller.DeclineRequestJoinTour</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MyTourDetail</servlet-name>
+        <servlet-class>controller.MyTourDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -314,6 +318,10 @@
     <servlet-mapping>
         <servlet-name>DeclineRequestJoinTour</servlet-name>
         <url-pattern>/DeclineRequestJoinTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyTourDetail</servlet-name>
+        <url-pattern>/MyTourDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

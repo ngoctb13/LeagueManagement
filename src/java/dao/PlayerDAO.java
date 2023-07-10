@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import model.Player;
 import model.DTO.PlayerProfile;
 import model.Team;
@@ -130,6 +131,7 @@ public class PlayerDAO extends DBContext {
             closeConnection(con);
         }
     }
+
     public int Find(int user_id, int team_id) throws Exception {
         try {
             String query = "SELECT * FROM player where user_id = ? AND team_id = ?";
@@ -152,6 +154,37 @@ public class PlayerDAO extends DBContext {
             closeConnection(con);
         }
     }
+
+    public List<Player> FindMyTeam(int user_id) throws Exception {
+
+        List<Player> list = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM player where user_id = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, user_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Player player = new Player();
+                player.setPlayer_id(rs.getInt("player_id"));
+                player.setUser_id(rs.getInt("user_id"));
+                player.setTeam_id(rs.getInt("team_id"));
+                player.setPosition(rs.getString("positon"));
+                player.setShirt_number(rs.getString("shirt_number"));
+                player.setIsManager(rs.getBoolean("isManager"));
+                list.add(player);
+            }
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return list;
+    }
+
     public Boolean isPlayerCanBeDelete(int player_id) throws Exception {
         try {
             String query = "SELECT * FROM player where player_id = ?";
@@ -195,8 +228,9 @@ public class PlayerDAO extends DBContext {
 
     public static void main(String[] args) throws Exception {
         PlayerDAO dao = new PlayerDAO();
-        Player p = new Player(7, 5, "p", "s", true);
-        int x = dao.addPlayer(p);
-        System.out.println(x);
+        List<Player> list = dao.FindMyTeam(7);
+        for (Player player : list) {
+            System.out.println(player.toString());
+        }
     }
 }
