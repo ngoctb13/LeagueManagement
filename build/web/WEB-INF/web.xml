@@ -136,7 +136,6 @@
         <servlet-name>JoinTeamRequestSentServlet</servlet-name>
         <servlet-class>controller.JoinTeamRequestSentServlet</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>ResponseTeamRequestServlet</servlet-name>
         <servlet-class>controller.ResponseTeamRequestServlet</servlet-class>
@@ -145,7 +144,6 @@
         <servlet-name>DeclineTeamRequestServlet</servlet-name>
         <servlet-class>controller.DeclineTeamRequestServlet</servlet-class>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -285,7 +283,6 @@
         <servlet-name>JoinTeamRequestSentServlet</servlet-name>
         <url-pattern>/joinTeamRequestSent</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>ResponseTeamRequestServlet</servlet-name>
         <url-pattern>/responseTeamRequest</url-pattern>
@@ -294,7 +291,6 @@
         <servlet-name>DeclineTeamRequestServlet</servlet-name>
         <url-pattern>/declineTeamRequest</url-pattern>
     </servlet-mapping>
-
     <session-config>
         <session-timeout>
             30
