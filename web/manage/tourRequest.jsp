@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Cards - srtdash</title>
+        <title>Tour Request</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/png" href="assets_1/images/icon/favicon.ico">
         <link rel="stylesheet" href="assets_1/css/bootstrap.min.css">
@@ -49,30 +49,15 @@
                 <div class="main-content-inner">
                     <div class="card-area">
                         <div class="row">
-                            <%--<c:forEach items="${tourList}" var="t">--%>
-                            <!--                                <div class="col-lg-4 col-md-6 mt-5">
-                                                                <div class="card card-bordered">
-                                                                    <img class="card-img-top img-fluid" src="images/${t.avatar}" alt="image">
-                                                                    <div class="card-body">
-                                                                        <h5 class="title">Team Name: ${t.tour_name}</h5>
-                                                                        <h5 class="title">Address: ${t.address}</h5>
-                                                                        <h5 class="title">Description: ${t.description}</h5>                                            
-                                                                        <a href="leaugeProfile?tour_id=${t.tour_id}" class="btn btn-primary">View Profile</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>-->
-                            <%--</c:forEach>--%>
-                            <!--                            <p>
-                                                            <a href="">Create New</a>
-                                                        </p>-->
+                            
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th>
-                                            My League ID
+                                            Team ID
                                         </th>
                                         <th>
-                                            My League Name
+                                            Team Name
                                         </th>
                                         <th>
                                             C
@@ -84,27 +69,25 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${requestScope.tourList}" var="t">
+                                    <c:forEach items="${requestScope.list}" var="t">
                                         <tr>
 
                                             <td>
-                                                ${t.tour_id}
+                                                ${t.request_id}
                                             </td>
                                             <td>
-                                                ${t.tour_name}
+                                                ${t.team.team_id}
                                             </td>
                                             <td>
-                                                C
+                                                
                                             </td>
                                             <td>
                                                 D
                                             </td>
                                             <td>
                                                 
-                                                <a href="joinTour?tourId=${t.getTour_id()}" >Request</a> |
-                                                <a href="Edit" >Edit</a> |
-                                                <a href="Details" >Details</a> |
-                                                <a href="Delete" >Delete</a>
+                                                <a href="Edit" >Accept</a> |
+                                                <a href="Details" >Decline</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

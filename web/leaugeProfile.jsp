@@ -67,13 +67,14 @@
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="requestJoinLeauge" method="POST">
+                                    <form action="joinTour" method="POST">
+                                        <input type="hidden" id="tour_name" name="tour_id" value="${gotTour.tour_id}" >
                                         <div class="row">
                                             <div class="col-4">
                                                 <label for="cars">Select your team: </label>
                                             </div>
                                             <div class="col-4">
-                                                <select name="cars" id="cars">
+                                                <select name="mySelect" id="cars">
                                                     <c:forEach items="${requestScope.teamList}" var="t">
                                                         <option value="${t.team_id}">${t.team_name}</option>
                                                     </c:forEach>

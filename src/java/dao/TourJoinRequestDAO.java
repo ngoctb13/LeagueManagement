@@ -8,6 +8,9 @@ import context.DBContext;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+import model.Team;
 import model.TourJoinRequest;
 
 /**
@@ -59,6 +62,55 @@ public class TourJoinRequestDAO extends DBContext{
             closeConnection(con);
         }
         return status;
+    }
+    public int Find(int team_id, int tour_id) throws Exception {
+        try {
+            String query = "SELECT * FROM tour_join_request where team_id = ? AND tour_id = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, team_id);
+            ps.setInt(2, tour_id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return 1;
+            }
+            return 0;
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+    
+    public List<TourJoinRequest> FindStatus(int tour_id, int status) throws Exception {
+        try {
+            String query = "SELECT * FROM tour_join_request where tour_id = ? AND status = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, tour_id);
+            ps.setInt(2, status);
+            rs = ps.executeQuery();
+            List<TourJoinRequest> list = new ArrayList<>();;
+            while (rs.next()) {
+                TeamDAO t = new TeamDAO();
+                Team team = t.getTeamByID(rs.getInt("team_id"));
+                TourJoinRequest tour = new TourJoinRequest(rs.getInt("request_id"), rs.getInt("team_id"), rs.getInt("tour_id"), rs.getInt("status"));
+                tour.setTeam(team);
+                
+                list.add(tour);
+            }
+            return list;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
     }
 //
 //    public Tour getTourByID(int input_id) throws Exception {
@@ -190,18 +242,12 @@ public class TourJoinRequestDAO extends DBContext{
 //    }
     
     public static void main(String[] args) throws Exception {
-        TourJoinRequestDAO t = new TourJoinRequestDAO();
-        TourJoinRequest t1 = new TourJoinRequest(2,19,1);
-//        
-        int x = t.addTour(t1);
-        if(x == 0){
-            System.out.println("Fail");
-        } else {
-        System.out.println("Ok");
+
+        TourJoinRequestDAO tDAO = new TourJoinRequestDAO();
+        List<TourJoinRequest> list = tDAO.FindStatus(19, 1);
+       
+        for (TourJoinRequest tourJoinRequest : list) {
+            System.out.println(tourJoinRequest.toString());
         }
-//        List<Tour> list = t.getListTour();
-//        for (Tour tour : list) {
-//            System.out.println(tour.toString());
-//        }
     }
 }

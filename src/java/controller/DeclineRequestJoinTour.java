@@ -5,25 +5,18 @@
 
 package controller;
 
-import dao.TourDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import java.util.ArrayList;
-import model.Tour;
-import model.User;
 
 /**
  *
  * @author asus
  */
-@WebServlet(name="LeaugeMeJoinServlet", urlPatterns={"/leaugeMeJoin"})
-public class LeaugeMeJoinServlet extends HttpServlet {
+public class DeclineRequestJoinTour extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -40,10 +33,10 @@ public class LeaugeMeJoinServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LeaugeMeJoinServlet</title>");  
+            out.println("<title>Servlet DeclineRequestJoinTour</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LeaugeMeJoinServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet DeclineRequestJoinTour at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,13 +53,7 @@ public class LeaugeMeJoinServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        TourDAO dao = new TourDAO();
-        User user = (User) session.getAttribute("user");            
-        int userid = user.getUser_id();
-
-
-        request.getRequestDispatcher("manage/myleauge.jsp").forward(request, response);
+        processRequest(request, response);
     } 
 
     /** 
@@ -79,20 +66,7 @@ public class LeaugeMeJoinServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        TourDAO dao = new TourDAO();
-        User user = (User) session.getAttribute("user");            
-        int host = user.getUser_id();
-        //nhan team_id, tour_id
-        String tour_id = request.getParameter("tour_id");
-        String team_id = request.getParameter("team_id");
-        try {
-            int tourId = Integer.parseInt(tour_id);
-            int teamId = Integer.parseInt(team_id);
-        } catch (Exception e) {
-        }
-//        request.setAttribute("tourList", );
-        request.getRequestDispatcher("manage/myleauge.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /** 

@@ -10,7 +10,7 @@ package model;
  */
 public class TourJoinRequest {
     private int request_id, team_id, tour_id, status;
-
+    Team team;
     public TourJoinRequest() {
     }
 
@@ -57,6 +57,19 @@ public class TourJoinRequest {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
+    @Override
+    public String toString() {
+        return "TourJoinRequest{" + "request_id=" + request_id + ", team_id=" + team_id + ", tour_id=" + tour_id + ", status=" + status + ", team=" + team + '}';
     }
     
     

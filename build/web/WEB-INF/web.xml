@@ -144,6 +144,18 @@
         <servlet-name>DeclineTeamRequestServlet</servlet-name>
         <servlet-class>controller.DeclineTeamRequestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SendRequestJoinTour</servlet-name>
+        <servlet-class>controller.SendRequestJoinTour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AcceptRequestJoinTour</servlet-name>
+        <servlet-class>controller.AcceptRequestJoinTour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeclineRequestJoinTour</servlet-name>
+        <servlet-class>controller.DeclineRequestJoinTour</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -290,6 +302,18 @@
     <servlet-mapping>
         <servlet-name>DeclineTeamRequestServlet</servlet-name>
         <url-pattern>/declineTeamRequest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SendRequestJoinTour</servlet-name>
+        <url-pattern>/joinTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcceptRequestJoinTour</servlet-name>
+        <url-pattern>/AcceptRequestJoinTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeclineRequestJoinTour</servlet-name>
+        <url-pattern>/DeclineRequestJoinTour</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
