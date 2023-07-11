@@ -83,7 +83,7 @@ public class ParticipantDAO extends DBContext {
 
     public Boolean IsTourManager(int user_id, int tour_id) throws Exception {
         try {
-            String query = "SELECT * FROM manager where user_id = ? AND tour_id = ?";
+            String query = "SELECT * FROM test.manager where user_id = ? AND tour_id = ?";
             con = getConnection();
             ps = con.prepareStatement(query);
             ps.setInt(1, user_id);
@@ -107,11 +107,10 @@ public class ParticipantDAO extends DBContext {
             con = getConnection();
             ps = con.prepareStatement(query);
             ps.setInt(1, participant_id);
-            rs = ps.executeQuery();
+            ps.executeUpdate();
         } catch (Exception e) {
             throw e;
         } finally {
-            closeResultSet(rs);
             closePreparedStatement(ps);
             closeConnection(con);
         }
@@ -121,5 +120,6 @@ public class ParticipantDAO extends DBContext {
         ParticipantDAO dao = new ParticipantDAO();
         ArrayList<ParticipantProfile> list = dao.getListParticipantProfileByTour(1);
         System.out.println(list);
+        System.out.println(dao.IsTourManager(4, 1));
     }
 }

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <head>
@@ -267,4 +268,5 @@
             });
         </script>
     </body>
+
 </html>

@@ -1,7 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="model.User"%>
 <!doctype html>
 <html class="no-js" lang="en">
-
+    <%
+        User user = (User) session.getAttribute("user");
+    %>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -248,9 +251,7 @@
                                                                 <table width="100%" class="table table-hover" id="dataTables-example">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>teamid</th>
-                                                                            <th>userid</th>
-                                                                            <th>playerid</th>
+                                                                            <th>Index</th>
                                                                             <th>Name</th>
                                                                             <th>Email</th>
                                                                             <th>Shirt Number</th>
@@ -261,21 +262,13 @@
                                                                     <tbody>
                                                                         <c:forEach items="${playerList}" var="p" varStatus="a">
                                                                             <tr>
-                                                                                <td>${p.team_id}</td>
-                                                                                <td>${p.user_id}</td>
-                                                                                <td>${p.player_id}</td>
+                                                                                <td>${a.index +1}</td>
                                                                                 <td>${p.full_name}</td>
                                                                                 <td>${p.email}</td>
                                                                                 <td>${p.shirt_number}</td>
                                                                                 <td>${p.position}</td>
                                                                                 <td>
-                                                                                    <form action="deletePlayer?team_id=${p.team_id}&user_id=${p.user_id}&player_id=${p.player_id}" method="">
-                                                                                        <div class=" card_button" >
-                                                                                            <button type="submit">
-                                                                                                Delete Member
-                                                                                            </button> 
-                                                                                        </div>
-                                                                                    </form>
+                                                                                    <a href="#" onclick="showMess(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
                                                                                 </td>
                                                                             </tr>
                                                                         </c:forEach>
@@ -441,16 +434,21 @@
         <script src="assets_1/js/plugins.js"></script>
         <script src="assets_1/js/scripts.js"></script>
         <script>
-                                                                var modal = document.querySelector('.modal1');
-                                                                var hienthi = document.querySelector('.card_button button');
-                                                                var andi = document.querySelector('.icon_exit span');
+                                                                                        var modal = document.querySelector('.modal1');
+                                                                                        var hienthi = document.querySelector('.card_button button');
+                                                                                        var andi = document.querySelector('.icon_exit span');
+                                                                                        function toggModal() {
+                                                                                            modal.classList.toggle('hide');
+                                                                                        }
 
-                                                                function toggModal() {
-                                                                    modal.classList.toggle('hide');
-                                                                }
-
-                                                                hienthi.addEventListener('click', toggModal);
-                                                                andi.addEventListener('click', toggModal);
+                                                                                        hienthi.addEventListener('click', toggModal);
+                                                                                        andi.addEventListener('click', toggModal);
+                                                                                        function showMess(player_id, user_id, team_id) {
+                                                                                            var option = confirm('Are you sure to delete this player?');
+                                                                                            if (option === true) {
+                                                                                                window.location.href = 'deletePlayer?player_id=' + player_id + '&user_id=' + user_id + '&team_id=' + team_id;
+                                                                                            }
+                                                                                        }
         </script>
     </body>
 
