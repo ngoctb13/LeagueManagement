@@ -172,6 +172,10 @@
         <servlet-name>InviteOfMyTeam</servlet-name>
         <servlet-class>controller.InviteOfMyTeam</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AcceptInviteToTour</servlet-name>
+        <servlet-class>controller.AcceptInviteToTour</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -346,6 +350,10 @@
     <servlet-mapping>
         <servlet-name>InviteOfMyTeam</servlet-name>
         <url-pattern>/InviteOfMyTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcceptInviteToTour</servlet-name>
+        <url-pattern>/AcceptInviteToTour</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -24,7 +24,7 @@
                     </li>
                     <li class=""><a href="myLeauge">My Leauge Created</a></li>
                     <li class=""><a href="leaugeMeJoin">Leauge Me Join</a></li>
-                    <li class=""><a href="InviteOfMyTeam">Leauge Me Join</a></li>
+                    <li class=""><a href="InviteOfMyTeam">Invite Of My Team</a></li>
                 </ul>
             </nav>
         </div>

@@ -29,7 +29,7 @@ import model.User;
  *
  * @author asus
  */
-public class InviteOfMyTeam extends HttpServlet {
+public class AcceptInviteToTour extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,10 +48,10 @@ public class InviteOfMyTeam extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet InviteOfMyTeam</title>");
+            out.println("<title>Servlet AcceptInviteToTour</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet InviteOfMyTeam at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AcceptInviteToTour at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -69,39 +69,24 @@ public class InviteOfMyTeam extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-
-        TeamDAO teamDAO = new TeamDAO();
+        String param1 = request.getParameter("tourId");
+        String param2 = request.getParameter("teamId");
         try {
-            List<Team> teamList = teamDAO.getListTeamByCoach(user.getUser_id());
-
+            int teamid = Integer.parseInt(param2);
+            int tourid = Integer.parseInt(param1);
             TourInviteDAO tourInviteDAO = new TourInviteDAO();
-            List<TourInvite> listInvite = new ArrayList<>();
-            for (Team team : teamList) {
-                List<TourInvite> list = tourInviteDAO.GetTourInviteByTeamID(team.getTeam_id());
-                listInvite.addAll(list);
-            }
-//            TourJoinRequestDAO tourJoinRequestDAO = new TourJoinRequestDAO();
-//            List<TourJoinRequest> listTourInvite = new ArrayList<>();
-//            for (TourInvite team : listInvite) {
-//                TourJoinRequest tour = tourJoinRequestDAO.FindTeamTour(team.getTeam_id(), team.getTour_id());
-//                listTourInvite.add(tour);
-//            }
+            TourInvite tourIn = tourInviteDAO.FindTourTeam(teamid, tourid);
+            tourIn.setStatus(0);
+            tourInviteDAO.updateTourInvite(tourIn);
 
-            TourDAO tourDAO = new TourDAO();
-            List<Tour> listTourInvite = new ArrayList<>();
-            for (TourInvite team : listInvite) {
-                Tour tour = tourDAO.getTourByID(team.getTour_id());
-                tour.setTeam_id(team.getTeam_id());
-                listTourInvite.add(tour);
-            }
-            request.setAttribute("listTourInvite", listTourInvite);
-            request.getRequestDispatcher("manage/InviteOfMyTeam.jsp").forward(request, response);
+            TourJoinRequestDAO tourJoinRequestDAO = new TourJoinRequestDAO();
+            TourJoinRequest tour = new TourJoinRequest(teamid, tourid, 0);
+            tourJoinRequestDAO.addTour(tour);
+
+            response.sendRedirect("InviteOfMyTeam");
         } catch (Exception ex) {
             Logger.getLogger(InviteOfMyTeam.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**

@@ -6,6 +6,7 @@
 package controller;
 
 import dao.PlayerDAO;
+import dao.TeamDAO;
 import dao.TourDAO;
 import dao.TourJoinRequestDAO;
 import java.io.IOException;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Player;
+import model.Team;
 import model.Tour;
 import model.TourJoinRequest;
 import model.User;
@@ -75,13 +77,13 @@ public class LeaugeMeJoinServlet extends HttpServlet {
         
         try {
             TourDAO tuaDAO = new TourDAO();
-            PlayerDAO pDAO = new PlayerDAO();
-            List<Player> playerList = pDAO.FindMyTeam(userid);
+            TeamDAO pDAO = new TeamDAO();
+            List<Team> teamList = pDAO.getListTeamByCoach(userid);
             TourJoinRequestDAO tDAO = new TourJoinRequestDAO();
             List<TourJoinRequest> listJoin = new ArrayList<>();
             List<Tour> listTour = new ArrayList<>();
-            for (Player player : playerList) {
-                List<TourJoinRequest> t = tDAO.GetTourJoinByTeamID(player.getTeam_id());
+            for (Team team : teamList) {
+                List<TourJoinRequest> t = tDAO.GetTourJoinByTeamID(team.getTeam_id());
                 listJoin.addAll(t);
             }
             for (TourJoinRequest tourJoinRequest : listJoin) {

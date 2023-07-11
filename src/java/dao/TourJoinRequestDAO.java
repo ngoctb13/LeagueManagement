@@ -89,6 +89,32 @@ public class TourJoinRequestDAO extends DBContext {
             closeConnection(con);
         }
     }
+    public TourJoinRequest FindTeamTour(int team_id, int tour_id) throws Exception {
+        try {
+            String query = "SELECT * FROM tour_join_request where team_id = ? AND tour_id = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, team_id);
+            ps.setInt(2, tour_id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                TeamDAO t = new TeamDAO();
+                Team team = t.getTeamByID(team_id);
+                TourJoinRequest tour = new TourJoinRequest(rs.getInt("request_id"), rs.getInt("team_id"), rs.getInt("tour_id"), rs.getInt("status"));
+                tour.setTeam(team);
+                return tour;
+            }
+            return null;
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
 
     public List<TourJoinRequest> FindStatus(int tour_id, int status) throws Exception {
         try {

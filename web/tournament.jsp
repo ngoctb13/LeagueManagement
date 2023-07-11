@@ -31,7 +31,7 @@
                             <c:otherwise>
                                 <c:forEach var="item" items="${list_tour}">
                                     <div class="item-block">
-                                        <div class="image-item"><img src="${pageContext.request.contextPath}/images/${empty item.avatar ? "no_img.jpeg" : item.avatar}"></div>
+                                        <div class="image-item"><img src="${item.avatar}"></div>
                                         <div class="body">
                                             <div class="title-body">${item.tour_name}</div>
                                             <div class="content">

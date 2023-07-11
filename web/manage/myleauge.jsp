@@ -26,11 +26,34 @@
     </head>
 
     <body>
-        
+
         <div class="page-container">
             <!-- sidebar menu area start -->
 
-            <jsp:include page="../manage/layout/sidebar.jsp"/>
+            <div class="sidebar-menu">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <a href="home.jsp"><img src="images/SOCCER.png" alt="logo"></a>
+                    </div>
+                </div>
+                <div class="main-menu">
+                    <div class="menu-inner">
+                        <nav>
+                            <ul class="metismenu" id="menu">
+                                <li class="">
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>Team Management</span></a>
+                                    <ul class="collapse">
+                                        <li class=""><a href="teamList">Team List</a></li>                         
+                                    </ul>
+                                </li>
+                                <li class="active"><a href="myLeauge">My Leauge Created</a></li>
+                                <li class=""><a href="leaugeMeJoin">Leauge Me Join</a></li>
+                                <li class=""><a href="InviteOfMyTeam">Invite Of My Team</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
 
 
             <!-- sidebar menu area end -->
@@ -45,69 +68,69 @@
 
                 <jsp:include page="../manage/layout/titleArea.jsp"/>
 
-<!--                 page title area end 
-                <div class="main-content-inner">
-                    <div class="card-area">
-                        <div class="row">
-                            
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            League ID
-                                        </th>
-                                        <th>
-                                            League Name
-                                        </th>
-                                        <th>
-                                            Address
-                                        </th>
-                                        <th>
-                                            Phone Number
-                                        </th>
-                                        <th>
-                                            Quantity Team
-                                        </th> 
-                                        <th>
+                <!--                 page title area end 
+                                <div class="main-content-inner">
+                                    <div class="card-area">
+                                        <div class="row">
                                             
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <%--<c:forEach items="${requestScope.tourList}" var="t">--%>
-                                        <tr>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            League ID
+                                                        </th>
+                                                        <th>
+                                                            League Name
+                                                        </th>
+                                                        <th>
+                                                            Address
+                                                        </th>
+                                                        <th>
+                                                            Phone Number
+                                                        </th>
+                                                        <th>
+                                                            Quantity Team
+                                                        </th> 
+                                                        <th>
+                                                            
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                <%--<c:forEach items="${requestScope.tourList}" var="t">--%>
+                    <tr>
 
-                                            <td>
-                                                ${t.tour_id}
-                                            </td>
-                                            <td>
-                                                ${t.tour_name}
-                                            </td>
-                                            <td>
-                                                ${t.address}
-                                            </td>
-                                            <td>
-                                                ${t.phone_number}
-                                            </td>
-                                            <td>
-                                                ${t.team_quantity}
-                                            </td>
-                                            <td>
-                                                
-                                                <a href="joinTour?tourId=${t.getTour_id()}" >Request</a> |
-                                                <a href="Edit" >Edit</a> |
-                                                <a href="MyTourDetail" >Details</a> |
-                                                <a href="Delete" >Delete</a>
-                                            </td>
-                                        </tr>
-                                    <%--</c:forEach>--%>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>-->
+                        <td>
+                ${t.tour_id}
+            </td>
+            <td>
+                ${t.tour_name}
+            </td>
+            <td>
+                ${t.address}
+            </td>
+            <td>
+                ${t.phone_number}
+            </td>
+            <td>
+                ${t.team_quantity}
+            </td>
+            <td>
                 
-                
+                <a href="joinTour?tourId=${t.getTour_id()}" >Request</a> |
+                <a href="Edit" >Edit</a> |
+                <a href="MyTourDetail" >Details</a> |
+                <a href="Delete" >Delete</a>
+            </td>
+        </tr>
+                <%--</c:forEach>--%>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>-->
+
+
                 <!-- page title area end -->
                 <div class="main-content-inner">
                     <div class="card-area">
@@ -115,7 +138,7 @@
                             <c:forEach items="${requestScope.tourList}" var="t">
                                 <div class="col-lg-4 col-md-6 mt-5">
                                     <div class="card card-bordered">
-                                        <img class="card-img-top img-fluid" src="assets_1/images/card/card-img1.jpg" alt="image">
+                                        <img class="card-img-top img-fluid" src="${t.avatar}" alt="image">
                                         <div class="card-body">
                                             <h5 class="title">League Name: ${t.tour_name}</h5>
                                             <h5 class="title">Address: ${t.address}</h5>

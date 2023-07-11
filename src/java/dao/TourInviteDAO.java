@@ -88,6 +88,32 @@ public class TourInviteDAO extends DBContext {
             closeConnection(con);
         }
     }
+    public TourInvite FindTourTeam(int team_id, int tour_id) throws Exception {
+        try {
+            String query = "SELECT * FROM tour_invite where team_id = ? AND tour_id = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, team_id);
+            ps.setInt(2, tour_id);
+            rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                TeamDAO t = new TeamDAO();
+                Team team = t.getTeamByID(rs.getInt("team_id"));
+                TourInvite tour = new TourInvite(rs.getInt("invite_id"), rs.getInt("team_id"), rs.getInt("tour_id"), rs.getInt("status"));
+                tour.setTeam(team);
+                return tour;
+            }
+            return null;
+            
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
     
     public List<TourInvite> FindStatus(int tour_id, int status) throws Exception {
         try {
@@ -142,9 +168,9 @@ public class TourInviteDAO extends DBContext {
         return null;
     }
     
-    public List<TourInvite> GetTourJoinByTeamID(int team_id) throws Exception {
+    public List<TourInvite> GetTourInviteByTeamID(int team_id) throws Exception {
         try {
-            String query = "SELECT * FROM tour_invite where team_id = ?";
+            String query = "SELECT * FROM tour_invite where team_id = ? AND status = 1";
             con = getConnection();
             ps = con.prepareStatement(query);
             ps.setInt(1, team_id);
