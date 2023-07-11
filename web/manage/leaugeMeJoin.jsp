@@ -45,6 +45,8 @@
 
                 <jsp:include page="../manage/layout/titleArea.jsp"/>
 
+                
+
                 <!-- page title area end -->
                 <div class="main-content-inner">
                     <div class="card-area">
@@ -81,7 +83,7 @@
                                             Status
                                         </th>   
                                         <th>
-                                            
+
                                         </th>
                                     </tr>
                                 </thead>

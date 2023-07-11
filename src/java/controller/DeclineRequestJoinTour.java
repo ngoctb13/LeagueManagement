@@ -74,7 +74,7 @@ public class DeclineRequestJoinTour extends HttpServlet {
             request.setAttribute("list0", list0);
             request.setAttribute("list1", list1);
             
-            request.getRequestDispatcher("manage/tourRequest.jsp").forward(request, response);
+            response.sendRedirect("MyTourDetail?tourId="+tour.getTour_id());
         } catch (Exception e) {
         }
     } 

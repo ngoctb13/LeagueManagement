@@ -9,7 +9,7 @@
 <div class="sidebar-menu">
     <div class="sidebar-header">
         <div class="logo">
-            <a href="index.html"><img src="images/SOCCER.png" alt="logo"></a>
+            <a href="home.jsp"><img src="images/SOCCER.png" alt="logo"></a>
         </div>
     </div>
     <div class="main-menu">

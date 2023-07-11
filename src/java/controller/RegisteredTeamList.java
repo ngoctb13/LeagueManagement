@@ -19,7 +19,7 @@ import model.TourJoinRequest;
  *
  * @author asus
  */
-public class AcceptRequestJoinTour extends HttpServlet {
+public class RegisteredTeamList extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +36,10 @@ public class AcceptRequestJoinTour extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AcceptRequestJoinTour</title>");  
+            out.println("<title>Servlet RegisteredTeamList</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AcceptRequestJoinTour at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet RegisteredTeamList at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,25 +56,19 @@ public class AcceptRequestJoinTour extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String id = request.getParameter("id");
+        String tour_id = request.getParameter("tourID");
 
         try {
-            int request_id = Integer.parseInt(id);
+            int tourid = Integer.parseInt(tour_id);
 
             TourJoinRequestDAO tDAO = new TourJoinRequestDAO();
-            TourJoinRequest tour = tDAO.GetTourJoinRequestByID(request_id);
-            
-            tour.setStatus(0);
-            tDAO.updateTour(tour);
-            
-            List<TourJoinRequest> list0 = tDAO.FindStatus(tour.getTour_id(), 0);
-            List<TourJoinRequest> list1 = tDAO.FindStatus(tour.getTour_id(), 1);
+            List<TourJoinRequest> list0 = tDAO.FindStatus(tourid, 0);
             String notice = "";
             request.setAttribute("notice", notice);
             request.setAttribute("list0", list0);
-            request.setAttribute("list1", list1);
             
-            response.sendRedirect("MyTourDetail?tourId="+tour.getTour_id());
+            request.getRequestDispatcher("admin/registeredTeamList.jsp").forward(request, response);
+
         } catch (Exception e) {
         }
     } 

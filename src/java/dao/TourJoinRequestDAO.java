@@ -299,11 +299,9 @@ public class TourJoinRequestDAO extends DBContext {
     public static void main(String[] args) throws Exception {
 
         TourJoinRequestDAO tDAO = new TourJoinRequestDAO();
-        TourJoinRequest tour = tDAO.GetTourJoinRequestByID(3);
+        TourJoinRequest tour = tDAO.GetTourJoinRequestByID(19);
 
-        tour.setStatus(0);
-        int x = tDAO.updateTour(tour);
-        System.out.println(x);
+        System.out.println(tour.toString());
 
     }
 }

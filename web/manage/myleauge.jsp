@@ -96,13 +96,35 @@
                                                 
                                                 <a href="joinTour?tourId=${t.getTour_id()}" >Request</a> |
                                                 <a href="Edit" >Edit</a> |
-                                                <a href="Details" >Details</a> |
+                                                <a href="MyTourDetail" >Details</a> |
                                                 <a href="Delete" >Delete</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <!-- page title area end -->
+                <div class="main-content-inner">
+                    <div class="card-area">
+                        <div class="row">
+                            <c:forEach items="${requestScope.tourList}" var="t">
+                                <div class="col-lg-4 col-md-6 mt-5">
+                                    <div class="card card-bordered">
+                                        <img class="card-img-top img-fluid" src="assets_1/images/card/card-img1.jpg" alt="image">
+                                        <div class="card-body">
+                                            <h5 class="title">League Name: ${t.tour_name}</h5>
+                                            <h5 class="title">Address: ${t.address}</h5>
+                                            <h5 class="title">Phone Number: ${t.phone_number}</h5>                                            
+                                            <a href="MyTourDetail?tourId=${t.tour_id}" class="btn btn-primary">Manage</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>

@@ -5,12 +5,19 @@
 
 package controller;
 
+import dao.TeamDAO;
+import dao.TourDAO;
+import dao.TourJoinRequestDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Team;
+import model.Tour;
+import model.TourJoinRequest;
 
 /**
  *
@@ -53,7 +60,33 @@ public class MyTourDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("manage/LeaugeDetail.jsp").forward(request, response);
+        String tour_id = request.getParameter("tourId");
+
+        try {
+            int tourid = Integer.parseInt(tour_id);
+
+            TourJoinRequestDAO tDAO = new TourJoinRequestDAO();
+            List<TourJoinRequest> list0 = tDAO.FindStatus(tourid, 0);
+            List<TourJoinRequest> list1 = tDAO.FindStatus(tourid, 1);
+            
+            TourDAO x = new TourDAO();
+            Tour tour0 = x.getTourByID(tourid);
+            String notice = "";
+            request.setAttribute("notice", notice);
+            request.setAttribute("list0", list0);
+            request.setAttribute("list1", list1);
+            request.setAttribute("tour0", tour0);
+            
+            TeamDAO team = new TeamDAO();
+            List<Team> listTeam = team.getListAllTeam();
+            request.setAttribute("listTeam", listTeam);
+            request.getRequestDispatcher("manage/LeaugeDetail.jsp").forward(request, response);
+
+        } catch (Exception e) {
+        }
+        
+        
+        
     } 
 
     /** 
