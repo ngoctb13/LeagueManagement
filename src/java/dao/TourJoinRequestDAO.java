@@ -150,7 +150,7 @@ public class TourJoinRequestDAO extends DBContext {
             ps = con.prepareStatement(query);
             ps.setInt(1, team_id);
             rs = ps.executeQuery();
-            List<TourJoinRequest> list = new ArrayList<>();;
+            List<TourJoinRequest> list = new ArrayList<>();
             while (rs.next()) {
                 TeamDAO t = new TeamDAO();
                 Team team = t.getTeamByID(rs.getInt("team_id"));

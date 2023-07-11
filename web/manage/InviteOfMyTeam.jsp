@@ -26,7 +26,7 @@
     </head>
 
     <body>
-        
+
         <div class="page-container">
             <!-- sidebar menu area start -->
 
@@ -45,12 +45,15 @@
 
                 <jsp:include page="../manage/layout/titleArea.jsp"/>
 
-<!--                 page title area end 
+                
+
+                <!-- page title area end -->
                 <div class="main-content-inner">
                     <div class="card-area">
                         <div class="row">
-                            
+
                             <table class="table">
+                                
                                 <thead>
                                     <tr>
                                         <th>
@@ -60,21 +63,33 @@
                                             League Name
                                         </th>
                                         <th>
+                                            Team ID
+                                        </th>
+                                        <th>
                                             Address
                                         </th>
                                         <th>
                                             Phone Number
                                         </th>
                                         <th>
-                                            Quantity Team
-                                        </th> 
+                                            Start Date
+                                        </th>
                                         <th>
-                                            
+                                            Host ID
+                                        </th>
+                                        <th>
+                                            Team Quantity
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>   
+                                        <th>
+
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%--<c:forEach items="${requestScope.tourList}" var="t">--%>
+                                    <c:forEach items="${requestScope.list}" var="t">
                                         <tr>
 
                                             <td>
@@ -84,47 +99,33 @@
                                                 ${t.tour_name}
                                             </td>
                                             <td>
+                                                ${t.team_id}
+                                            </td>
+                                            <td>
                                                 ${t.address}
                                             </td>
                                             <td>
                                                 ${t.phone_number}
                                             </td>
                                             <td>
+                                                ${t.start_date}
+                                            </td>
+                                            <td>
+                                                ${t.host}
+                                            </td>
+                                            <td>
                                                 ${t.team_quantity}
                                             </td>
                                             <td>
-                                                
-                                                <a href="joinTour?tourId=${t.getTour_id()}" >Request</a> |
-                                                <a href="Edit" >Edit</a> |
-                                                <a href="MyTourDetail" >Details</a> |
-                                                <a href="Delete" >Delete</a>
+                                                ${t.status}
+                                            </td>
+                                            <td>
+                                                <a href="?tourId=${t.tour_id}" >Accept</a>
                                             </td>
                                         </tr>
-                                    <%--</c:forEach>--%>
+                                    </c:forEach>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>-->
-                
-                
-                <!-- page title area end -->
-                <div class="main-content-inner">
-                    <div class="card-area">
-                        <div class="row">
-                            <c:forEach items="${requestScope.tourList}" var="t">
-                                <div class="col-lg-4 col-md-6 mt-5">
-                                    <div class="card card-bordered">
-                                        <img class="card-img-top img-fluid" src="assets_1/images/card/card-img1.jpg" alt="image">
-                                        <div class="card-body">
-                                            <h5 class="title">League Name: ${t.tour_name}</h5>
-                                            <h5 class="title">Address: ${t.address}</h5>
-                                            <h5 class="title">Phone Number: ${t.phone_number}</h5>                                            
-                                            <a href="MyTourDetail?tourId=${t.tour_id}" class="btn btn-primary">Manage</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
                         </div>
                     </div>
                 </div>

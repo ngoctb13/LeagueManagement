@@ -71,28 +71,28 @@
                                             <div class="tab-content" id="v-pills-tabContent">
                                                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                                                     <div class="col-12">
-<!--                                                        <div class="form-group">
-                                                            <%--<c:if test="${status.equals('SUCCESS')}">--%>
-                                                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                                                <strong>Success!</strong> You have successfully updated.    
-                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                                    <span class="fa fa-times"></span>
-                                                                </button>
-                                                            </div>
-                                                            <%--</c:if>--%>
-                                                            <%--<c:if test="${status.equals('FAILED')}">--%>
-                                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                                <strong>Oh snap!</strong> Change a few things up and try submitting again.
-                                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                                    <span class="fa fa-times"></span>
-                                                                </button>
-                                                            </div>
-                                                            <%--</c:if>--%>
-                                                        </div>-->
+                                                        <!--                                                        <div class="form-group">
+                                                        <%--<c:if test="${status.equals('SUCCESS')}">--%>
+                                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                                            <strong>Success!</strong> You have successfully updated.    
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span class="fa fa-times"></span>
+                                                            </button>
+                                                        </div>
+                                                        <%--</c:if>--%>
+                                                        <%--<c:if test="${status.equals('FAILED')}">--%>
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span class="fa fa-times"></span>
+                                                            </button>
+                                                        </div>
+                                                        <%--</c:if>--%>
+                                                    </div>-->
 
                                                         <div class="card">
                                                             <div class="card-body">
-                                                                
+
                                                                 <h4 class="header-title">League Profile</h4>
                                                                 <p class="text-muted font-14 mb-4">Here to show all information about your tour.</p>
                                                                 <div class="form-group">
@@ -138,9 +138,25 @@
                                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                                     <div class="col-lg-6 mt-5">
                                                         <div class=" card_button" >
-                                                            <button onclick="addMember()">
-                                                                Invite Team
-                                                            </button>  
+                                                            <form action="InviteTeamJoinTour" method="POST">
+                                                                <input type="hidden" id="tour_name" name="tour_id" value="${to0.tour_id}" >
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <label for="cars">Select your team: </label>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <select name="mySelect" id="cars">
+                                                                            <c:forEach items="${requestScope.listTeam}" var="t">
+                                                                                <option value="${t.team_id}">${t.team_name}</option>
+                                                                            </c:forEach>
+                                                                        </select>
+                                                                    </div> 
+                                                                    <div class="col-5">  
+                                                                        <button type="sumbit" >Invite Team</button>
+                                                                    </div>
+                                                                </div>                                        
+
+                                                            </form>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -276,20 +292,20 @@
                                                                 <table width="100%" class="table table-hover" id="dataTables-example">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th>Name</th>
-                                                                            <th>Message</th>
-                                                                            <th>Status</th>
+                                                                            <th>Request Id</th>
+                                                                            <th>Team Id</th>
+                                                                            <th>Team Name</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <%--<c:forEach items="${invitationSent}" var="s"  varStatus="a">--%>
-<!--                                                                            <tr>
-                                                                                <td></td>
-                                                                                <td></td>
-                                                                                <td></td>
-                                                                            </tr>-->
-                                                                        <%--</c:forEach>--%>
-
+                                                                        <c:forEach items="${requestScope.listInvite}" var="invite">
+                                                                            <tr>
+                                                                                <td>${invite.invite_id}</td>
+                                                                                <td>${invite.team.team_id}</td>
+                                                                                <td>${invite.team.team_name}</td>
+                                                                                
+                                                                            </tr>
+                                                                        </c:forEach>
                                                                     </tbody>
                                                                 </table>
                                                             </div>
