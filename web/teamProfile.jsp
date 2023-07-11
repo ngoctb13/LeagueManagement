@@ -43,7 +43,7 @@
     %>
     <body>
         <style>
-            .modal1,.modal5,.modal9{
+           .modal1,.modal5,.modal9{
                 position: fixed;
                 height: 100%;
                 width: 100%;
@@ -107,6 +107,102 @@
             .row_card{
                 padding: 0;
             }
+            .img1 {
+                margin-top: 0%;
+                
+            }
+            .info {
+                margin-top: 0%;
+            }
+            .btn_thamgiadoibong {
+                margin-top: 0%;
+            }
+            .main_product{
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    height: 100%;
+                }
+                        .hero.overlay:before {
+                            height: 600px;
+                             }
+                        #fdw-pricing-table,.wrap-giaithuong {
+                                margin:0 auto;
+                                text-align: center;
+                                width: 100%;
+                                zoom: 1;
+                                background-color: #fff;
+                                justify-content: center;
+                                align-items: center;
+                            }
+                            div#fdw-pricing-table {
+                                padding: 50px;
+                            }
+                            #fdw-pricing-table:before, #fdw-pricing-table:after {
+                            content: "";
+                            display: table
+                            }
+                            .plan a {
+                                width: 100%;
+                            }
+                            .plan a img{
+                                width: 100%;
+                            }
+                           .wrap-giaithuong .plan {
+                                font: 13px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
+                                background: #fff;
+                                border: 1px solid #ddd;
+                                color: #333;
+                                padding: 20px;
+                                width: calc(100%/5);
+                                display: inline;
+                                position: relative;
+                                -moz-box-shadow: 0 2px 2px -1px rgba(0,0,0,.3);
+                                -webkit-box-shadow: 0 2px 2px -1px rgba(0,0,0,.3);
+                                box-shadow: 0 2px 2px -1px rgba(0,0,0,.3);
+                                flex-wrap: nowrap;
+                                
+
+                            }
+                            .wrap-giaithuong .header1 {
+                                position: relative;
+                                font-size: 20px;
+                                font-weight: normal;
+                                text-transform: uppercase;
+                                padding: 40px;
+                                margin: -20px -20px 20px -20px;
+                                border-bottom: 8px solid;
+                                background-color: #eee;
+                                background-image: -o-linear-gradient(#fff, #eee);
+                                background-image: -ms-linear-gradient(#fff, #eee);
+                                background-image: linear-gradient(#fff, #eee);
+                                
+                            }
+                            .wrap-giaithuong .plan .header1{
+                                border-bottom-color: #ee1e46;
+                            }
+                            .title-giaithuong h1{
+                                color:#fff;
+                                background-color: #ee1e46;
+                                padding: 5px 0;
+                            }
+                            .giaithuong{
+                                margin-top: 50px;
+                            }
+                            .wrap-giaithuong{
+                                width: 100%;
+                                display: flex;
+                                justify-content: space-between;
+                                
+                            }
+                            .hero.overlay {
+                                height: 720px !important;
+
+                            }
+                            .hero.overlay:before {
+                                height: 720px !important;
+
+                            }
         </style>
 
         <div class="modal1 hide">
@@ -196,6 +292,137 @@
                 </div>
 
             </div>  
+                                <div class="row giaithuong">
+                    <div class="col-6 title-section">
+                        <h2 class="heading">Thống Kê</h2>
+                    </div>
+                    	
+                <div id="fdw-pricing-table">
+                    <div class="title-giaithuong">
+                        <h1>Giải thưởng</h1>
+                    </div>
+                    <div class="wrap-giaithuong">
+                        <div class="plan ">
+                            <div class="header1">Vô địch</div>
+                            
+                            <a class="" href="#"><img src="./images/giaidau/champion.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>0</h2>
+                            </div>   
+                        </div>
+                        <div class="plan ">
+                            <div class="header1">Giải nhì</div>
+                            
+                            <a class="" href="#"><img src="./images/giaidau/silver-medal.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>0</h2>
+                            </div>   
+                        </div>
+                        <div class="plan ">
+                            <div class="header1">Giải 3</div>
+                            
+                            <a class="" href="#"><img src="./images/giaidau/bronze-medal.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>0</h2>
+                            </div>   
+                        </div>
+                        <div class="plan ">
+                            <div class="header1">Vô địch</div>
+                            
+                            <a class="" href="#"><img src="./images/giaidau/flag.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>0</h2>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                <div id="fdw-pricing-table">
+                    <div class="title-giaithuong">
+                        <h1>Trận đấu</h1>
+                    </div>
+                    <div class="wrap-giaithuong">
+                        <div class="plan ">
+                            <div class="header1">Tổng số trận</div>
+                            
+                            <a class="" href="#"><img src="./images/giaidau/match.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>0</h2>
+                            </div>   
+                        </div>
+                        <div class="plan ">
+                            <div class="header1">Số trận thắng</div>
+                            
+                            <a class="" href="#"><img src="././images/giaidau/seo-contest.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>0</h2>
+                            </div>   
+                        </div>
+                        <div class="plan ">
+                            <div class="header1">Số trận hòa</div>
+                            
+                            <a class="" href="#"><img src="./images/giaidau/man-losing-hat.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>0</h2>
+                            </div>   
+                        </div>
+                        <div class="plan ">
+                            <div class="header1">Số trận thua</div>
+                            
+                            <a class="" href="#"><img src="./images/giaidau/flag.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>0</h2>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                <div id="fdw-pricing-table" >
+                    <div class="title-giaithuong">
+                        <h1>Bàn thắng / thua</h1>
+                    </div>
+                    <div class="wrap-giaithuong" style="justify-content: space-around;">
+                        
+                        <div class="plan ">
+                            <a class="" href="#"><img src="././images/giaidau/goal.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>Ghi được: 0</h2>
+                            </div>   
+                        </div>
+                        <div class="plan ">
+                            <a class="" href="#"><img src="./images/giaidau/estadisticas_gol.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>Thủng lưới: 0</h2>
+                            </div>   
+                        </div>
+                        <div class="plan ">
+                            <a class="" href="#"><img src="./images/giaidau/estadisticas_gol.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h3>Phản lưới nhà: 0</h3>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                <div id="fdw-pricing-table">
+                    <div class="title-giaithuong">
+                        <h1>Thẻ phạt</h1>
+                    </div>
+                    <div class="wrap-giaithuong " style="justify-content: space-around;">
+                        
+                        <div class="plan ">
+                            <a class="" href="#"><img src="././images/giaidau/thevang.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>Số thẻ vàng: 0</h2>
+                            </div>   
+                        </div>
+                        <div class="plan ">
+                            <a class="" href="#"><img src="./images/giaidau/thedoi.png" alt=""></a> 
+                            <div class="quantity-giaithuong">
+                                <h2>Số thẻ đỏ: 0</h2>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+                    
+                </div>
 
 
             <div class="site-section">
