@@ -51,7 +51,9 @@ public class JoinTeamRequestServlet extends HttpServlet {
         System.out.println(JoinRequest);
         int r = userDAO.addJoinTeamRequest(JoinRequest);
         if (r > 0) {
-            request.getRequestDispatcher("teamProfile.jsp").forward(request, response);
+            response.sendRedirect("teamProfile?team_ID="+team_id);
+        }else{ 
+            response.sendRedirect("teamProfile?team_ID="+team_id);
         }
 
     }
