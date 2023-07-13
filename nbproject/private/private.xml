@@ -30,8 +30,18 @@
             <file>file:/C:/Users/admin2/OneDrive/Desktop/SWP/25.6/LeagueManagement/web/leaugeSetting.jsp</file>
         </group>
         <group>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/LeaugeLayout/header.jsp</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/leaugeProfile.jsp</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/manage/myleauge.jsp</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/manage/leaugeMeJoin.jsp</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/manage/layout/sidebar.jsp</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/controller/UserUpdateServlet.java</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/controller/InviteMemberServlet.java</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/tournament.jsp</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/manage/InviteOfMyTeam.jsp</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/controller/AcceptInviteToTour.java</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/dao/TourInviteDAO.java</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/dao/TourDAO.java</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/controller/MyTourDetail.java</file>
+            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/controller/LeaugeMeJoinServlet.java</file>
         </group>
     </open-files>
 </project-private>

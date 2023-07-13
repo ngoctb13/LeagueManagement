@@ -45,6 +45,23 @@ public class TourInviteDAO extends DBContext {
         }
         return status;
     }
+    public int removeInviteTour(int idteam, int idtour) throws Exception {
+        int status = 0;
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("DELETE FROM tour_invite WHERE team_id = ? AND tour_id = ?;");
+            ps.setInt(1, idteam);
+            ps.setInt(2, idtour);
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return status;
+    }
     
     public int updateTourInvite(TourInvite tour) throws Exception {
         int status = 0;

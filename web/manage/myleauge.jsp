@@ -43,12 +43,13 @@
                                 <li class="">
                                     <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>Team Management</span></a>
                                     <ul class="collapse">
-                                        <li class=""><a href="teamList">Team List</a></li>                         
+                                        <li class=""><a href="teamList">Team List</a></li>   
+                                        
+                                        <li class=""><a href="leaugeMeJoin">Leauge Me Join</a></li>
+                                        <li class=""><a href="InviteOfMyTeam">Invite Of My Team</a></li>
                                     </ul>
                                 </li>
                                 <li class="active"><a href="myLeauge">My Leauge Created</a></li>
-                                <li class=""><a href="leaugeMeJoin">Leauge Me Join</a></li>
-                                <li class=""><a href="InviteOfMyTeam">Invite Of My Team</a></li>
                             </ul>
                         </nav>
                     </div>

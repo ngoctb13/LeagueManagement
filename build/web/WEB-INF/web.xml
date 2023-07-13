@@ -176,6 +176,10 @@
         <servlet-name>AcceptInviteToTour</servlet-name>
         <servlet-class>controller.AcceptInviteToTour</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeclineInviteToTour</servlet-name>
+        <servlet-class>controller.DeclineInviteToTour</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -354,6 +358,10 @@
     <servlet-mapping>
         <servlet-name>AcceptInviteToTour</servlet-name>
         <url-pattern>/AcceptInviteToTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeclineInviteToTour</servlet-name>
+        <url-pattern>/DeclineInviteToTour</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -43,19 +43,19 @@
                                 <li class="active">
                                     <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>Team Management</span></a>
                                     <ul class="collapse">
-                                        <li class=""><a href="teamList">Team List</a></li>                         
+                                        <li class=""><a href="teamList">Team List</a></li> 
+                                        <li class=""><a href="leaugeMeJoin">Leauge Me Join</a></li>
+                                        <li class="active"><a href="InviteOfMyTeam">Invite Of My Team</a></li>
                                     </ul>
                                 </li>
                                 <li class=""><a href="myLeauge">My Leauge Created</a></li>
-                                <li class=""><a href="leaugeMeJoin">Leauge Me Join</a></li>
-                                <li class="active"><a href="InviteOfMyTeam">Invite Of My Team</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
             </div>
 
-
+            
             <!-- sidebar menu area end -->
             <!-- main content area start -->
             <div class="main-content">
@@ -106,6 +106,9 @@
                                         <th>
 
                                         </th>
+                                        <th>
+
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -138,6 +141,9 @@
                                             </td>
                                             <td>
                                                 <a href="AcceptInviteToTour?tourId=${t.tour_id}&teamId=${t.team_id}" >Accept</a>
+                                            </td>
+                                            <td>
+                                                <a href="DeclineInviteToTour?tourId=${t.tour_id}&teamId=${t.team_id}" >Decline</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

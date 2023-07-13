@@ -46,6 +46,8 @@ public class TourJoinRequestDAO extends DBContext {
         }
         return status;
     }
+    
+    
 
     public int updateTour(TourJoinRequest tour) throws Exception {
         int status = 0;
@@ -324,10 +326,6 @@ public class TourJoinRequestDAO extends DBContext {
 
     public static void main(String[] args) throws Exception {
 
-        TourJoinRequestDAO tDAO = new TourJoinRequestDAO();
-        TourJoinRequest tour = tDAO.GetTourJoinRequestByID(19);
-
-        System.out.println(tour.toString());
 
     }
 }
