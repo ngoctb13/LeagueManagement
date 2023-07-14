@@ -120,6 +120,6 @@ public class ParticipantDAO extends DBContext {
         ParticipantDAO dao = new ParticipantDAO();
         ArrayList<ParticipantProfile> list = dao.getListParticipantProfileByTour(1);
         System.out.println(list);
-        System.out.println(dao.IsTourManager(4, 1));
+//        System.out.println(dao.IsTourManager(4, 1));
     }
 }
