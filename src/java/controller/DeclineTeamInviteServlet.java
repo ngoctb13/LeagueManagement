@@ -82,6 +82,6 @@ public class DeclineTeamInviteServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
