@@ -145,8 +145,40 @@
         <servlet-class>controller.DeclineTeamRequestServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LeaugeSettingServlet</servlet-name>
-        <servlet-class>controller.LeaugeSettingServlet</servlet-class>
+        <servlet-name>SendRequestJoinTour</servlet-name>
+        <servlet-class>controller.SendRequestJoinTour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AcceptRequestJoinTour</servlet-name>
+        <servlet-class>controller.AcceptRequestJoinTour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeclineRequestJoinTour</servlet-name>
+        <servlet-class>controller.DeclineRequestJoinTour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyTourDetail</servlet-name>
+        <servlet-class>controller.MyTourDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisteredTeamList</servlet-name>
+        <servlet-class>controller.RegisteredTeamList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InviteTeamJoinTour</servlet-name>
+        <servlet-class>controller.InviteTeamJoinTour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InviteOfMyTeam</servlet-name>
+        <servlet-class>controller.InviteOfMyTeam</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AcceptInviteToTour</servlet-name>
+        <servlet-class>controller.AcceptInviteToTour</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeclineInviteToTour</servlet-name>
+        <servlet-class>controller.DeclineInviteToTour</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -296,8 +328,40 @@
         <url-pattern>/declineTeamRequest</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LeaugeSettingServlet</servlet-name>
-        <url-pattern>/leaugeSetting</url-pattern>
+        <servlet-name>SendRequestJoinTour</servlet-name>
+        <url-pattern>/joinTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcceptRequestJoinTour</servlet-name>
+        <url-pattern>/AcceptRequestJoinTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeclineRequestJoinTour</servlet-name>
+        <url-pattern>/DeclineRequestJoinTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyTourDetail</servlet-name>
+        <url-pattern>/MyTourDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisteredTeamList</servlet-name>
+        <url-pattern>/RegisteredTeamList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InviteTeamJoinTour</servlet-name>
+        <url-pattern>/InviteTeamJoinTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InviteOfMyTeam</servlet-name>
+        <url-pattern>/InviteOfMyTeam</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AcceptInviteToTour</servlet-name>
+        <url-pattern>/AcceptInviteToTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeclineInviteToTour</servlet-name>
+        <url-pattern>/DeclineInviteToTour</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

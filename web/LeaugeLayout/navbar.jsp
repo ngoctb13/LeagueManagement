@@ -19,7 +19,7 @@
                 <a href="leaugeProfile?tour_id=<%=recentTour.getTour_id()%>"><i class="ti-dashboard"></i><span>Dashboard</span></a>               
             </li>
             <li class="">
-                <a href="#"><i class="ti-layout-sidebar-left"></i><span>Registered Team List</span></a>               
+                <a href="RegisteredTeamList?tourID=<%=recentTour.getTour_id()%>"><i class="ti-layout-sidebar-left"></i><span>Registered Team List</span></a>               
             </li>
             <li>
                 <a href="participantList?tour_id=<%=recentTour.getTour_id()%>"><i class="ti-pie-chart"></i><span>Participant List</span></a>
@@ -35,7 +35,6 @@
                 <ul class="submenu">
                     <li><a href="leaugeSetting.jsp?tour_id=<%=recentTour.getTour_id()%>">Leauge Update</a></li>
                     <li><a href="#">Authorization</a></li>
-                    <li><a href="manageSponsor.jsp">Sponsor</a></li>
                 </ul>
             </li>           
         </ul>

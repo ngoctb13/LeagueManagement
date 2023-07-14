@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import model.Invite_member;
 import model.Join_Team_Request;
 import model.Team;
@@ -43,7 +44,7 @@ public class JoinTeamRequestSentServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         UserDAO userdao=new UserDAO();
-        int user_id=user.getUser_id();
+        int user_id = user.getUser_id();
         List<Join_Team_Request> rq= userdao.getListJoinRequestByUserID(user_id);
         List<String> teamNames = new ArrayList<>();
         List<String> teamEmails = new ArrayList<>();

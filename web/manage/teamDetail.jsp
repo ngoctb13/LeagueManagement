@@ -353,16 +353,16 @@
                                                                         <c:forEach items="${TeamRequest}" var="rq" varStatus="a">
 
                                                                             <c:if test="${rq.status.equals('PENDING')}">
-                                                                        <tr>
-                                                                            <td>${userName[a.index]}</td>
-                                                                            <td>${rq.shirt_number}</td>
-                                                                            <td>${rq.position}</td>
-                                                                            <td>${rq.status}</td>
-                                                                            <td class="text-end">
-                                                                                <a href="responseTeamRequest?requestID=${rq.requestID}" class="btn btn-outline-info btn-rounded">Accept</a>
-                                                                                <a href="declineTeamRequest?requestID=${rq.requestID}" class="btn btn-outline-danger btn-rounded">Decline</a>
-                                                                            </td>
-                                                                        </tr>
+                                                                                <tr>
+                                                                                    <td>${userName[a.index]}</td>
+                                                                                    <td>${rq.shirt_number}</td>
+                                                                                    <td>${rq.position}</td>
+                                                                                    <td>${rq.status}</td>
+                                                                                    <td class="text-end">
+                                                                                        <a href="responseTeamRequest?requestID=${rq.requestID}" class="btn btn-outline-info btn-rounded">Accept</a>
+                                                                                        <a href="declineTeamRequest?requestID=${rq.requestID}" class="btn btn-outline-danger btn-rounded">Decline</a>
+                                                                                    </td>
+                                                                                </tr>
                                                                             </c:if>
 
                                                                         </c:forEach>

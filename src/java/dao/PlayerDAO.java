@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 import model.Player;
 import model.DTO.PlayerProfile;
 import model.Team;
@@ -27,7 +28,7 @@ public class PlayerDAO extends DBContext {
         int status = 0;
         try {
             con = getConnection();
-            ps = con.prepareStatement("insert into player (user_id, team_id, position, shirt_number,isManager) values (?,?,?,?,?)");
+            ps = con.prepareStatement("insert into player (user_id, team_id, positon, shirt_number,isManager) values (?,?,?,?,?)");
             ps.setInt(1, a.getUser_id());
             ps.setInt(2, a.getTeam_id());
             ps.setString(3, a.getPosition());
@@ -57,7 +58,7 @@ public class PlayerDAO extends DBContext {
                 player.setPlayer_id(rs.getInt("player_id"));
                 player.setUser_id(rs.getInt("user_id"));
                 player.setTeam_id(rs.getInt("team_id"));
-                player.setPosition(rs.getString("position"));
+                player.setPosition(rs.getString("positon"));
                 player.setShirt_number(rs.getString("shirt_number"));
                 player.setIsManager(rs.getBoolean("isManager"));
                 list.add(player);
@@ -75,7 +76,7 @@ public class PlayerDAO extends DBContext {
 
     public ArrayList<PlayerProfile> getListPlayerProfileByTeam(int team_id) throws Exception {
         try {
-            String query = "SELECT u.full_name,u.email,u.user_id, p.player_id, p.team_id, p.shirt_number, p.position, p.isManager \n"
+            String query = "SELECT u.full_name,u.email,u.user_id, p.player_id, p.team_id, p.shirt_number, p.positon, p.isManager \n"
                     + "FROM test.user as u \n"
                     + "Join test.player as p \n"
                     + "On u.user_id = p.user_id\n"
@@ -92,7 +93,7 @@ public class PlayerDAO extends DBContext {
                 playerProfile.setTeam_id(rs.getInt("team_id"));
                 playerProfile.setFull_name(rs.getString("full_name"));
                 playerProfile.setEmail(rs.getString("email"));
-                playerProfile.setPosition(rs.getString("position"));
+                playerProfile.setPosition(rs.getString("positon"));
                 playerProfile.setShirt_number(rs.getString("shirt_number"));
                 playerProfile.setIsManager(rs.getBoolean("isManager"));
                 list.add(playerProfile);
@@ -131,6 +132,59 @@ public class PlayerDAO extends DBContext {
         }
     }
 
+    public int Find(int user_id, int team_id) throws Exception {
+        try {
+            String query = "SELECT * FROM player where user_id = ? AND team_id = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, user_id);
+            ps.setInt(2, team_id);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return 1;
+            }
+            return 0;
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+
+    public List<Player> FindMyTeam(int user_id) throws Exception {
+
+        List<Player> list = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM player where user_id = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, user_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Player player = new Player();
+                player.setPlayer_id(rs.getInt("player_id"));
+                player.setUser_id(rs.getInt("user_id"));
+                player.setTeam_id(rs.getInt("team_id"));
+                player.setPosition(rs.getString("positon"));
+                player.setShirt_number(rs.getString("shirt_number"));
+                player.setIsManager(rs.getBoolean("isManager"));
+                list.add(player);
+            }
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return list;
+    }
+
     public Boolean isPlayerCanBeDelete(int player_id) throws Exception {
         try {
             String query = "SELECT * FROM player where player_id = ?";
@@ -143,7 +197,7 @@ public class PlayerDAO extends DBContext {
                 player.setPlayer_id(rs.getInt("player_id"));
                 player.setUser_id(rs.getInt("user_id"));
                 player.setTeam_id(rs.getInt("team_id"));
-                player.setPosition(rs.getString("position"));
+                player.setPosition(rs.getString("positon"));
                 player.setShirt_number(rs.getString("shirt_number"));
                 player.setIsManager(rs.getBoolean("isManager"));
             }
@@ -174,6 +228,9 @@ public class PlayerDAO extends DBContext {
 
     public static void main(String[] args) throws Exception {
         PlayerDAO dao = new PlayerDAO();
-        System.out.println(dao.isPlayerCanBeDelete(2));
+        List<Player> list = dao.FindMyTeam(7);
+        for (Player player : list) {
+            System.out.println(player.toString());
+        }
     }
 }
