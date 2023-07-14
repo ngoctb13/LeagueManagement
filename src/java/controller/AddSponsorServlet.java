@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import model.Sponsor;
+import model.Tour;
 
 /**
  *
@@ -40,7 +41,8 @@ public class AddSponsorServlet extends HttpServlet {
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        int tour_id = Integer.parseInt(request.getParameter("tour_id"));
+        Tour tour = (Tour)session.getAttribute("recentTour");
+        int tour_id = tour.getTour_id();
         Part part = request.getPart("imageSponsor");
         String fileName = extractFileName(part);
         String savePath = "C:\\Users\\HP\\Documents\\GitHub\\LeagueManagement\\web\\images" + File.separator + fileName;
@@ -51,9 +53,9 @@ public class AddSponsorServlet extends HttpServlet {
         SponsorDAO dao= new SponsorDAO();
         int addSponsor=dao.addSponsor(sponsor);
         if (addSponsor > 0) {           
-           request.getRequestDispatcher("manageSponsor.jsp").forward(request, response);
+           response.sendRedirect("manageSponsor.jsp?tour_id="+tour_id);
         }else{
-            request.getRequestDispatcher("manageSponsor.jsp").forward(request, response);
+            response.sendRedirect("manageSponsor.jsp?tour_id="+tour_id);
         }
     }
     private String extractFileName(Part part) {

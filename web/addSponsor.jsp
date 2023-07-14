@@ -1,7 +1,10 @@
 
 
- <!DOCTYPE html>
-
+ <%@page import="model.Tour"%>
+<!DOCTYPE html>
+<%
+    Tour recentTour = (Tour) session.getAttribute("recentTour");    
+%>
  <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <head>
@@ -65,7 +68,7 @@
             <!-- page title area end -->
              <div class="content">
                 <div class="container-fluid" >
-                    <form  action="addSponsor" method="" enctype="multipart/form-data">
+                    <form  action="addSponsor" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <label style="margin-top: 50px ;"></label>
                             
