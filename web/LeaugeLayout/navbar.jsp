@@ -35,7 +35,7 @@
                 <ul class="submenu">
                     <li><a href="leaugeSetting.jsp?tour_id=<%=recentTour.getTour_id()%>">Leauge Update</a></li>
                     <li><a href="#">Authorization</a></li>
-                    <li><a href="manageSponsor.jsp">Sponsor</a></li>
+                    <li><a href="manageSponsor.jsp?tour_id=<%=recentTour.getTour_id()%>">Sponsor</a></li>
                 </ul>
             </li>           
         </ul>

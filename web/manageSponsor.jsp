@@ -1,5 +1,8 @@
+<%@page import="model.Tour"%>
 <!DOCTYPE html>
-
+<%
+    Tour recentTour = (Tour) session.getAttribute("recentTour");    
+%>
 <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <head>
@@ -155,7 +158,7 @@
 
                     <h2 id="">Sponsor</h2>
                     <div class="btn-add">
-                        <a href="addSponsor.jsp" class="add-nhataitro"><i class="fa-solid fa-plus"></i> Add Sponsor</a>
+                        <a href="addSponsor.jsp?tour_id=<%=recentTour.getTour_id()%>"" class="add-nhataitro"><i class="fa-solid fa-plus"></i> Add Sponsor</a>
                     </div>
                     <div class="row">
                         <div class="product">

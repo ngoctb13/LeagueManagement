@@ -24,7 +24,7 @@ public class SponsorDAO extends DBContext {
         int status = 0;
         try {
             con = getConnection();
-            ps = con.prepareStatement("insert into sponsor ( tour_id, image, link) values (?,?,?,?)");
+            ps = con.prepareStatement("insert into sponsor (tour_id, image, link) values (?,?,?)");
             ps.setInt(1, a.getTour_id());
             ps.setString(2, a.getImage());
             ps.setString(3, a.getLink());

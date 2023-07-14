@@ -65,34 +65,26 @@
             <!-- page title area end -->
              <div class="content">
                 <div class="container-fluid" >
-                    <form  action="">
+                    <form  action="addSponsor" method="" enctype="multipart/form-data">
                         <div class="row">
-                        	
                             <label style="margin-top: 50px ;"></label>
                             
                             <div>
-                                <img  alt="" src="./images/bg_2.jpg" style="width: 300px;height: 300px; margin-bottom: 30px ; "
+                                <img  alt="imagePreview" src="./images/logo_4.png" style="width: 300px;height: 300px; margin-bottom: 30px ; "
                                 id="imagePreview">
                             </div>
                             <div class="col-xxl-6" style="padding-bottom: 20px;">
-                                <input name="" type="file" class="form-control" placeholder="Avatar"  id="imageInput" onchange="previewImage(event)"></input>
+                                <input name="imageSponsor" type="file" class="form-control"  id="imageInput" onchange="previewImage(event)"></input>
                             </div> 
                         </div>
-                        
-                        
-
-                       
-
                         <div class="row">
                             <div class="col-xxl-6" style="padding-bottom: 20px;">
                                 <div class="form-floating">
-                                    <textarea class="form-control" name=""  id="floatingTextarea"></textarea>
+                                    <textarea class="form-control" name="linkSponsor"  id="floatingTextarea"></textarea>
                                     <label for="floatingTextarea">Enter the link of sponsor</label>
                                 </div>
                             </div>
                         </div>
-
-
                         <div class="row">
                             <div class="col-xxl-2">
                                 <button class="btn btn-primary" type="submit"> Add</button>
