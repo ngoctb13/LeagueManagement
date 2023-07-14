@@ -127,10 +127,7 @@ public class LeaugeMeJoinServlet extends HttpServlet {
         request.getRequestDispatcher("manage/myleauge.jsp").forward(request, response);
     }
 
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
+    
     @Override
     public String getServletInfo() {
         return "Short description";
