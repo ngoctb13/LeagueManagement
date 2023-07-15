@@ -61,6 +61,11 @@ body.sub-page{
 .tournament-detail-page .item-block{
    border: unset;  
   }
+ .tournament-detail-page .image-item img{
+    max-height: 500px;
+    width: auto;
+}
+/*end page tournament*/
 ::-moz-selection {
   background: #000;
   color: #fff; }

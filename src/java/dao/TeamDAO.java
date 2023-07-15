@@ -154,8 +154,30 @@ public class TeamDAO extends DBContext {
     }
     
     public static void main(String[] args) throws Exception {
-        TeamDAO dao = new TeamDAO();
-        ArrayList<Team> list = dao.getListTeamByCoach(2);
-        System.out.println(list);
+        //this code is transient
+        TeamDAO tDao = new TeamDAO();
+        TourInviteDAO tourDAO = new TourInviteDAO();
+        
+        List<Team> teamList1 = tDao.getListTeamByCoach(7);
+        for (Team team : teamList1) {
+            System.out.println(team.toString());
+        }
+        System.out.println("==================");
+        List<Team> teamList = new ArrayList<>();
+        teamList.addAll(teamList1);
+        
+        for (Team team : teamList) {
+            System.out.println(team.toString());
+        }
+        System.out.println("==================");
+        for (Team team : teamList1) {
+            if (tourDAO.FindTourTeam(team.getTeam_id(), 21) != null) {
+                teamList.remove(team);
+            }
+        }
+        for (Team team : teamList) {
+            System.out.println(team.toString());
+        }
+        
     }
 }
