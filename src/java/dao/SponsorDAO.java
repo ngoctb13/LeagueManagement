@@ -52,15 +52,39 @@ public class SponsorDAO extends DBContext {
             closeConnection(con);
         }
     }
-    public int updateSponsor(Sponsor a) throws Exception {
+    public Sponsor getSponsorBySponsorID(int input_id) throws Exception {
+        Sponsor sponsor = new Sponsor();
+        String query = "SELECT * FROM sponsor WHERE sponsor_id = ?";
+        try {
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, input_id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int sponsor_id = rs.getInt("sponsor_id");
+                String image = rs.getString("image");
+                String link = rs.getString("link");
+                int tour_id = rs.getInt("tour_id");
+                sponsor = new Sponsor(sponsor_id, tour_id, image, link);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return sponsor;
+    }
+    public int updateSponsor(Sponsor s) throws Exception {
         int status = 0;
         try {
             con = getConnection();
-            ps = con.prepareStatement("UPDATE `sponsor`SET `image` = ?, `link` = ?"
-                    + "WHERE `sponsor_id` = ?; ");
-            ps.setString(1, a.getImage());            
-            ps.setString(2, a.getLink());            
-                     
+            ps = con.prepareStatement("UPDATE sponsor SET image = ?, link = ? where sponsor_id= ?");
+            ps.setString(1, s.getImage());            
+            ps.setString(2, s.getLink());
+            ps.setInt(3, s.getTour_id());
+            ps.setInt(4, s.getSponsor_id());
             status = ps.executeUpdate();
         } catch (Exception e) {
             throw e;

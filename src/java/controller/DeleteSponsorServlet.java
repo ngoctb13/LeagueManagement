@@ -5,28 +5,21 @@
 package controller;
 
 import dao.SponsorDAO;
-import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 import model.Sponsor;
-import model.Tour;
 
 /**
  *
  * @author HP
  */
-@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2,
-        maxFileSize = 1024 * 1024 * 10,
-        maxRequestSize = 1024 * 1024 * 50)
-public class AddSponsorServlet extends HttpServlet {
+public class DeleteSponsorServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,33 +33,12 @@ public class AddSponsorServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        Tour tour = (Tour)session.getAttribute("recentTour");
-        int tour_id = tour.getTour_id();
-        Part part = request.getPart("imageSponsor");
-        String fileName = extractFileName(part);
-        String savePath = "C:\\Users\\HP\\Documents\\GitHub\\LeagueManagement\\web\\images" + File.separator + fileName;
-        File fileSaveDir = new File(savePath);
-        part.write(savePath + File.separator);
-        String link = request.getParameter("linkSponsor");
-        Sponsor sponsor = new Sponsor(tour_id,fileName,link);
-        SponsorDAO dao= new SponsorDAO();
-        int addSponsor=dao.addSponsor(sponsor);
-        if (addSponsor > 0) {           
-           response.sendRedirect("sponsorList?tour_id="+tour_id);
-        }else{
-            response.sendRedirect("sponsorList?tour_id="+tour_id);
-        }
-    }
-    private String extractFileName(Part part) {
-        String contentDisp = part.getHeader("content-disposition");
-        String[] items = contentDisp.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length() - 1);
-            }
-        }
-        return "";
+        int sponsor_id = Integer.parseInt(request.getParameter("sponsor_id"));
+        SponsorDAO dao = new SponsorDAO();
+        Sponsor s = dao.getSponsorBySponsorID(sponsor_id);
+        int tour_id=s.getTour_id();
+        dao.deleteSponsor(sponsor_id);
+        response.sendRedirect("sponsorList?tour_id="+tour_id);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -84,7 +56,7 @@ public class AddSponsorServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(AddSponsorServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeleteSponsorServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -102,7 +74,7 @@ public class AddSponsorServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(AddSponsorServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeleteSponsorServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

@@ -1,7 +1,8 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.Tour"%>
 <!DOCTYPE html>
 <%
-    Tour recentTour = (Tour) session.getAttribute("recentTour");    
+    Tour recentTour = (Tour) session.getAttribute("recentTour");
 %>
 <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -135,140 +136,122 @@
             }
 
         </style>
-        
-            <!-- main header area start -->
-            <jsp:include page="LeaugeLayout/header.jsp"/>
-            <!-- main header area end -->
-            <!-- header area start -->
-            <div class="header-area header-bottom">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-12  d-none d-lg-block">
-                            <jsp:include page="LeaugeLayout/navbar.jsp"/>
-                        </div>
 
+        <!-- main header area start -->
+        <jsp:include page="LeaugeLayout/header.jsp"/>
+        <!-- main header area end -->
+        <!-- header area start -->
+        <div class="header-area header-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12  d-none d-lg-block">
+                        <jsp:include page="LeaugeLayout/navbar.jsp"/>
                     </div>
+
                 </div>
             </div>
-            <!-- header area end -->
-            <!-- page title area end -->
-            <div class="container">
+        </div>
+        <!-- header area end -->
+        <!-- page title area end -->
+        <div class="container">
 
-                <div class="content">
+            <div class="content">
 
-                    <h2 id="">Sponsor</h2>
-                    <div class="btn-add">
-                        <a href="addSponsor.jsp?tour_id=<%=recentTour.getTour_id()%>"" class="add-nhataitro"><i class="fa-solid fa-plus"></i> Add Sponsor</a>
-                    </div>
-                    <div class="row">
+                <h2 id="">Sponsor</h2>
+                <div class="btn-add">
+                    <a href="addSponsor.jsp?tour_id=<%=recentTour.getTour_id()%>" class="add-nhataitro"><i class="fa-solid fa-plus"></i> Add Sponsor</a>
+                </div>
+                <div class="row">
+                    <c:forEach items="${sponsorList}" var="s">
                         <div class="product">
-                            <a href="updateSponsor.jsp" class="img1">
-                                <img id="imageContainer" src="./images/bg_1.jpg">
+                            <a href="updateSponsor.jsp?sponsor_id=${s.sponsor_id}" class="img1">
+                                <img id="imageContainer" src="./images/${s.image}">
                             </a>
 
-                            <input value="https://www.facebook.com/" type="text" name="" id="">
+                            <input value="${s.link}" type="text" name="" id="">
                             <div class="btn-delete">
-                                <button type="button"><i class="fa-solid fa-xmark"></i></button>
+                                <button type="button" onclick="showMess(${s.sponsor_id})"><i class="fa-solid fa-xmark"></i></button>
                             </div>
                         </div>
-                        <div class="product">
-                            <a href="updateSponsor.jsp" class="img1">
-                                <img id="imageContainer" src="./images/bg_2.jpg">
-                            </a>
+                    </c:forEach>
 
-                            <input value="https://www.facebook.com/" type="text" name="" id="">
-                            <div class="btn-delete">
-                                <button type="button"><i class="fa-solid fa-xmark"></i></button>
-                            </div>
-                        </div>
-                        <div class="product">
-                            <a href="updateSponsor.jsp" class="img1">
-                                <img id="imageContainer" src="./images/bg_3.jpg">
-                            </a>
-
-                            <input value="https://www.facebook.com/" type="text" name="" id="">
-                            <div class="btn-delete">
-                                <button type="button"><i class="fa-solid fa-xmark"></i></button>
-                            </div>
-                        </div>
-                        
-                        <!-- comment -->
-
-
-
-                    </div>
+                    <!-- comment -->
 
 
 
                 </div>
 
-            </div> 
-        
-        <script src="assets_1/js/vendor/jquery-2.2.4.min.js"></script>
-    <!-- bootstrap 4 js -->
-    <script src="assets_1/js/popper.min.js"></script>
-    <script src="assets_1/js/bootstrap.min.js"></script>
-    <script src="assets_1/js/owl.carousel.min.js"></script>
-    <script src="assets_1/js/metisMenu.min.js"></script>
-    <script src="assets_1/js/jquery.slimscroll.min.js"></script>
-    <script src="assets_1/js/jquery.slicknav.min.js"></script>
 
-    <!-- start chart js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <!-- start highcharts js -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
-    <script src="https://code.highcharts.com/modules/export-data.js"></script>
-    <!-- start amcharts -->
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
-    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
-    <script src="https://www.amcharts.com/lib/3/serial.js"></script>
-    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-    <!-- all line chart activation -->
-    <script src="assets_1/js/line-chart.js"></script>
-    <!-- all pie chart -->
-    <script src="assets_1/js/pie-chart.js"></script>
-    <!-- all bar chart -->
-    <script src="assets_1/js/bar-chart.js"></script>
-    <!-- all map chart -->
-    <script src="assets_1/js/maps.js"></script>
-    <!-- others plugins -->
-    <script src="assets_1/js/plugins.js"></script>
-    <script src="assets_1/js/scripts.js"></script>
+
+            </div>
+
+        </div> 
+
+        <script src="assets_1/js/vendor/jquery-2.2.4.min.js"></script>
+        <!-- bootstrap 4 js -->
+        <script src="assets_1/js/popper.min.js"></script>
+        <script src="assets_1/js/bootstrap.min.js"></script>
+        <script src="assets_1/js/owl.carousel.min.js"></script>
+        <script src="assets_1/js/metisMenu.min.js"></script>
+        <script src="assets_1/js/jquery.slimscroll.min.js"></script>
+        <script src="assets_1/js/jquery.slicknav.min.js"></script>
+
+        <!-- start chart js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+        <!-- start highcharts js -->
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <!-- start amcharts -->
+        <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+        <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+        <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+        <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+        <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+        <!-- all line chart activation -->
+        <script src="assets_1/js/line-chart.js"></script>
+        <!-- all pie chart -->
+        <script src="assets_1/js/pie-chart.js"></script>
+        <!-- all bar chart -->
+        <script src="assets_1/js/bar-chart.js"></script>
+        <!-- all map chart -->
+        <script src="assets_1/js/maps.js"></script>
+        <!-- others plugins -->
+        <script src="assets_1/js/plugins.js"></script>
+        <script src="assets_1/js/scripts.js"></script>
         <script src="./jquery-3.6.4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
         <script >
 
 
-            // var themelement = $(".btn-add button").click(function(){
-            //   var element = $("<div>").attr("class", "product"); 
+                                    // var themelement = $(".btn-add button").click(function(){
+                                    //   var element = $("<div>").attr("class", "product"); 
 
-            //   element.append(a); 
-            //   element.append(input); 
-            //   element.append(xoa); 
-            //   a.append(img);
-            //   xoa.append(btn_xoa);
-            //   btn_xoa.append(icon);
-
-
-            //   $(".row").append(element);
-            //     });
-            //     var a = $("<a>").attr("class", "img1"); 
-            //     var img = $("<img>").attr("src", "./images/bg_3.jpg"); 
-            //     var input = $("<input>").attr("type", "text"); 
-            //     var xoa =  $("<div>").attr("class", "btn-delete"); 
-            //     var btn_xoa =  $("<button>").attr("type", "button"); 
-            //       icon = $("<i>").attr("class", "fa-solid fa-xmark"); 
+                                    //   element.append(a); 
+                                    //   element.append(input); 
+                                    //   element.append(xoa); 
+                                    //   a.append(img);
+                                    //   xoa.append(btn_xoa);
+                                    //   btn_xoa.append(icon);
 
 
-            $('.btn-delete button').on('click', function () {
-                var thongbao = confirm('Do you want delete?');
-                if (thongbao) {
-                    $(this).parents('.product').remove();
-                }
-            });
+                                    //   $(".row").append(element);
+                                    //     });
+                                    //     var a = $("<a>").attr("class", "img1"); 
+                                    //     var img = $("<img>").attr("src", "./images/bg_3.jpg"); 
+                                    //     var input = $("<input>").attr("type", "text"); 
+                                    //     var xoa =  $("<div>").attr("class", "btn-delete"); 
+                                    //     var btn_xoa =  $("<button>").attr("type", "button"); 
+                                    //       icon = $("<i>").attr("class", "fa-solid fa-xmark"); 
+
+
+                                    function showMess(sponsor_id) {
+                                        var option = confirm('Are you sure to delete this sponsor?');
+                                        if (option === true) {
+                                            window.location.href = 'deleteSponsor?sponsor_id=' + sponsor_id;
+                                        }
+                                    }
         </script>
     </body>
 

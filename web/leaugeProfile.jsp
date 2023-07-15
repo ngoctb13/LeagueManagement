@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -144,9 +145,9 @@
                                         <i class="fa-regular fa-money-bill-1"></i> Nhà Tài Trợ
                                     </div>
                                     <div class="donater">
-                                        <div class="img-donate"><a href="#"><img src="./images/bg_1.jpg" alt=""></a></div>
-                                        <div class="img-donate"><a href="#"><img src="./images/bg_1.jpg" alt=""></a></div>
-                                        <div class="img-donate"><a href="#"><img src="./images/bg_1.jpg" alt=""></a></div>
+                                        <div class="img-donate"><a href="#"><img src="./images/shop.png" alt=""></a></div>
+                                        <div class="img-donate"><a href="#"><img src="./images/com.jpg" alt=""></a></div>
+                                        <div class="img-donate"><a href="#"><img src="./images/bp.jpeg" alt=""></a></div>
                                     </div>
                                 </div>
                                 <div class="col-12 mt-5">

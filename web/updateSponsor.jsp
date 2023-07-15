@@ -34,34 +34,27 @@
 
             <div class="content">
                <div class="container-fluid" >
-                   <form  action="">
+                   <form  action="updateSponsor" method="" enctype="multipart/form-data">
                        <div class="row">
                            
                            <label style="margin-top: 50px ;"></label>
                            
                            <div>
-                               <img  alt="" src="./images/bg_2.jpg" style="width: 350px;height: 300px; margin-bottom: 30px ; "
+                               <img  alt="" src="./images/${gotSponsor.image}" style="width: 350px;height: 300px; margin-bottom: 30px ; "
                                id="imagePreview">
                            </div>
                            <div class="col-xxl-6" style="padding-bottom: 20px;">
-                               <input name="" type="file" class="form-control" placeholder="Avatar"  id="imageInput" onchange="previewImage(event)"></input>
+                               <input name="imageUpdate" type="file" class="form-control" placeholder="Avatar"  id="imageInput" onchange="previewImage(event)"></input>
                            </div> 
                        </div>
-                       
-                       
-
-                      
-
                        <div class="row">
                            <div class="col-xxl-6" style="padding-bottom: 20px;">
                                <div class="form-floating">
-                                   <textarea class="form-control" name=""  id="floatingTextarea"></textarea>
-                                   <label for="floatingTextarea">Enter link of sponsor</label>
+                                   <textarea class="form-control" name="linkUpdate"  id="floatingTextarea"></textarea>
+                                   <label type="text" for="floatingTextarea" required="required">Enter link of sponsor </label>
                                </div>
                            </div>
                        </div>
-
-
                        <div class="row">
                            <div class="col-xxl-2">
                                <button class="btn btn-primary" type="submit">Update</button>
