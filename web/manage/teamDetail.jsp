@@ -422,13 +422,12 @@
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <c:forEach items="${playerList}" var="p" varStatus="a">
+                                                                        <c:forEach items="${teamSchedules}" var="ts" varStatus="a">
                                                                             <tr>
                                                                                 <td>${a.index +1}</td>
-                                                                                <td>${p.full_name}</td>
-                                                                                <td>${p.email}</td>
-                                                                                <td>${p.shirt_number}</td>
-                                                                                <td>${p.position}</td>
+                                                                                <td>${ts.title}</td>
+                                                                                <td>${ts.location}</td>
+                                                                                <td>${ts.time}</td>
                                                                                 <td>
                                                                                     <a href="#" onclick="showMess(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
                                                                                 </td>

@@ -155,7 +155,7 @@ public class TeamDAO extends DBContext {
         }
         return status;
     }
-    
+
     public ArrayList<TeamSchedule> getTeamScheduleList(int team_id) throws Exception {
         try {
             String query = "SELECT * FROM test.team_schedule\n"
@@ -192,7 +192,7 @@ public class TeamDAO extends DBContext {
             ps = con.prepareStatement("INSERT INTO `test`.`team_schedule`\n"
                     + "(team_id, title, location, time)\n"
                     + "VALUES (?,?,?,?);");
-            
+
             ps.setInt(1, teamSchedule.getTeam_id());
             ps.setString(2, teamSchedule.getTitle());
             ps.setString(3, teamSchedule.getLocation());
@@ -226,6 +226,23 @@ public class TeamDAO extends DBContext {
             closeConnection(con);
         }
         return status;
+    }
+    
+    
+    public void deleteTeamSchedule(int team_schedule_id) throws Exception {
+        try {
+            String query = "DELETE FROM `test`.`team_schedule`\n"
+                    + "WHERE team_schedule_id = ?;";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, team_schedule_id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
     }
 
     public static void main(String[] args) throws Exception {
