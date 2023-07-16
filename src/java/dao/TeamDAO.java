@@ -185,7 +185,29 @@ public class TeamDAO extends DBContext {
         }
     }
 
-    
+    public int addTeamSchedule(TeamSchedule teamSchedule) throws Exception {
+        int status = 0;
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("INSERT INTO `test`.`team_schedule`\n"
+                    + "(team_id, title, location, time)\n"
+                    + "VALUES (?,?,?,?);");
+            
+            ps.setInt(1, teamSchedule.getTeam_id());
+            ps.setString(2, teamSchedule.getTitle());
+            ps.setString(3, teamSchedule.getLocation());
+            ps.setString(4, teamSchedule.getTime());
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return status;
+    }
+
 
     public static void main(String[] args) throws Exception {
         //this code is transient
