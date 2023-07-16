@@ -1,7 +1,14 @@
 
 
+<%@page import="dao.SponsorDAO"%>
+<%@page import="model.Sponsor"%>
 <!DOCTYPE html>
 
+<%
+        int sponsor_id =Integer.parseInt( request.getParameter("sponsor_id"));
+        SponsorDAO dao = new SponsorDAO();
+        Sponsor gotSponsor= dao.getSponsorBySponsorID(sponsor_id);
+    %>
 <html lang="en">
 
 <head>
@@ -34,13 +41,13 @@
 
             <div class="content">
                <div class="container-fluid" >
-                   <form  action="updateSponsor" method="" enctype="multipart/form-data">
+                   <form id="myForm1" action="updateSponsor" method="post" enctype="multipart/form-data">
                        <div class="row">
-                           
+                           <input type="hidden" name="sponsor_id" value="<%= gotSponsor.getSponsor_id() %>">
                            <label style="margin-top: 50px ;"></label>
                            
                            <div>
-                               <img  alt="" src="./images/${gotSponsor.image}" style="width: 350px;height: 300px; margin-bottom: 30px ; "
+                               <img  alt="" src="./images/<%= gotSponsor.getImage() %>" style="width: 350px;height: 300px; margin-bottom: 30px ; "
                                id="imagePreview">
                            </div>
                            <div class="col-xxl-6" style="padding-bottom: 20px;">
@@ -50,8 +57,8 @@
                        <div class="row">
                            <div class="col-xxl-6" style="padding-bottom: 20px;">
                                <div class="form-floating">
-                                   <textarea class="form-control" name="linkUpdate"  id="floatingTextarea"></textarea>
-                                   <label type="text" for="floatingTextarea" required="required">Enter link of sponsor </label>
+                                   <textarea class="form-control" name="linkUpdate"  id="floatingTextarea" ><%= gotSponsor.getLink() %></textarea>
+                                   <label  type="text" for="floatingTextarea" required="required">Enter link of sponsor </label>
                                </div>
                            </div>
                        </div>
@@ -80,5 +87,6 @@
                }
                }
          </script>
+         
 
 </html>

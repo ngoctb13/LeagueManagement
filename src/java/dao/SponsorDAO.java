@@ -83,8 +83,7 @@ public class SponsorDAO extends DBContext {
             ps = con.prepareStatement("UPDATE sponsor SET image = ?, link = ? where sponsor_id= ?");
             ps.setString(1, s.getImage());            
             ps.setString(2, s.getLink());
-            ps.setInt(3, s.getTour_id());
-            ps.setInt(4, s.getSponsor_id());
+            ps.setInt(3, s.getSponsor_id());
             status = ps.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -120,4 +119,5 @@ public class SponsorDAO extends DBContext {
             closeConnection(con);
         }
     }
+     
 }

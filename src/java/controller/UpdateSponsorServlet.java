@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,6 +22,7 @@ import model.Sponsor;
  *
  * @author HP
  */
+@MultipartConfig
 public class UpdateSponsorServlet extends HttpServlet {
 
     /**
@@ -47,7 +49,6 @@ public class UpdateSponsorServlet extends HttpServlet {
         String link= request.getParameter("linkUpdate");
         Sponsor sponsor = new Sponsor(sponsor_id,tour_id,fileName,link);
         int update = dao.updateSponsor(sponsor);
-        request.setAttribute("gotSponsor", s);
         if(update>0){
             response.sendRedirect("sponsorList?tour_id="+tour_id);
         }else{

@@ -23,6 +23,7 @@ public class Sponsor {
         this.image = image;
         this.link = link;
     }
+    
     public Sponsor( int tour_id, String image, String link) {
         this.tour_id = tour_id;
         this.image = image;

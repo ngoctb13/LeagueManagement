@@ -39,12 +39,17 @@ public class SponsorListServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-       HttpSession session = request.getSession();
-       SponsorDAO dao = new SponsorDAO();
-        Tour tour = (Tour) session.getAttribute("recentTour");            
-         int tour_id = tour.getTour_id();
+        HttpSession session = request.getSession();
+        SponsorDAO dao = new SponsorDAO();
+        Tour tour = (Tour) session.getAttribute("recentTour");
+        int tour_id = tour.getTour_id();
         List<Sponsor> sponsorList = dao.getListSponsorByTourID(tour_id);
         request.setAttribute("sponsorList", sponsorList);
+        session.setAttribute("sponsorList", sponsorList);
+
+//        int sponsor_id=Integer.parseInt(request.getParameter("sponsor_id"));
+//        Sponsor  s = dao.getSponsorBySponsorID(sponsor_id);
+//        request.setAttribute("gotSponsor", s);
         request.getRequestDispatcher("manageSponsor.jsp").forward(request, response);
     }
 

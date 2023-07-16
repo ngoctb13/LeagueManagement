@@ -1,8 +1,14 @@
+<%@page import="model.Sponsor"%>
+<%@page import="dao.SponsorDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="model.Tour"%>
 <!DOCTYPE html>
 <%
     Tour recentTour = (Tour) session.getAttribute("recentTour");
+%>
+<%
+    SponsorDAO dao = new SponsorDAO();
+    Sponsor sponsor = new Sponsor();
 %>
 <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -163,10 +169,12 @@
                 </div>
                 <div class="row">
                     <c:forEach items="${sponsorList}" var="s">
-                        <div class="product">
+                        <div class="product" name="abc">
                             <a href="updateSponsor.jsp?sponsor_id=${s.sponsor_id}" class="img1">
                                 <img id="imageContainer" src="./images/${s.image}">
                             </a>
+                            
+
 
                             <input value="${s.link}" type="text" name="" id="">
                             <div class="btn-delete">
@@ -174,6 +182,10 @@
                             </div>
                         </div>
                     </c:forEach>
+                    <% if ("A".equals(request.getParameter("section"))) { %>
+                            <div class="img-donate"><a href="${s.link}"><img src="${s.image}" alt=""></a></div>
+                            <% }%>
+
 
                     <!-- comment -->
 
@@ -252,6 +264,15 @@
                                             window.location.href = 'deleteSponsor?sponsor_id=' + sponsor_id;
                                         }
                                     }
+        </script>
+        <script>
+            var form = document.getElementById("myForm1");
+            var sponsor_id = '<%= session.getAttribute("sponsor_id")%>';
+            var hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "sponsor_id";
+            hiddenInput.value = sponsor_id;
+            form.appendChild(hiddenInput);
         </script>
     </body>
 
