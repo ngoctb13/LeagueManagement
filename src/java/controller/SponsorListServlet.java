@@ -46,6 +46,7 @@ public class SponsorListServlet extends HttpServlet {
         List<Sponsor> sponsorList = dao.getListSponsorByTourID(tour_id);
         request.setAttribute("sponsorList", sponsorList);
         session.setAttribute("sponsorList", sponsorList);
+        
 
 //        int sponsor_id=Integer.parseInt(request.getParameter("sponsor_id"));
 //        Sponsor  s = dao.getSponsorBySponsorID(sponsor_id);
