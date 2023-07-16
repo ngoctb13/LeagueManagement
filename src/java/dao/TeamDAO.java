@@ -155,6 +155,37 @@ public class TeamDAO extends DBContext {
         }
         return status;
     }
+    
+    public ArrayList<TeamSchedule> getTeamScheduleList(int team_id) throws Exception {
+        try {
+            String query = "SELECT * FROM test.team_schedule\n"
+                    + "where team_id = ?\n"
+                    + "order by team_schedule_id DESC;";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, team_id);
+            rs = ps.executeQuery();
+            ArrayList<TeamSchedule> list = new ArrayList<>();
+            while (rs.next()) {
+                TeamSchedule teamSchedule = new TeamSchedule();
+                teamSchedule.setTeam_schedule_id(rs.getInt("team_schedule_id"));
+                teamSchedule.setTeam_id(rs.getInt("team_id"));
+                teamSchedule.setTitle(rs.getString("title"));
+                teamSchedule.setLocation(rs.getString("location"));
+                teamSchedule.setTime(rs.getString("time"));
+                list.add(teamSchedule);
+            }
+            return list;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+
+    
 
     public static void main(String[] args) throws Exception {
         //this code is transient
