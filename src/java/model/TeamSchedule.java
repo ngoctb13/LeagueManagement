@@ -21,6 +21,13 @@ public class TeamSchedule {
     public TeamSchedule() {
     }
 
+    public TeamSchedule(int team_id, String title, String location, Date time) {
+        this.team_id = team_id;
+        this.title = title;
+        this.location = location;
+        this.time = time;
+    }
+    
     public TeamSchedule(int team_schedule_id, int team_id, String title, String location, Date time) {
         this.team_schedule_id = team_schedule_id;
         this.team_id = team_id;

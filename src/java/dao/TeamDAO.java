@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -277,8 +278,10 @@ public class TeamDAO extends DBContext {
             System.out.println(teamSchedule.toString());
         }
         System.out.println("==================");
-        Date date = new Date(System.currentTimeMillis());
-        int status = tDao.addTeamSchedule(new TeamSchedule(1, 2, "title", "phong 401L", date ));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        //Date date = new Date(System.currentTimeMillis());
+        Date time =  new java.sql.Date(sdf.parse("2023-07-19").getTime());
+        int status = tDao.addTeamSchedule(new TeamSchedule(2, "title", "phong 401L",time ));
         System.out.println(status);
     }
 }

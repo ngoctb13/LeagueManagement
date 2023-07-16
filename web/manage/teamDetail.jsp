@@ -88,6 +88,84 @@
                 border-radius: 5px;
                 cursor: pointer;
             }
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                background: rgb(0, 0, 0, 0.6);
+                z-index: 3;
+            }
+
+            /* Modal Content */
+            .modal-content {
+                position: relative;
+                background-color: #fefefe;
+                margin: 15% auto;
+                padding: 0;
+                border: 1px solid #888;
+                width: 50%;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+                -webkit-animation-name: animatetop;
+                -webkit-animation-duration: 0.4s;
+                animation-name: animatetop;
+                animation-duration: 0.4s
+            }
+
+            /* Add Animation */
+            @-webkit-keyframes animatetop {
+                from {
+                    top:-300px;
+                    opacity:0
+                }
+                to {
+                    top:0;
+                    opacity:1
+                }
+            }
+
+            @keyframes animatetop {
+                from {
+                    top:-300px;
+                    opacity:0
+                }
+                to {
+                    top:0;
+                    opacity:1
+                }
+            }
+
+            /* The Close Button */
+            .close {
+                color: white;
+                padding: 10px;
+                float: right;
+                margin: 10px 10px 0 10px;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .modal-header {
+                padding: 2px 16px;
+                background-color: #003399;
+                color: white;
+            }
+
+            .modal-body {
+                padding: 2px 16px;
+            }
+
+            .modal-footer {
+                padding: 2px 16px;
+                background-color: #5cb85c;
+                color: white;
+            }
         </style>
         <div class="form-group">
             <c:if test="${ms.equals('SUCCESS')}">
@@ -140,6 +218,58 @@
                 </form>
             </div>
         </div>
+
+        <!-- Add Schedule Modal -->
+        <div id="add-schedule-modal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form action="addTeamSchedule" method="">
+                        <div class="modal_header3">
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        <label for="add-title">Title:</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" name="title" id="add-title" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label for="add-location">Location:</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" name="location" id="add-location" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label for="add-time">Time:</label>
+                                    </th>
+                                    <td>
+                                        <script type="text/javascript">
+                                            window.onload = function () {//from ww  w . j  a  va2s. c  o  m
+                                                var today = new Date().toISOString().split('T')[0];
+                                                document.getElementsByName("time")[0].setAttribute('min', today);
+                                            }
+                                        </script> 
+                                        <input type="date" name="time" id="add-time" required="required">
+                                    </td>
+                                </tr>
+                            </table>
+                            <input type="submit" value="Add Schedule">
+                        </div>  
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
         <!--[if lt IE 8]>
                 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
@@ -403,9 +533,7 @@
                                                 <div class="tab-pane fade" id="v-pills-schedule" role="tabpanel" aria-labelledby="v-pills-schedule-tab">
                                                     <div class="col-lg-6 mt-5">
                                                         <div class=" card_button" >
-                                                            <button onclick="addMember()">
-                                                                Add Schedule
-                                                            </button>  
+                                                            <button id="add-schedule-btn">Add Schedule</button>  
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -429,8 +557,8 @@
                                                                                 <td>${ts.location}</td>
                                                                                 <td>${ts.time}</td>
                                                                                 <td>
-                                                                                    <a href="#" onclick="deleteSchedule(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
-                                                                                    <a href="#" onclick="deleteSchedule(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
+                                                                                    <a href="#" onclick="updateSchedule(${p.team_schedule_id},<%=user.getUser_id()%>)">Update</a>
+                                                                                    <a href="#" onclick="deleteSchedule(${p.team_schedule_id},<%=user.getUser_id()%>)">Delete</a>
                                                                                 </td>
                                                                             </tr>
                                                                         </c:forEach>
@@ -490,21 +618,47 @@
         <script src="assets_1/js/plugins.js"></script>
         <script src="assets_1/js/scripts.js"></script>
         <script>
-            var modal = document.querySelector('.modal1');
-            var hienthi = document.querySelector('.card_button button');
-            var andi = document.querySelector('.icon_exit span');
-            function toggModal() {
-                modal.classList.toggle('hide');
-            }
+                                                                                        var modal = document.querySelector('.modal1');
+                                                                                        var hienthi = document.querySelector('.card_button button');
+                                                                                        var andi = document.querySelector('.icon_exit span');
+                                                                                        function toggModal() {
+                                                                                            modal.classList.toggle('hide');
+                                                                                        }
 
-            hienthi.addEventListener('click', toggModal);
-            andi.addEventListener('click', toggModal);
-            function deletePlayer(player_id, user_id, team_id) {
-                var option = confirm('Are you sure to delete this player?');
-                if (option === true) {
-                    window.location.href = 'deletePlayer?player_id=' + player_id + '&user_id=' + user_id + '&team_id=' + team_id;
-                }
-            }
+                                                                                        hienthi.addEventListener('click', toggModal);
+                                                                                        andi.addEventListener('click', toggModal);
+                                                                                        function deletePlayer(player_id, user_id, team_id) {
+                                                                                            var option = confirm('Are you sure to delete this player?');
+                                                                                            if (option === true) {
+                                                                                                window.location.href = 'deletePlayer?player_id=' + player_id + '&user_id=' + user_id + '&team_id=' + team_id;
+                                                                                            }
+                                                                                        }
+
+                                                                                        // Get the modal
+                                                                                        var addScheduleModal = document.getElementById("add-schedule-modal");
+
+                                                                                        // Get the button that opens the modal
+                                                                                        var addScheduleButton = document.getElementById("add-schedule-btn");
+
+                                                                                        // Get the <span> element that closes the modal
+                                                                                        var span = document.getElementsByClassName("close")[0];
+
+                                                                                        // When the user clicks the button, open the modal 
+                                                                                        addScheduleButton.onclick = function () {
+                                                                                            addScheduleModal.style.display = "block";
+                                                                                        }
+
+                                                                                        // When the user clicks on <span> (x), close the modal
+                                                                                        span.onclick = function () {
+                                                                                            addScheduleModal.style.display = "none";
+                                                                                        }
+
+                                                                                        // When the user clicks anywhere outside of the modal, close it
+                                                                                        window.onclick = function (event) {
+                                                                                            if (event.target == modal) {
+                                                                                                modal.style.display = "none";
+                                                                                            }
+                                                                                        }
         </script>
     </body>
 
