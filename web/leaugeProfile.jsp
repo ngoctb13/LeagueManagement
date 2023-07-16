@@ -150,6 +150,7 @@
                                         <i class="fa-regular fa-money-bill-1"></i> Nhà Tài Trợ
                                     </div>
                                     <div class="donater">
+                                        
                                         <c:forEach items="<%=sponsorList%>" var="s">
                                             <div class="img-donate"><a href="${s.link}"><img src="${s.image}" alt=""></a></div>
                                                 </c:forEach>
