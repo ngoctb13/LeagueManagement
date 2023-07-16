@@ -269,7 +269,7 @@
                                                                                 <td>${p.shirt_number}</td>
                                                                                 <td>${p.position}</td>
                                                                                 <td>
-                                                                                    <a href="#" onclick="showMess(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
+                                                                                    <a href="#" onclick="deletePlayer(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
                                                                                 </td>
                                                                             </tr>
                                                                         </c:forEach>
@@ -429,7 +429,8 @@
                                                                                 <td>${ts.location}</td>
                                                                                 <td>${ts.time}</td>
                                                                                 <td>
-                                                                                    <a href="#" onclick="showMess(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
+                                                                                    <a href="#" onclick="deleteSchedule(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
+                                                                                    <a href="#" onclick="deleteSchedule(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
                                                                                 </td>
                                                                             </tr>
                                                                         </c:forEach>
@@ -489,21 +490,21 @@
         <script src="assets_1/js/plugins.js"></script>
         <script src="assets_1/js/scripts.js"></script>
         <script>
-                                                                                        var modal = document.querySelector('.modal1');
-                                                                                        var hienthi = document.querySelector('.card_button button');
-                                                                                        var andi = document.querySelector('.icon_exit span');
-                                                                                        function toggModal() {
-                                                                                            modal.classList.toggle('hide');
-                                                                                        }
+            var modal = document.querySelector('.modal1');
+            var hienthi = document.querySelector('.card_button button');
+            var andi = document.querySelector('.icon_exit span');
+            function toggModal() {
+                modal.classList.toggle('hide');
+            }
 
-                                                                                        hienthi.addEventListener('click', toggModal);
-                                                                                        andi.addEventListener('click', toggModal);
-                                                                                        function showMess(player_id, user_id, team_id) {
-                                                                                            var option = confirm('Are you sure to delete this player?');
-                                                                                            if (option === true) {
-                                                                                                window.location.href = 'deletePlayer?player_id=' + player_id + '&user_id=' + user_id + '&team_id=' + team_id;
-                                                                                            }
-                                                                                        }
+            hienthi.addEventListener('click', toggModal);
+            andi.addEventListener('click', toggModal);
+            function deletePlayer(player_id, user_id, team_id) {
+                var option = confirm('Are you sure to delete this player?');
+                if (option === true) {
+                    window.location.href = 'deletePlayer?player_id=' + player_id + '&user_id=' + user_id + '&team_id=' + team_id;
+                }
+            }
         </script>
     </body>
 

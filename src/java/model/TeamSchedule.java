@@ -4,6 +4,9 @@
  */
 package model;
 
+import java.sql.Date;
+
+
 /**
  *
  * @author Admin
@@ -13,12 +16,12 @@ public class TeamSchedule {
     public int team_id;
     public String title;
     public String location;
-    public String time;
+    public Date time;
 
     public TeamSchedule() {
     }
 
-    public TeamSchedule(int team_schedule_id, int team_id, String title, String location, String time) {
+    public TeamSchedule(int team_schedule_id, int team_id, String title, String location, Date time) {
         this.team_schedule_id = team_schedule_id;
         this.team_id = team_id;
         this.title = title;
@@ -58,13 +61,13 @@ public class TeamSchedule {
         this.location = location;
     }
 
-    public String getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void setTime(Date time) {
         this.time = time;
     }
-    
+
     
 }
