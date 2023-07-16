@@ -278,10 +278,12 @@ public class TeamDAO extends DBContext {
             System.out.println(teamSchedule.toString());
         }
         System.out.println("==================");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        //Date date = new Date(System.currentTimeMillis());
-        Date time =  new java.sql.Date(sdf.parse("2023-07-19").getTime());
-        int status = tDao.addTeamSchedule(new TeamSchedule(2, "title", "phong 401L",time ));
-        System.out.println(status);
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//        //Date date = new Date(System.currentTimeMillis());
+//        Date time =  new java.sql.Date(sdf.parse("2023-07-19").getTime());
+//        int status = tDao.addTeamSchedule(new TeamSchedule(2, "title", "phong 401L",time ));
+//        System.out.println(status);
+        tDao.deleteTeamSchedule(14);
+
     }
 }

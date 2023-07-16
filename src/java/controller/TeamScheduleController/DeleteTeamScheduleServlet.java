@@ -2,26 +2,25 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.TeamScheduleController;
 
+import controller.ParticipantListServlet;
 import dao.TeamDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.Team;
-import model.TeamSchedule;
 
 /**
  *
  * @author Admin
  */
-public class AddTeamScheduleServlet extends HttpServlet {
+public class DeleteTeamScheduleServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,26 +32,23 @@ public class AddTeamScheduleServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            HttpSession session = request.getSession();
-            TeamDAO dao = new TeamDAO();
-            int team_id = (int) session.getAttribute("team_id");
-            String title = request.getParameter("title");
-            String location = request.getParameter("location");
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            Date time = new java.sql.Date(sdf.parse(request.getParameter("time")).getTime());;
-            TeamSchedule teamSchedule = new TeamSchedule(team_id, title, location, time);
+        int team_id = Integer.parseInt(request.getParameter("team_id"));
+        int team_schedule_id = Integer.parseInt(request.getParameter("team_schedule_id"));
+        int user_id = Integer.parseInt(request.getParameter("user_id"));
 
-            Team team = dao.getTeamByID(team_id);
-            int status = dao.addTeamSchedule(teamSchedule);
+        TeamDAO teamDAO = new TeamDAO();
+        Team team = teamDAO.getTeamByID(team_id);
+
+        try {
+            teamDAO.deleteTeamSchedule(team_schedule_id);
+            
             request.setAttribute("team_id", team_id);
             request.setAttribute("coach", team.getCoach());
-            response.sendRedirect("teamDetail?team_id=" + team_id + "&coach=" + team.getCoach());
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            response.sendRedirect("teamDetail?team_id="+team_id+"&coach="+team.getCoach());
+        } catch (Exception ex) {
+            Logger.getLogger(ParticipantListServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -68,7 +64,11 @@ public class AddTeamScheduleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(DeleteTeamScheduleServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -82,7 +82,11 @@ public class AddTeamScheduleServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(DeleteTeamScheduleServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

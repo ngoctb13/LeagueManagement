@@ -182,7 +182,11 @@
     </servlet>
     <servlet>
         <servlet-name>AddTeamScheduleServlet</servlet-name>
-        <servlet-class>controller.AddTeamScheduleServlet</servlet-class>
+        <servlet-class>controller.TeamScheduleController.AddTeamScheduleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTeamScheduleServlet</servlet-name>
+        <servlet-class>controller.TeamScheduleController.DeleteTeamScheduleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -370,6 +374,10 @@
     <servlet-mapping>
         <servlet-name>AddTeamScheduleServlet</servlet-name>
         <url-pattern>/addTeamSchedule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTeamScheduleServlet</servlet-name>
+        <url-pattern>/deleteTeamSchedule</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -557,8 +557,8 @@
                                                                                 <td>${ts.location}</td>
                                                                                 <td>${ts.time}</td>
                                                                                 <td>
-                                                                                    <a href="#" onclick="updateSchedule(${p.team_schedule_id},<%=user.getUser_id()%>)">Update</a>
-                                                                                    <a href="#" onclick="deleteSchedule(${p.team_schedule_id},<%=user.getUser_id()%>)">Delete</a>
+                                                                                    <a href="#" onclick="updateTeamSchedule(${ts.team_schedule_id},<%=user.getUser_id()%>,${ts.team_id})">Update</a>
+                                                                                    <a href="#" onclick="deleteTeamSchedule(${ts.team_schedule_id},<%=user.getUser_id()%>,${ts.team_id})">Delete</a>
                                                                                 </td>
                                                                             </tr>
                                                                         </c:forEach>
@@ -657,6 +657,13 @@
                                                                                         window.onclick = function (event) {
                                                                                             if (event.target == modal) {
                                                                                                 modal.style.display = "none";
+                                                                                            }
+                                                                                        }
+                                                                                        
+                                                                                        function deleteTeamSchedule (team_schedule_id, user_id, team_id) {
+                                                                                            var option = confirm('Are you sure to delete this schedule?');
+                                                                                            if (option === true) {
+                                                                                                window.location.href = 'deleteTeamSchedule?team_schedule_id=' + team_schedule_id + '&user_id=' + user_id + '&team_id=' + team_id;
                                                                                             }
                                                                                         }
         </script>
