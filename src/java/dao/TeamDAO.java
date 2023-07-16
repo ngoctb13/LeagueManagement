@@ -208,6 +208,25 @@ public class TeamDAO extends DBContext {
         return status;
     }
 
+    public int updateTeamSchedule(TeamSchedule teamSchedule) throws Exception {
+        int status = 0;
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("UPDATE team_schedule SET title = ?, location= ?, time= ? WHERE team_schedule_id = ?;");
+            ps.setString(1, teamSchedule.getTitle());
+            ps.setString(2, teamSchedule.getLocation());
+            ps.setString(3, teamSchedule.getTime());
+            ps.setInt(4, teamSchedule.getTeam_schedule_id());
+            status = ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+        return status;
+    }
 
     public static void main(String[] args) throws Exception {
         //this code is transient
