@@ -180,6 +180,7 @@
                                             <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Edit</a>
                                             <a class="nav-link" id="v-pills-browser-tab" data-toggle="pill" href="#v-pills-browser" role="tab" aria-controls="v-pills-browser" aria-selected="false">Request</a>
                                             <a class="nav-link" id="v-pills-invitation-sent-tab" data-toggle="pill" href="#v-pills-invitation-sent" role="tab" aria-controls="v-pills-invitation-sent" aria-selected="false">Invitation Sent</a>
+                                            <a class="nav-link" id="v-pills-schedule-tab" data-toggle="pill" href="#v-pills-schedule" role="tab" aria-controls="v-pills-schedule" aria-selected="false">Schedule</a>
                                         </div>                                                                                        
 
                                         <div class="col-lg-10">                                           
@@ -398,6 +399,61 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="v-pills-schedule" role="tabpanel" aria-labelledby="v-pills-schedule-tab">
+                                                    <div class="col-lg-6 mt-5">
+                                                        <div class=" card_button" >
+                                                            <button onclick="addMember()">
+                                                                Add Schedule
+                                                            </button>  
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="box box-primary">
+                                                            <div class="box-body">
+                                                                <table width="100%" class="table table-hover" id="dataTables-example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Index</th>
+                                                                            <th>Title</th>
+                                                                            <th>Location</th>
+                                                                            <th>Time</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <c:forEach items="${playerList}" var="p" varStatus="a">
+                                                                            <tr>
+                                                                                <td>${a.index +1}</td>
+                                                                                <td>${p.full_name}</td>
+                                                                                <td>${p.email}</td>
+                                                                                <td>${p.shirt_number}</td>
+                                                                                <td>${p.position}</td>
+                                                                                <td>
+                                                                                    <a href="#" onclick="showMess(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </c:forEach>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <style>
+                                                        .card_button button{
+                                                            padding: 10px;
+                                                            width: 50%;
+                                                            background-color: white;
+                                                            color: black;
+                                                            font-weight: bold;
+                                                            border-radius: 10px ;
+                                                        }
+                                                        .card_button button:hover{
+                                                            background-color: #007bff;
+                                                            border: none;
+                                                            color: white;
+                                                        }
+                                                    </style>
                                                 </div>
                                             </div>
                                         </div>

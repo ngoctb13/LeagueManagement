@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.Team;
+import model.TeamSchedule;
 import model.User;
 
 /**
@@ -18,17 +19,18 @@ import model.User;
  * @author Admin
  */
 public class TeamDAO extends DBContext {
+
     private Connection con;
     private PreparedStatement ps;
     private ResultSet rs;
-    
+
     public int addTeam(Team t) throws Exception {
         int status = 0;
         try {
             con = getConnection();
             ps = con.prepareStatement("insert into team (team_name, phone_number, email, address, description, coach) values (?,?,?,?,?,?)");
             ps.setString(1, t.getTeam_name());
-            ps.setString(2,t.getPhone_number());
+            ps.setString(2, t.getPhone_number());
             ps.setString(3, t.getEmail());
             ps.setString(4, t.getAddress());
             ps.setString(5, t.getDescription());
@@ -43,6 +45,7 @@ public class TeamDAO extends DBContext {
         }
         return status;
     }
+
     public ArrayList<Team> getListAllTeam() throws Exception {
         try {
             String query = "SELECT * FROM team";
@@ -71,7 +74,7 @@ public class TeamDAO extends DBContext {
             closeConnection(con);
         }
     }
-    
+
     public ArrayList<Team> getListTeamByCoach(int coach) throws Exception {
         try {
             String query = "SELECT * FROM team where coach = ?";
@@ -89,7 +92,7 @@ public class TeamDAO extends DBContext {
                 team.setAddress(rs.getString("address"));
                 team.setDescription(rs.getString("description"));
                 team.setCoach(rs.getInt("coach"));
-                team.setTour(rs.getInt("tour"));               
+                team.setTour(rs.getInt("tour"));
                 list.add(team);
             }
             return list;
@@ -101,7 +104,7 @@ public class TeamDAO extends DBContext {
             closeConnection(con);
         }
     }
-    
+
     public Team getTeamByID(int input_id) throws Exception {
         Team team = null;
         String query = "SELECT * FROM team WHERE team_id = ?";
@@ -130,7 +133,7 @@ public class TeamDAO extends DBContext {
         }
         return team;
     }
-    
+
     public int updateTeam(Team team) throws Exception {
         int status = 0;
         try {
@@ -152,12 +155,12 @@ public class TeamDAO extends DBContext {
         }
         return status;
     }
-    
+
     public static void main(String[] args) throws Exception {
         //this code is transient
         TeamDAO tDao = new TeamDAO();
         TourInviteDAO tourDAO = new TourInviteDAO();
-        
+
         List<Team> teamList1 = tDao.getListTeamByCoach(7);
         for (Team team : teamList1) {
             System.out.println(team.toString());
@@ -165,7 +168,7 @@ public class TeamDAO extends DBContext {
         System.out.println("==================");
         List<Team> teamList = new ArrayList<>();
         teamList.addAll(teamList1);
-        
+
         for (Team team : teamList) {
             System.out.println(team.toString());
         }
@@ -178,6 +181,10 @@ public class TeamDAO extends DBContext {
         for (Team team : teamList) {
             System.out.println(team.toString());
         }
-        
+        System.out.println("==================");
+        List<TeamSchedule> teamSchedules = tDao.getTeamScheduleList(2);
+        for (TeamSchedule teamSchedule : teamSchedules) {
+            System.out.println(teamSchedule.toString());
+        }
     }
 }
