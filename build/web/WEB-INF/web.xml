@@ -192,6 +192,14 @@
         <servlet-name>ListMatchServlet</servlet-name>
         <servlet-class>controller.ListMatchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateMatchesServlet</servlet-name>
+        <servlet-class>controller.UpdateMatchesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateMatchesScheduleServlet</servlet-name>
+        <servlet-class>controller.UpdateMatchesScheduleServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -386,6 +394,14 @@
     <servlet-mapping>
         <servlet-name>ListMatchServlet</servlet-name>
         <url-pattern>/listMatch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMatchesServlet</servlet-name>
+        <url-pattern>/updateMatches</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMatchesScheduleServlet</servlet-name>
+        <url-pattern>/updateMatchesSchedule</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
