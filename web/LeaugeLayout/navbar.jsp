@@ -39,6 +39,7 @@
                     <li><a href="leaugeSetting.jsp?tour_id=<%=recentTour.getTour_id()%>">Leauge Update</a></li>
                     <li><a href="#">Authorization</a></li>
                     <li><a href="sponsorList?tour_id=<%=recentTour.getTour_id()%>">Sponsor</a></li>
+                    <li><a href="arrangeMatch?tour_id=<%=recentTour.getTour_id()%>">Arrange Matches</a></li>
                 </ul>
             </li>
             <%}%>
