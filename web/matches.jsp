@@ -56,7 +56,6 @@
                         <div class="col-lg-12  d-none d-lg-block">
                             <jsp:include page="LeaugeLayout/navbar.jsp"/>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -115,6 +114,7 @@
                                 <button type="button" class="btn btn-primary btn-flat btn-lg mt-3" data-toggle="modal" data-target="#exampleModalLong">Create new match</button>
                             </div>
                         </div>
+                        <!--hihihihihih-->
                         <form action="updateMatchesSchedule">
                             <c:forEach var="match" items="${matches}">                            
                                 <div class="card">
