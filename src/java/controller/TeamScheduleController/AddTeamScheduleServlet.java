@@ -1,32 +1,27 @@
-package controller;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package controller.TeamScheduleController;
 
 import dao.TeamDAO;
-import dao.UserDAO;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-
-import model.Join_Team_Request;
-
 import model.Team;
-import model.User;
+import model.TeamSchedule;
 
 /**
  *
- * @author HP
+ * @author Admin
  */
-public class JoinTeamRequestServlet extends HttpServlet {
+public class AddTeamScheduleServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,25 +33,27 @@ public class JoinTeamRequestServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, Exception {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try {
+            HttpSession session = request.getSession();
+            TeamDAO dao = new TeamDAO();
+            int team_id = (int) session.getAttribute("team_id");
+            String title = request.getParameter("title");
+            String location = request.getParameter("location");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date time = new java.sql.Date(sdf.parse(request.getParameter("time")).getTime());;
+            TeamSchedule teamSchedule = new TeamSchedule(team_id, title, location, time);
 
-        int team_id = Integer.parseInt(request.getParameter("team_id"));
-        int userID = user.getUser_id();
-        String shirt_number = request.getParameter("shirt_number");
-        String position = request.getParameter("position");
-        UserDAO userDAO = new UserDAO();
-        String status = "PENDING";
-        Join_Team_Request JoinRequest = new Join_Team_Request(userID, team_id, status, shirt_number, position);
-        System.out.println(JoinRequest);
-        int r = userDAO.addJoinTeamRequest(JoinRequest);
-        if (r > 0) {
-            response.sendRedirect("teamProfile?team_ID="+team_id);
-        }else{ 
-            response.sendRedirect("teamProfile?team_ID="+team_id);
+            Team team = dao.getTeamByID(team_id);
+            int status = dao.addTeamSchedule(teamSchedule);
+            request.setAttribute("team_id", team_id);
+            request.setAttribute("coach", team.getCoach());
+            response.sendRedirect("teamDetail?team_id=" + team_id + "&coach=" + team.getCoach());
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -71,11 +68,7 @@ public class JoinTeamRequestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(JoinTeamRequestServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -89,11 +82,7 @@ public class JoinTeamRequestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(JoinTeamRequestServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

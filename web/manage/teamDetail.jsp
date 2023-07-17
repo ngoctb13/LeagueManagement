@@ -88,6 +88,84 @@
                 border-radius: 5px;
                 cursor: pointer;
             }
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                background: rgb(0, 0, 0, 0.6);
+                z-index: 3;
+            }
+
+            /* Modal Content */
+            .modal-content {
+                position: relative;
+                background-color: #fefefe;
+                margin: 15% auto;
+                padding: 0;
+                border: 1px solid #888;
+                width: 50%;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+                -webkit-animation-name: animatetop;
+                -webkit-animation-duration: 0.4s;
+                animation-name: animatetop;
+                animation-duration: 0.4s
+            }
+
+            /* Add Animation */
+            @-webkit-keyframes animatetop {
+                from {
+                    top:-300px;
+                    opacity:0
+                }
+                to {
+                    top:0;
+                    opacity:1
+                }
+            }
+
+            @keyframes animatetop {
+                from {
+                    top:-300px;
+                    opacity:0
+                }
+                to {
+                    top:0;
+                    opacity:1
+                }
+            }
+
+            /* The Close Button */
+            .close, update-close {
+                color: white;
+                padding: 10px;
+                float: right;
+                margin: 10px 10px 0 10px;
+            }
+
+            .close, update-close :hover,
+            .close, update-close :focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .modal-header {
+                padding: 2px 16px;
+                background-color: #003399;
+                color: white;
+            }
+
+            .modal-body {
+                padding: 2px 16px;
+            }
+
+            .modal-footer {
+                padding: 2px 16px;
+                background-color: #5cb85c;
+                color: white;
+            }
         </style>
         <div class="form-group">
             <c:if test="${ms.equals('SUCCESS')}">
@@ -110,7 +188,6 @@
 
         <div id="inviteModal" class="modal1 hide">
             <div class="modal_inner">
-
                 <form action="inviteMember" method="">
                     <div class="modal_header3">
                         <div class="icon_exit"><span class="fa fa-times">
@@ -140,6 +217,110 @@
                 </form>
             </div>
         </div>
+
+        <!-- Add Schedule Modal -->
+        <div id="add-schedule-modal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form action="addTeamSchedule" method="">
+                        <div class="modal_header3">
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        <label for="add-title">Title:</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" name="title" id="add-title" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label for="add-location">Location:</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" name="location" id="add-location" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label for="add-time">Time:</label>
+                                    </th>
+                                    <td>
+                                        <script type="text/javascript">
+                                            window.onload = function () {//from ww  w . j  a  va2s. c  o  m
+                                                var today = new Date().toISOString().split('T')[0];
+                                                document.getElementsByName("time")[0].setAttribute('min', today);
+                                            }
+                                        </script> 
+                                        <input type="date" name="time" id="add-time" value="2023-09-08" required="required">
+                                    </td>
+                                </tr>
+                            </table>
+                            <input type="submit" value="Add Schedule">
+                        </div>  
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Update Schedule Modal -->
+        <div id="update-schedule-modal" class="modal" >
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="update-close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form action="updateTeamSchedule" method="">
+                        <div class="modal_header3">
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        <label for="update-title">Title:</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" name="update-title" id="update-title" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label for="update-location">Location:</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" name="update-location" id="update-location" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label for="update-time">Time:</label>
+                                    </th>
+                                    <td>
+                                        <script type="text/javascript">
+                                            window.onload = function () {//from ww  w . j  a  va2s. c  o  m
+                                                var today = new Date().toISOString().split('T')[0];
+                                                document.getElementsByName("update-time")[0].setAttribute('min', today);
+                                            }
+                                        </script> 
+                                        <input type="date" name="update-time" id="updated-time" required="required">
+                                    </td>
+                                </tr>
+                            </table>
+                            <input type="hidden" name="team_schedule_id">
+                            <input type="hidden" name="team_id">
+                            <input type="hidden" name="user_id">
+                            <input type="submit" value="Update Schedule">
+                        </div>  
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <!--[if lt IE 8]>
                 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
@@ -180,6 +361,7 @@
                                             <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Edit</a>
                                             <a class="nav-link" id="v-pills-browser-tab" data-toggle="pill" href="#v-pills-browser" role="tab" aria-controls="v-pills-browser" aria-selected="false">Request</a>
                                             <a class="nav-link" id="v-pills-invitation-sent-tab" data-toggle="pill" href="#v-pills-invitation-sent" role="tab" aria-controls="v-pills-invitation-sent" aria-selected="false">Invitation Sent</a>
+                                            <a class="nav-link" id="v-pills-schedule-tab" data-toggle="pill" href="#v-pills-schedule" role="tab" aria-controls="v-pills-schedule" aria-selected="false">Schedule</a>
                                         </div>                                                                                        
 
                                         <div class="col-lg-10">                                           
@@ -268,7 +450,7 @@
                                                                                 <td>${p.shirt_number}</td>
                                                                                 <td>${p.position}</td>
                                                                                 <td>
-                                                                                    <a href="#" onclick="showMess(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
+                                                                                    <a href="#" onclick="deletePlayer(${p.player_id},<%=user.getUser_id()%>,${p.team_id})">Delete Member</a>
                                                                                 </td>
                                                                             </tr>
                                                                         </c:forEach>
@@ -399,6 +581,59 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="tab-pane fade" id="v-pills-schedule" role="tabpanel" aria-labelledby="v-pills-schedule-tab">
+                                                    <div class="col-lg-6 mt-5">
+                                                        <div class=" card_button" >
+                                                            <button id="add-schedule-btn">Add Schedule</button>  
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="box box-primary">
+                                                            <div class="box-body">
+                                                                <table width="100%" class="table table-hover" id="dataTables-example">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Index</th>
+                                                                            <th>Title</th>
+                                                                            <th>Location</th>
+                                                                            <th>Time</th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <c:forEach items="${teamSchedules}" var="ts" varStatus="a">
+                                                                            <tr>
+                                                                                <td>${a.index +1}</td>
+                                                                                <td>${ts.title}</td>
+                                                                                <td>${ts.location}</td>
+                                                                                <td>${ts.time}</td>
+                                                                                <td>
+                                                                                    <a href="#" onclick="updateTeamSchedule(${ts.title},${ts.location},${ts.time},${ts.team_schedule_id},<%=user.getUser_id()%>,${ts.team_id})">Update</a>
+                                                                                    <a href="#" onclick="deleteTeamSchedule(${ts.team_schedule_id},<%=user.getUser_id()%>,${ts.team_id})">Delete</a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </c:forEach>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <style>
+                                                        .card_button button{
+                                                            padding: 10px;
+                                                            width: 50%;
+                                                            background-color: white;
+                                                            color: black;
+                                                            font-weight: bold;
+                                                            border-radius: 10px ;
+                                                        }
+                                                        .card_button button:hover{
+                                                            background-color: #007bff;
+                                                            border: none;
+                                                            color: white;
+                                                        }
+                                                    </style>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -443,10 +678,61 @@
 
                                                                                         hienthi.addEventListener('click', toggModal);
                                                                                         andi.addEventListener('click', toggModal);
-                                                                                        function showMess(player_id, user_id, team_id) {
+                                                                                        function deletePlayer(player_id, user_id, team_id) {
                                                                                             var option = confirm('Are you sure to delete this player?');
                                                                                             if (option === true) {
                                                                                                 window.location.href = 'deletePlayer?player_id=' + player_id + '&user_id=' + user_id + '&team_id=' + team_id;
+                                                                                            }
+                                                                                        }
+
+                                                                                        // Get the modal
+                                                                                        var addScheduleModal = document.getElementById("add-schedule-modal");
+
+                                                                                        // Get the button that opens the modal
+                                                                                        var addScheduleButton = document.getElementById("add-schedule-btn");
+
+                                                                                        // Get the <span> element that closes the modal
+                                                                                        var span = document.getElementsByClassName("close")[0];
+
+                                                                                        // When the user clicks the button, open the modal 
+                                                                                        addScheduleButton.onclick = function () {
+                                                                                            addScheduleModal.style.display = "block";
+                                                                                        }
+
+                                                                                        // When the user clicks on <span> (x), close the modal
+                                                                                        span.onclick = function () {
+                                                                                            addScheduleModal.style.display = "none";
+                                                                                        }
+
+                                                                                        // When the user clicks anywhere outside of the modal, close it
+                                                                                        window.onclick = function (event) {
+                                                                                            if (event.target == modal) {
+                                                                                                modal.style.display = "none";
+                                                                                            }
+                                                                                        }
+
+                                                                                        var updateScheduleModal = document.getElementById("update-schedule-modal");
+
+                                                                                        var updateSpan = document.getElementsByClassName("update-close")[0];
+                                                                                        updateSpan.onclick = function () {
+                                                                                            updateScheduleModal.style.display = "none";
+                                                                                        }
+
+                                                                                        function updateTeamSchedule(title, location, time, team_schedule_id, user_id, team_id) {
+                                                                                            document.getElementsByName("team_schedule_id")[0].setAttribute("value", team_schedule_id);
+                                                                                            document.getElementsByName("team_id")[0].setAttribute("value", team_id);
+                                                                                            document.getElementsByName("user_id")[0].setAttribute("value", user_id);
+                                                                                            
+//                                                                                            document.getElementsByName("update-title")[0].setAttribute("value", "title");
+//                                                                                            document.getElementsByName("update-location")[0].setAttribute("value", "location");
+//                                                                                            document.getElementsById("updated-time").value = "2023-08-09";
+                                                                                            updateScheduleModal.style.display = "block";
+                                                                                        }
+
+                                                                                        function deleteTeamSchedule(team_schedule_id, user_id, team_id) {
+                                                                                            var option = confirm('Are you sure to delete this schedule?');
+                                                                                            if (option === true) {
+                                                                                                window.location.href = 'deleteTeamSchedule?team_schedule_id=' + team_schedule_id + '&user_id=' + user_id + '&team_id=' + team_id;
                                                                                             }
                                                                                         }
         </script>

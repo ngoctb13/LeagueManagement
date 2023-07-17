@@ -24,6 +24,7 @@ import model.Invite_member;
 import model.Join_Team_Request;
 import model.DTO.PlayerProfile;
 import model.Team;
+import model.TeamSchedule;
 import model.User;
 
 /**
@@ -75,6 +76,8 @@ public class TeamDetailServlet extends HttpServlet {
         PlayerDAO playerDAO = new PlayerDAO();
         ArrayList<PlayerProfile> playerList = playerDAO.getListPlayerProfileByTeam(team_id);
         //==============================
+        ArrayList<TeamSchedule> teamSchedules = dao.getTeamScheduleList(team_id);
+        //==============================
         request.setAttribute("user_name", user_name);
         request.setAttribute("playerList", playerList);
         request.setAttribute("invitationSent", invitationSent);
@@ -83,6 +86,7 @@ public class TeamDetailServlet extends HttpServlet {
         request.setAttribute("team_id", team_id);
         request.setAttribute("userName", userName);
         request.setAttribute("gotCoach", user);
+        request.setAttribute("teamSchedules", teamSchedules);
 
         request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);
     }

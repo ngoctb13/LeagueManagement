@@ -181,6 +181,18 @@
         <servlet-class>controller.DeclineInviteToTour</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddTeamScheduleServlet</servlet-name>
+        <servlet-class>controller.TeamScheduleController.AddTeamScheduleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTeamScheduleServlet</servlet-name>
+        <servlet-class>controller.TeamScheduleController.DeleteTeamScheduleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateTeamScheduleServlet</servlet-name>
+        <servlet-class>controller.TeamScheduleController.UpdateTeamScheduleServlet</servlet-class>
+      </servlet>
+    <servlet>
         <servlet-name>ArrangeMatchServlet</servlet-name>
         <servlet-class>controller.ArrangeMatchServlet</servlet-class>
     </servlet>
@@ -199,6 +211,22 @@
     <servlet>
         <servlet-name>UpdateMatchesScheduleServlet</servlet-name>
         <servlet-class>controller.UpdateMatchesScheduleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSponsorServlet</servlet-name>
+        <servlet-class>controller.AddSponsorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SponsorListServlet</servlet-name>
+        <servlet-class>controller.SponsorListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSponsorServlet</servlet-name>
+        <servlet-class>controller.UpdateSponsorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteSponsorServlet</servlet-name>
+        <servlet-class>controller.DeleteSponsorServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -384,6 +412,18 @@
         <url-pattern>/DeclineInviteToTour</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>AddTeamScheduleServlet</servlet-name>
+        <url-pattern>/addTeamSchedule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTeamScheduleServlet</servlet-name>
+        <url-pattern>/deleteTeamSchedule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateTeamScheduleServlet</servlet-name>
+        <url-pattern>/updateTeamSchedule</url-pattern>
+      </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ArrangeMatchServlet</servlet-name>
         <url-pattern>/arrangeMatch</url-pattern>
     </servlet-mapping>
@@ -402,6 +442,22 @@
     <servlet-mapping>
         <servlet-name>UpdateMatchesScheduleServlet</servlet-name>
         <url-pattern>/updateMatchesSchedule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSponsorServlet</servlet-name>
+        <url-pattern>/addSponsor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SponsorListServlet</servlet-name>
+        <url-pattern>/sponsorList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSponsorServlet</servlet-name>
+        <url-pattern>/updateSponsor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteSponsorServlet</servlet-name>
+        <url-pattern>/deleteSponsor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

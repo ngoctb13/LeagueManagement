@@ -28,7 +28,7 @@ public class PlayerDAO extends DBContext {
         int status = 0;
         try {
             con = getConnection();
-            ps = con.prepareStatement("insert into player (user_id, team_id, positon, shirt_number,isManager) values (?,?,?,?,?)");
+            ps = con.prepareStatement("insert into player (user_id, team_id, position, shirt_number,isManager) values (?,?,?,?,?)");
             ps.setInt(1, a.getUser_id());
             ps.setInt(2, a.getTeam_id());
             ps.setString(3, a.getPosition());
@@ -58,7 +58,7 @@ public class PlayerDAO extends DBContext {
                 player.setPlayer_id(rs.getInt("player_id"));
                 player.setUser_id(rs.getInt("user_id"));
                 player.setTeam_id(rs.getInt("team_id"));
-                player.setPosition(rs.getString("positon"));
+                player.setPosition(rs.getString("position"));
                 player.setShirt_number(rs.getString("shirt_number"));
                 player.setIsManager(rs.getBoolean("isManager"));
                 list.add(player);
@@ -76,7 +76,7 @@ public class PlayerDAO extends DBContext {
 
     public ArrayList<PlayerProfile> getListPlayerProfileByTeam(int team_id) throws Exception {
         try {
-            String query = "SELECT u.full_name,u.email,u.user_id, p.player_id, p.team_id, p.shirt_number, p.positon, p.isManager \n"
+            String query = "SELECT u.full_name,u.email,u.user_id, p.player_id, p.team_id, p.shirt_number, p.position, p.isManager \n"
                     + "FROM test.user as u \n"
                     + "Join test.player as p \n"
                     + "On u.user_id = p.user_id\n"
@@ -93,7 +93,7 @@ public class PlayerDAO extends DBContext {
                 playerProfile.setTeam_id(rs.getInt("team_id"));
                 playerProfile.setFull_name(rs.getString("full_name"));
                 playerProfile.setEmail(rs.getString("email"));
-                playerProfile.setPosition(rs.getString("positon"));
+                playerProfile.setPosition(rs.getString("position"));
                 playerProfile.setShirt_number(rs.getString("shirt_number"));
                 playerProfile.setIsManager(rs.getBoolean("isManager"));
                 list.add(playerProfile);

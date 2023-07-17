@@ -1,13 +1,15 @@
-package controller;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package controller;
 
+import dao.SponsorDAO;
 import dao.TeamDAO;
-import dao.UserDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,18 +17,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-
-import model.Join_Team_Request;
-
-import model.Team;
+import model.Sponsor;
+import model.Tour;
 import model.User;
 
 /**
  *
  * @author HP
  */
-public class JoinTeamRequestServlet extends HttpServlet {
+public class SponsorListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,24 +38,20 @@ public class JoinTeamRequestServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
+        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        SponsorDAO dao = new SponsorDAO();
+        Tour tour = (Tour) session.getAttribute("recentTour");
+        int tour_id = tour.getTour_id();
+        List<Sponsor> sponsorList = dao.getListSponsorByTourID(tour_id);
+        request.setAttribute("sponsorList", sponsorList);
+        session.setAttribute("sponsorList", sponsorList);
+        
 
-        int team_id = Integer.parseInt(request.getParameter("team_id"));
-        int userID = user.getUser_id();
-        String shirt_number = request.getParameter("shirt_number");
-        String position = request.getParameter("position");
-        UserDAO userDAO = new UserDAO();
-        String status = "PENDING";
-        Join_Team_Request JoinRequest = new Join_Team_Request(userID, team_id, status, shirt_number, position);
-        System.out.println(JoinRequest);
-        int r = userDAO.addJoinTeamRequest(JoinRequest);
-        if (r > 0) {
-            response.sendRedirect("teamProfile?team_ID="+team_id);
-        }else{ 
-            response.sendRedirect("teamProfile?team_ID="+team_id);
-        }
-
+//        int sponsor_id=Integer.parseInt(request.getParameter("sponsor_id"));
+//        Sponsor  s = dao.getSponsorBySponsorID(sponsor_id);
+//        request.setAttribute("gotSponsor", s);
+        request.getRequestDispatcher("manageSponsor.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,7 +69,7 @@ public class JoinTeamRequestServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(JoinTeamRequestServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SponsorListServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -92,7 +87,7 @@ public class JoinTeamRequestServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(JoinTeamRequestServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SponsorListServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

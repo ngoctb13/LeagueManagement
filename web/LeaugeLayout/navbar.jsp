@@ -3,6 +3,7 @@
     Created on : Jun 21, 2023, 12:11:00 AM
     Author     : Admin
 --%>
+<%@page import="model.User"%>
 <%@page import="dao.TourDAO"%>
 <%@page import="model.Tour"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +11,8 @@
 <!DOCTYPE html>
 
 <%
-    Tour recentTour = (Tour) session.getAttribute("recentTour");    
+    Tour recentTour = (Tour) session.getAttribute("recentTour");
+    User curUser = (User) session.getAttribute("user");
 %>
 <div class="horizontal-menu">
     <nav>
@@ -30,14 +32,17 @@
             <li>
                 <a href="#"><i class="ti-pie-chart"></i><span>Standings</span></a>
             </li>
-            <li>
+            <%if(curUser.getUser_id() == recentTour.getHost()) {%>            
+                <li>
                 <a href="javascript:void(0)"><i class="ti-pie-chart"></i><span>Setting</span></a>
                 <ul class="submenu">
                     <li><a href="leaugeSetting.jsp?tour_id=<%=recentTour.getTour_id()%>">Leauge Update</a></li>
                     <li><a href="#">Authorization</a></li>
-                    <li><a href="arrangeMatch?tour_id=<%=recentTour.getTour_id()%>">Arrange Matches</a></li>
+                    <li><a href="sponsorList?tour_id=<%=recentTour.getTour_id()%>">Sponsor</a></li>
                 </ul>
-            </li>           
+            </li>
+            <%}%>
+                       
         </ul>
     </nav>
 </div>
