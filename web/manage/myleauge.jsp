@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Cards - srtdash</title>
+        <title>My Leauge Created</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/png" href="assets_1/images/icon/favicon.ico">
         <link rel="stylesheet" href="assets_1/css/bootstrap.min.css">
@@ -26,19 +26,35 @@
     </head>
 
     <body>
-        <!--[if lt IE 8]>
-                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-            <![endif]-->
-        <!-- preloader area start -->
-        <div id="preloader">
-            <div class="loader"></div>
-        </div>
-        <!-- preloader area end -->
-        <!-- page container area start -->
+
         <div class="page-container">
             <!-- sidebar menu area start -->
 
-            <jsp:include page="../manage/layout/sidebar.jsp"/>
+            <div class="sidebar-menu">
+                <div class="sidebar-header">
+                    <div class="logo">
+                        <a href="home.jsp"><img src="images/SOCCER.png" alt="logo"></a>
+                    </div>
+                </div>
+                <div class="main-menu">
+                    <div class="menu-inner">
+                        <nav>
+                            <ul class="metismenu" id="menu">
+                                <li class="">
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>Team Management</span></a>
+                                    <ul class="collapse">
+                                        <li class=""><a href="teamList">Team List</a></li>   
+                                        
+                                        <li class=""><a href="leaugeMeJoin">Leauge Me Join</a></li>
+                                        <li class=""><a href="InviteOfMyTeam">Invite Of My Team</a></li>
+                                    </ul>
+                                </li>
+                                <li class="active"><a href="myLeauge">My Leauge Created</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
 
 
             <!-- sidebar menu area end -->
@@ -53,19 +69,82 @@
 
                 <jsp:include page="../manage/layout/titleArea.jsp"/>
 
+                <!--                 page title area end 
+                                <div class="main-content-inner">
+                                    <div class="card-area">
+                                        <div class="row">
+                                            
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            League ID
+                                                        </th>
+                                                        <th>
+                                                            League Name
+                                                        </th>
+                                                        <th>
+                                                            Address
+                                                        </th>
+                                                        <th>
+                                                            Phone Number
+                                                        </th>
+                                                        <th>
+                                                            Quantity Team
+                                                        </th> 
+                                                        <th>
+                                                            
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                <%--<c:forEach items="${requestScope.tourList}" var="t">--%>
+                    <tr>
+
+                        <td>
+                ${t.tour_id}
+            </td>
+            <td>
+                ${t.tour_name}
+            </td>
+            <td>
+                ${t.address}
+            </td>
+            <td>
+                ${t.phone_number}
+            </td>
+            <td>
+                ${t.team_quantity}
+            </td>
+            <td>
+                
+                <a href="joinTour?tourId=${t.getTour_id()}" >Request</a> |
+                <a href="Edit" >Edit</a> |
+                <a href="MyTourDetail" >Details</a> |
+                <a href="Delete" >Delete</a>
+            </td>
+        </tr>
+                <%--</c:forEach>--%>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>-->
+
+
                 <!-- page title area end -->
                 <div class="main-content-inner">
                     <div class="card-area">
                         <div class="row">
-                            <c:forEach items="${tourList}" var="t">
+                            <c:forEach items="${requestScope.tourList}" var="t">
                                 <div class="col-lg-4 col-md-6 mt-5">
                                     <div class="card card-bordered">
-                                        <img class="card-img-top img-fluid" src="images/${t.avatar}" alt="image">
+                                        <img class="card-img-top img-fluid" src="${t.avatar}" alt="image">
                                         <div class="card-body">
-                                            <h5 class="title">Team Name: ${t.tour_name}</h5>
+                                            <h5 class="title">League Name: ${t.tour_name}</h5>
                                             <h5 class="title">Address: ${t.address}</h5>
-                                            <h5 class="title">Description: ${t.description}</h5>                                            
-                                            <a href="leaugeProfile?tour_id=${t.tour_id}" class="btn btn-primary">View Profile</a>
+                                            <h5 class="title">Phone Number: ${t.phone_number}</h5>                                            
+                                            <a href="MyTourDetail?tourId=${t.tour_id}" class="btn btn-primary">Manage</a>
                                         </div>
                                     </div>
                                 </div>

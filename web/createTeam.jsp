@@ -57,7 +57,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-8">
-                            <form action="team">
+                            <form action="teamManagement">
                                 <div class="form-group">
                                     <label for="team_name" class="form-label">Team Name</label>
                                     <input type="text" name="team_name" class="form-control" placeholder="Enter your team name" required>

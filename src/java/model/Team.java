@@ -123,5 +123,10 @@ public class Team {
     public void setTour(int tour) {
         this.tour = tour;
     }
+
+    @Override
+    public String toString() {
+        return "Team{" + "team_id=" + team_id + ", team_name=" + team_name + ", phone_number=" + phone_number + ", email=" + email + ", address=" + address + ", description=" + description + ", coach=" + coach + ", tour=" + tour + '}';
+    }
     
 }

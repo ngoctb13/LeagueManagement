@@ -1,3 +1,4 @@
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@page import="model.Sponsor"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -37,15 +38,7 @@
         }
     </style>
     <body class="body-bg">
-        <!--[if lt IE 8]>
-                <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-            <![endif]-->
-        <!-- preloader area start -->
-        <div id="preloader">
-            <div class="loader"></div>
-        </div>
-        <!-- preloader area end -->
-        <!-- main wrapper start -->
+        
         <div class="horizontal-main-wrapper">
             <!-- main header area start -->
             <jsp:include page="LeaugeLayout/header.jsp"/>
@@ -73,17 +66,17 @@
                                     <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="requestJoinLeauge">
+                                    <form action="joinTour" method="POST">
+                                        <input type="hidden" id="tour_name" name="tour_id" value="${gotTour.tour_id}" >
                                         <div class="row">
                                             <div class="col-4">
                                                 <label for="cars">Select your team: </label>
                                             </div>
                                             <div class="col-4">
-                                                <select name="cars" id="cars">
-                                                    <option value="volvo">Volvo</option>
-                                                    <option value="saab">Saab</option>
-                                                    <option value="mercedes">Mercedes</option>
-                                                    <option value="audi">Audi</option>
+                                                <select name="mySelect" id="cars">
+                                                    <c:forEach items="${requestScope.teamList}" var="t">
+                                                        <option value="${t.team_id}">${t.team_name}</option>
+                                                    </c:forEach>
                                                 </select>
                                             </div>                                          
                                         </div>                                        

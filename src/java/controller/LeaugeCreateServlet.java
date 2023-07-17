@@ -18,12 +18,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
 import model.Tour;
 import model.User;
 
@@ -54,7 +54,7 @@ public class LeaugeCreateServlet extends HttpServlet {
         //------------------------------------------------------------
         Part part = request.getPart("avatar_leauge");
         String fileName = extractFileName(part);
-        String savePath = "C:\\Users\\Admin\\Desktop\\LeagueManagement\\web\\images" + File.separator + fileName;
+        String savePath = "C:\\Users\\HP\\Documents\\GitHub\\LeagueManagement\\web\\images" + File.separator + fileName;
         File fileSaveDir = new File(savePath);
         part.write(savePath + File.separator);
 //        Part file = request.getPart("avatar_leauge");

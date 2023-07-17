@@ -9,7 +9,7 @@
 <div class="sidebar-menu">
     <div class="sidebar-header">
         <div class="logo">
-            <a href="index.html"><img src="images/SOCCER.png" alt="logo"></a>
+            <a href="home.jsp"><img src="images/SOCCER.png" alt="logo"></a>
         </div>
     </div>
     <div class="main-menu">
@@ -19,10 +19,13 @@
                     <li class="active">
                         <a href="javascript:void(0)" aria-expanded="true"><i class="ti-palette"></i><span>Team Management</span></a>
                         <ul class="collapse">
-                            <li class="active"><a href="teamList">Team List</a></li>                         
+                            <li class=""><a href="teamList">Team List</a></li>       
+                            <li class=""><a href="myLeauge">My Leauge Created</a></li>
+                            <li class=""><a href="leaugeMeJoin">Leauge Me Join</a></li>
+                            <li class=""><a href="InviteOfMyTeam">Invite Of My Team</a></li>
                         </ul>
                     </li>
-                    <li class="active"><a href="myLeauge">My Leauge</a></li>
+
                 </ul>
             </nav>
         </div>
