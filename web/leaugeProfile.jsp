@@ -144,9 +144,10 @@
                                     </div>
                                     <div class="donater">
                                         
-                                        <c:forEach items="<%=sponsorList%>" var="s">
-                                            <div class="img-donate"><a href="${s.link}"><img src="${s.image}" alt=""></a></div>
-                                                </c:forEach>
+                                        <div class="img-donate"><a href="https://www.facebook.com/zamyshop.vn"><img src="./images/shop.png" alt=""></a></div>
+                                        <div class="img-donate"><a href="https://www.facebook.com/zamyshop.vn"><img src="./images/com.jpg" alt=""></a></div>    
+                                        <div class="img-donate"><a href="https://www.facebook.com/zamyshop.vn"><img src="./images/bp.jpeg" alt=""></a></div>
+                                                
                                     </div>
                                 </div>
                                 <div class="col-12 mt-5">
