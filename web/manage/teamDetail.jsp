@@ -137,15 +137,15 @@
             }
 
             /* The Close Button */
-            .close {
+            .close, update-close {
                 color: white;
                 padding: 10px;
                 float: right;
                 margin: 10px 10px 0 10px;
             }
 
-            .close:hover,
-            .close:focus {
+            .close, update-close :hover,
+            .close, update-close :focus {
                 color: #000;
                 text-decoration: none;
                 cursor: pointer;
@@ -188,7 +188,6 @@
 
         <div id="inviteModal" class="modal1 hide">
             <div class="modal_inner">
-
                 <form action="inviteMember" method="">
                     <div class="modal_header3">
                         <div class="icon_exit"><span class="fa fa-times">
@@ -257,7 +256,7 @@
                                                 document.getElementsByName("time")[0].setAttribute('min', today);
                                             }
                                         </script> 
-                                        <input type="date" name="time" id="add-time" required="required">
+                                        <input type="date" name="time" id="add-time" value="2023-09-08" required="required">
                                     </td>
                                 </tr>
                             </table>
@@ -267,7 +266,59 @@
                     </form>
                 </div>
             </div>
+        </div>
 
+        <!-- Update Schedule Modal -->
+        <div id="update-schedule-modal" class="modal" >
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="update-close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <form action="updateTeamSchedule" method="">
+                        <div class="modal_header3">
+                            <table class="table">
+                                <tr>
+                                    <th>
+                                        <label for="update-title">Title:</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" name="update-title" id="update-title" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label for="update-location">Location:</label>
+                                    </th>
+                                    <td>
+                                        <input type="text" name="update-location" id="update-location" required="required">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <label for="update-time">Time:</label>
+                                    </th>
+                                    <td>
+                                        <script type="text/javascript">
+                                            window.onload = function () {//from ww  w . j  a  va2s. c  o  m
+                                                var today = new Date().toISOString().split('T')[0];
+                                                document.getElementsByName("update-time")[0].setAttribute('min', today);
+                                            }
+                                        </script> 
+                                        <input type="date" name="update-time" id="updated-time" required="required">
+                                    </td>
+                                </tr>
+                            </table>
+                            <input type="hidden" name="team_schedule_id">
+                            <input type="hidden" name="team_id">
+                            <input type="hidden" name="user_id">
+                            <input type="submit" value="Update Schedule">
+                        </div>  
+
+                    </form>
+                </div>
+            </div>
         </div>
 
         <!--[if lt IE 8]>
@@ -557,7 +608,7 @@
                                                                                 <td>${ts.location}</td>
                                                                                 <td>${ts.time}</td>
                                                                                 <td>
-                                                                                    <a href="#" onclick="updateTeamSchedule(${ts.team_schedule_id},<%=user.getUser_id()%>,${ts.team_id})">Update</a>
+                                                                                    <a href="#" onclick="updateTeamSchedule(${ts.title},${ts.location},${ts.time},${ts.team_schedule_id},<%=user.getUser_id()%>,${ts.team_id})">Update</a>
                                                                                     <a href="#" onclick="deleteTeamSchedule(${ts.team_schedule_id},<%=user.getUser_id()%>,${ts.team_id})">Delete</a>
                                                                                 </td>
                                                                             </tr>
@@ -659,8 +710,26 @@
                                                                                                 modal.style.display = "none";
                                                                                             }
                                                                                         }
-                                                                                        
-                                                                                        function deleteTeamSchedule (team_schedule_id, user_id, team_id) {
+
+                                                                                        var updateScheduleModal = document.getElementById("update-schedule-modal");
+
+                                                                                        var updateSpan = document.getElementsByClassName("update-close")[0];
+                                                                                        updateSpan.onclick = function () {
+                                                                                            updateScheduleModal.style.display = "none";
+                                                                                        }
+
+                                                                                        function updateTeamSchedule(title, location, time, team_schedule_id, user_id, team_id) {
+                                                                                            document.getElementsByName("team_schedule_id")[0].setAttribute("value", team_schedule_id);
+                                                                                            document.getElementsByName("team_id")[0].setAttribute("value", team_id);
+                                                                                            document.getElementsByName("user_id")[0].setAttribute("value", user_id);
+                                                                                            
+//                                                                                            document.getElementsByName("update-title")[0].setAttribute("value", "title");
+//                                                                                            document.getElementsByName("update-location")[0].setAttribute("value", "location");
+//                                                                                            document.getElementsById("updated-time").value = "2023-08-09";
+                                                                                            updateScheduleModal.style.display = "block";
+                                                                                        }
+
+                                                                                        function deleteTeamSchedule(team_schedule_id, user_id, team_id) {
                                                                                             var option = confirm('Are you sure to delete this schedule?');
                                                                                             if (option === true) {
                                                                                                 window.location.href = 'deleteTeamSchedule?team_schedule_id=' + team_schedule_id + '&user_id=' + user_id + '&team_id=' + team_id;
