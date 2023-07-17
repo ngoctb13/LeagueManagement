@@ -191,6 +191,26 @@
     <servlet>
         <servlet-name>UpdateTeamScheduleServlet</servlet-name>
         <servlet-class>controller.TeamScheduleController.UpdateTeamScheduleServlet</servlet-class>
+      </servlet>
+    <servlet>
+        <servlet-name>ArrangeMatchServlet</servlet-name>
+        <servlet-class>controller.ArrangeMatchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RandomMatchServlet</servlet-name>
+        <servlet-class>controller.RandomMatchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListMatchServlet</servlet-name>
+        <servlet-class>controller.ListMatchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateMatchesServlet</servlet-name>
+        <servlet-class>controller.UpdateMatchesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateMatchesScheduleServlet</servlet-name>
+        <servlet-class>controller.UpdateMatchesScheduleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -386,6 +406,26 @@
     <servlet-mapping>
         <servlet-name>UpdateTeamScheduleServlet</servlet-name>
         <url-pattern>/updateTeamSchedule</url-pattern>
+      </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArrangeMatchServlet</servlet-name>
+        <url-pattern>/arrangeMatch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RandomMatchServlet</servlet-name>
+        <url-pattern>/randomMatch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListMatchServlet</servlet-name>
+        <url-pattern>/listMatch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMatchesServlet</servlet-name>
+        <url-pattern>/updateMatches</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMatchesScheduleServlet</servlet-name>
+        <url-pattern>/updateMatchesSchedule</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

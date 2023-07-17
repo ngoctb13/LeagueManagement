@@ -25,7 +25,7 @@
                 <a href="participantList?tour_id=<%=recentTour.getTour_id()%>"><i class="ti-pie-chart"></i><span>Participant List</span></a>
             </li>
             <li>
-                <a href="#"><i class="ti-pie-chart"></i><span>Matches</span></a>
+                <a href="listMatch?tour_id=<%=recentTour.getTour_id()%>"><i class="ti-pie-chart"></i><span>Matches</span></a>
             </li>
             <li>
                 <a href="#"><i class="ti-pie-chart"></i><span>Standings</span></a>
@@ -35,6 +35,7 @@
                 <ul class="submenu">
                     <li><a href="leaugeSetting.jsp?tour_id=<%=recentTour.getTour_id()%>">Leauge Update</a></li>
                     <li><a href="#">Authorization</a></li>
+                    <li><a href="arrangeMatch?tour_id=<%=recentTour.getTour_id()%>">Arrange Matches</a></li>
                 </ul>
             </li>           
         </ul>

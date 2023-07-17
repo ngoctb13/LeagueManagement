@@ -2,20 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/manage/myleauge.jsp</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/manage/leaugeMeJoin.jsp</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/manage/layout/sidebar.jsp</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/controller/UserUpdateServlet.java</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/controller/InviteMemberServlet.java</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/tournament.jsp</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/web/manage/InviteOfMyTeam.jsp</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/controller/AcceptInviteToTour.java</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/dao/TourInviteDAO.java</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/dao/TourDAO.java</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/controller/MyTourDetail.java</file>
-            <file>file:/C:/Users/asus/Documents/DoSonProject/Sonnehihi/src/java/controller/LeaugeMeJoinServlet.java</file>
-        </group>
         <group name="PRJ">
             <file>file:/C:/Users/admin2/OneDrive/Desktop/LeagueManagement-sonne/LeagueManagement-sonne/src/java/controller/TeamListServlet.java</file>
             <file>file:/C:/Users/admin2/OneDrive/Desktop/LeagueManagement-sonne/LeagueManagement-sonne/web/admin/registeredTeamList.jsp</file>
@@ -76,6 +62,20 @@
             <file>file:/C:/Users/admin2/OneDrive/Desktop/LeagueManagement-sonne/LeagueManagement-sonne/src/java/controller/InvitationListServlet.java</file>
             <file>file:/C:/Users/admin2/OneDrive/Desktop/LeagueManagement-sonne/LeagueManagement-sonne/src/java/controller/FeedbackServlet.java</file>
             <file>file:/C:/Users/admin2/OneDrive/Desktop/LeagueManagement-sonne/LeagueManagement-sonne/src/java/controller/MyLeaugeListServlet.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/src/java/dao/TourDAO.java</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/manage/myleauge.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/createLeauge.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/createTeam.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/src/java/controller/LeaugeCreateServlet.java</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/src/java/controller/ForgotPasswordServlet.java</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/tournament.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/leaugeSetting.jsp</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/src/java/dao/PlayerDAO.java</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/src/java/controller/LeaugeSettingServlet.java</file>
+            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>
