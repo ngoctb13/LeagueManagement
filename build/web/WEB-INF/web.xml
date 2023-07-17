@@ -180,6 +180,10 @@
         <servlet-name>DeclineInviteToTour</servlet-name>
         <servlet-class>controller.DeclineInviteToTour</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ArrangeMatchServlet</servlet-name>
+        <servlet-class>controller.ArrangeMatchServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -362,6 +366,10 @@
     <servlet-mapping>
         <servlet-name>DeclineInviteToTour</servlet-name>
         <url-pattern>/DeclineInviteToTour</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArrangeMatchServlet</servlet-name>
+        <url-pattern>/arrangeMatch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

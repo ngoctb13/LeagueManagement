@@ -206,6 +206,37 @@ public class TourDAO extends DBContext {
         }
         return tour;
     }
+    
+    public ArrayList<Team> getListTeamByTour(int tour_id) throws Exception {
+        try {
+            String query = "SELECT * FROM team where tour = ?";
+            con = getConnection();
+            ps = con.prepareStatement(query);
+            ps.setInt(1, tour_id);
+            rs = ps.executeQuery();
+            ArrayList<Team> list = new ArrayList<>();
+            while (rs.next()) {
+                Team team = null;
+                int team_id = rs.getInt("team_id");
+                String team_name = rs.getString("team_name");
+                String phone_number = rs.getString("phone_number");
+                String email = rs.getString("email");
+                String address = rs.getString("address");
+                String description = rs.getString("description");
+                int coach = rs.getInt("coach");
+                int tour = rs.getInt("tour");
+                team = new Team(team_id, team_name, phone_number, email, address, description, coach, tour);
+                list.add(team);
+            }
+            return list;
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
 
     public static void main(String[] args) throws Exception {
         TourDAO t = new TourDAO();
