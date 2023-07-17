@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+
 import model.Tour;
 
 /**
@@ -56,7 +57,7 @@ public class LeaugeSettingServlet extends HttpServlet {
         //----------------------------------------------------------------
         Part part = request.getPart("avatar_leauge");
         String fileName = extractFileName(part);
-        String savePath = "C:\\Users\\Admin\\Desktop\\LeagueManagement\\web\\images" + File.separator + fileName;
+        String savePath = "D:\\1_SWP391\\All for Java\\LeagueManagement\\web\\images" + File.separator + fileName;
         File fileSaveDir = new File(savePath);
         part.write(savePath + File.separator);       
         //----------------------------------------------------------------

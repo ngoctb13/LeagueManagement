@@ -4,17 +4,25 @@
  */
 package controller;
 
+import dao.TeamDAO;
 import dao.TourDAO;
+import dao.TourInviteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Team;
 import model.Tour;
+import model.TourInvite;
+import model.User;
 
 /**
  *
@@ -40,6 +48,24 @@ public class LeaugeProfileServlet extends HttpServlet {
         Tour gotTour = dao.getTourByID(tour_id);
         session.setAttribute("recentTour", gotTour);
         
+        User user = (User) session.getAttribute("user");            
+        int userId = user.getUser_id();
+
+        //this code is transient
+        TeamDAO tDao = new TeamDAO();
+        TourInviteDAO tourDAO = new TourInviteDAO();
+        
+        List<Team> teamList1 = tDao.getListTeamByCoach(userId);
+        List<Team> teamList = new ArrayList<>();
+        teamList.addAll(teamList1);
+        for (Team team : teamList1) {
+            if (tourDAO.FindTourTeam(team.getTeam_id(), tour_id) != null) {
+                teamList.remove(team);
+            }
+        }
+        
+        
+        request.setAttribute("teamList", teamList);
         request.setAttribute("gotTour", gotTour);
         request.getRequestDispatcher("leaugeProfile.jsp").forward(request, response);
     }
