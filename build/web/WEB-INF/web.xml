@@ -181,6 +181,18 @@
         <servlet-class>controller.DeclineInviteToTour</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddTeamScheduleServlet</servlet-name>
+        <servlet-class>controller.TeamScheduleController.AddTeamScheduleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteTeamScheduleServlet</servlet-name>
+        <servlet-class>controller.TeamScheduleController.DeleteTeamScheduleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateTeamScheduleServlet</servlet-name>
+        <servlet-class>controller.TeamScheduleController.UpdateTeamScheduleServlet</servlet-class>
+      </servlet>
+    <servlet>
         <servlet-name>ArrangeMatchServlet</servlet-name>
         <servlet-class>controller.ArrangeMatchServlet</servlet-class>
     </servlet>
@@ -383,6 +395,18 @@
         <servlet-name>DeclineInviteToTour</servlet-name>
         <url-pattern>/DeclineInviteToTour</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTeamScheduleServlet</servlet-name>
+        <url-pattern>/addTeamSchedule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteTeamScheduleServlet</servlet-name>
+        <url-pattern>/deleteTeamSchedule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateTeamScheduleServlet</servlet-name>
+        <url-pattern>/updateTeamSchedule</url-pattern>
+      </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ArrangeMatchServlet</servlet-name>
         <url-pattern>/arrangeMatch</url-pattern>
