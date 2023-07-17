@@ -45,7 +45,7 @@ public class AddSponsorServlet extends HttpServlet {
         int tour_id = tour.getTour_id();
         Part part = request.getPart("imageSponsor");
         String fileName = extractFileName(part);
-        String savePath = "C:\\Users\\HP\\Documents\\GitHub\\LeagueManagement\\web\\images" + File.separator + fileName;
+        String savePath = "C:\\Users\\Admin\\Desktop\\LeagueManagement\\web\\images" + File.separator + fileName;
         File fileSaveDir = new File(savePath);
         part.write(savePath + File.separator);
         String link = request.getParameter("linkSponsor");
