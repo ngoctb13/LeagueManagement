@@ -1,32 +1,29 @@
-package controller;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package controller;
 
-import dao.TeamDAO;
-import dao.UserDAO;
+import dao.SponsorDAO;
+import java.io.File;
 import java.io.IOException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-
-import model.Join_Team_Request;
-
-import model.Team;
-import model.User;
+import javax.servlet.http.Part;
+import model.Sponsor;
 
 /**
  *
  * @author HP
  */
-public class JoinTeamRequestServlet extends HttpServlet {
+@MultipartConfig
+public class UpdateSponsorServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,24 +36,34 @@ public class JoinTeamRequestServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-
-        int team_id = Integer.parseInt(request.getParameter("team_id"));
-        int userID = user.getUser_id();
-        String shirt_number = request.getParameter("shirt_number");
-        String position = request.getParameter("position");
-        UserDAO userDAO = new UserDAO();
-        String status = "PENDING";
-        Join_Team_Request JoinRequest = new Join_Team_Request(userID, team_id, status, shirt_number, position);
-        System.out.println(JoinRequest);
-        int r = userDAO.addJoinTeamRequest(JoinRequest);
-        if (r > 0) {
-            response.sendRedirect("teamProfile?team_ID="+team_id);
-        }else{ 
-            response.sendRedirect("teamProfile?team_ID="+team_id);
+        response.setContentType("text/html;charset=UTF-8");
+        int sponsor_id=Integer.parseInt(request.getParameter("sponsor_id"));
+        SponsorDAO dao = new SponsorDAO();
+        Sponsor  s = dao.getSponsorBySponsorID(sponsor_id);
+        int tour_id=s.getTour_id();
+        Part part = request.getPart("imageUpdate");
+        String fileName = extractFileName(part);
+        String savePath = "C:\\Users\\HP\\Documents\\GitHub\\LeagueManagement\\web\\images" + File.separator + fileName;
+        File fileSaveDir = new File(savePath);
+        part.write(savePath + File.separator);
+        String link= request.getParameter("linkUpdate");
+        Sponsor sponsor = new Sponsor(sponsor_id,tour_id,fileName,link);
+        int update = dao.updateSponsor(sponsor);
+        if(update>0){
+            response.sendRedirect("sponsorList?tour_id="+tour_id);
+        }else{
+            response.sendRedirect("sponsorList?tour_id="+tour_id);
         }
-
+    }
+    private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length() - 1);
+            }
+        }
+        return "";
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -74,7 +81,7 @@ public class JoinTeamRequestServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(JoinTeamRequestServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateSponsorServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -92,7 +99,7 @@ public class JoinTeamRequestServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(JoinTeamRequestServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateSponsorServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

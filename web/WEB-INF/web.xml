@@ -212,6 +212,22 @@
         <servlet-name>UpdateMatchesScheduleServlet</servlet-name>
         <servlet-class>controller.UpdateMatchesScheduleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddSponsorServlet</servlet-name>
+        <servlet-class>controller.AddSponsorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SponsorListServlet</servlet-name>
+        <servlet-class>controller.SponsorListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSponsorServlet</servlet-name>
+        <servlet-class>controller.UpdateSponsorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteSponsorServlet</servlet-name>
+        <servlet-class>controller.DeleteSponsorServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -426,6 +442,22 @@
     <servlet-mapping>
         <servlet-name>UpdateMatchesScheduleServlet</servlet-name>
         <url-pattern>/updateMatchesSchedule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSponsorServlet</servlet-name>
+        <url-pattern>/addSponsor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SponsorListServlet</servlet-name>
+        <url-pattern>/sponsorList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSponsorServlet</servlet-name>
+        <url-pattern>/updateSponsor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteSponsorServlet</servlet-name>
+        <url-pattern>/deleteSponsor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

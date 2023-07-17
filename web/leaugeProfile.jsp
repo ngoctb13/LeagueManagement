@@ -1,6 +1,11 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@page import="model.Sponsor"%>
+<%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
+<%List<Sponsor> sponsorList = (List) session.getAttribute("sponsorList");
+
+%>
 <html class="no-js" lang="en">
     <%@page contentType="text/html" pageEncoding="UTF-8"%>
     <head>
@@ -22,6 +27,8 @@
         <link rel="stylesheet" href="assets_1/css/default-css.css">
         <link rel="stylesheet" href="assets_1/css/styles.css">
         <link rel="stylesheet" href="assets_1/css/responsive.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
         <!-- modernizr css -->
         <script src="assets_1/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
@@ -99,6 +106,49 @@
                                     </div>
                                 </div>
                                 <img src="https://myleague.vn/content/images/sport/football/cover.png?id=200" style="width: 1500px">
+                                <style>
+                                    .icon-dola{
+                                        width: 100%;
+                                        font-size: 18px;
+                                        color: #e83e8c;
+                                        margin-bottom: 5px;
+                                    }
+                                    .icon-dola i{
+                                        width: 30px;
+                                        display: inline-block;
+                                        text-align: center;
+                                    }
+                                    .donater{
+                                        display: flex;
+                                        width: 100%;
+                                        justify-content: center;
+                                        align-items: center;
+                                        text-align: center;
+                                    }
+                                    .img-donate{
+                                        width: 33.333%;
+                                        margin-right: 10px;
+                                    }
+                                    .img-donate img{
+                                        width: 100%;
+                                        transition: transform 0.3s;
+                                    }
+                                    .img-donate :hover {
+                                        opacity: 0.9;
+                                        transform: scale(1.07);
+                                    }
+                                </style>
+                                <div class="row col-12 mt-5 donate-">
+                                    <div class="icon-dola">
+                                        <i class="fa-regular fa-money-bill-1"></i> Nhà Tài Trợ
+                                    </div>
+                                    <div class="donater">
+                                        
+                                        <c:forEach items="<%=sponsorList%>" var="s">
+                                            <div class="img-donate"><a href="${s.link}"><img src="${s.image}" alt=""></a></div>
+                                                </c:forEach>
+                                    </div>
+                                </div>
                                 <div class="col-12 mt-5">
                                     <div class="row">
                                         <div class="col-lg-4">
