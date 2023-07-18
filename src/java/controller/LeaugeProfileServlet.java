@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.SponsorDAO;
 import dao.TeamDAO;
 import dao.TourDAO;
 import dao.TourInviteDAO;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Sponsor;
 import model.Team;
 import model.Tour;
 import model.TourInvite;
@@ -63,7 +65,9 @@ public class LeaugeProfileServlet extends HttpServlet {
                 teamList.remove(team);
             }
         }
-        
+        SponsorDAO sponsorDao = new SponsorDAO();
+        List<Sponsor> sponsorList = sponsorDao.getListSponsorByTourID(tour_id);
+        request.setAttribute("list", sponsorList);
         
         request.setAttribute("teamList", teamList);
         request.setAttribute("gotTour", gotTour);
