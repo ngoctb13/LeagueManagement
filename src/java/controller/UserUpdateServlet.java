@@ -13,16 +13,19 @@ import java.util.logging.Logger;
 
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import model.User;
 
 /**
  *
  * @author Admin
  */
+@MultipartConfig
 public class UserUpdateServlet extends HttpServlet {
 
     /**
@@ -42,7 +45,11 @@ public class UserUpdateServlet extends HttpServlet {
         String email = request.getParameter("email");
         String phone_number = request.getParameter("phone_number");
         String address = request.getParameter("address");
-        String avatar_link = request.getParameter("avatar_link");
+        Part part = request.getPart("avatarProfile");
+        String fileName = extractFileName(part);
+        String savePath = "C:\\Users\\HP\\Documents\\GitHub\\LeagueManagement\\web\\images" + File.separator + fileName;
+        File fileSaveDir = new File(savePath);
+        part.write(savePath + File.separator);
         if (full_name.length() >= 50 || !full_name.matches("[a-zA-Z\\s]+")) {
         request.setAttribute("status", "FAILED");
         request.getRequestDispatcher("profile.jsp").forward(request, response);
@@ -56,7 +63,7 @@ public class UserUpdateServlet extends HttpServlet {
        
         UserDAO dao = new UserDAO();
 
-        User user = new User(full_name, phone_number, avatar_link, email, address);
+        User user = new User(full_name, phone_number, fileName, email, address);
 
         int update = dao.updateUserProfile(user);
 
@@ -71,6 +78,16 @@ public class UserUpdateServlet extends HttpServlet {
             request.setAttribute("status", "FAIlED");
             request.getRequestDispatcher("profile.jsp").forward(request, response);
         }
+    }
+    private String extractFileName(Part part) {
+        String contentDisp = part.getHeader("content-disposition");
+        String[] items = contentDisp.split(";");
+        for (String s : items) {
+            if (s.trim().startsWith("filename")) {
+                return s.substring(s.indexOf("=") + 2, s.length() - 1);
+            }
+        }
+        return "";
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
