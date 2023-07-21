@@ -1,6 +1,14 @@
+<%@page import="model.User"%>
+<%@page import="dao.UserDAO"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    User user = (User) session.getAttribute("user");
+            int user_id = user.getUser_id();
+        UserDAO dao = new UserDAO();
+        User gotUser= dao.getUserByID(user_id);
+    %>
 <html lang="vi">
 
     <head>
@@ -49,53 +57,7 @@
             </div>
 
             <div class="container">
-                <div class="row">
-                   
-            <!-- left column -->
-            <div class="col-md-3" style="padding-top: 50px;">
-                <div class="text-center">
-                    <div class="anh" style="width: 100%; height: 100%;">
-                        <img src="${sessionScope.user.avatar_link}" id="img" class="avatar img-circle img-thumbnail"
-                            alt="avatar" style="width: 100%; height: 100%;">
-                    </div>
-                    <h6>Upload a different photo...</h6>
-                    <form action="uploadAvatar" method="POST" enctype="multipart/form-data">
-                        <input type="file" name="avatarFile" id="addImage" accept="image/png, image/jpeg"
-                            onchange="chooseFile(file)" class="form-control">
-                        <button type="submit" class="btn btn-primary">Upload</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="col-md-9 personal-info" style="padding-top: 50px;">
-        <script>
-            var imageInput = document.getElementById("addImage");
-            var selectedImage = document.getElementById("img");
-
-            // Add an event listener to the input file element
-            imageInput.addEventListener("change", function(event) {
-            var file = event.target.files[0]; // Get the selected file
-
-            if (file) {
-                var reader = new FileReader(); // Create a FileReader object
-
-                reader.onload = function(e) {
-                selectedImage.src = e.target.result; // Set the source of the image element to the selected file
-                selectedImage.style.display = "block"; // Display the image element
-                };
-
-                reader.readAsDataURL(file); // Read the selected file as a Data URL
-            }
-            });
-        </script> 
-
-                <div class="col-md-9 personal-info" style="padding-top: 50px;">
-                    <!--                        <div class="alert alert-info alert-dismissable">
-                                                <a class="panel-close close" data-dismiss="alert">×</a> 
-                                                <i class="fa fa-coffee"></i>
-                                                This is an <strong>.alert</strong>. Use this to show important messages to the user.
-                                            </div>-->
-                    <c:if test="${status.equals('SUCCESS')}">
+                 <c:if test="${status.equals('SUCCESS')}">
                         <div class="alert alert-info alert-dismissable">
                             <a class="panel-close close" data-dismiss="alert">×</a> 
                             <i class="fa fa-coffee"></i>
@@ -108,61 +70,85 @@
                             <i class="fa fa-coffee"></i>
                             UPDATE PROFILE <strong>FAILED!</strong>.
                         </div>
-                    </c:if>
-                    <form action="userUpdate" class="form-horizontal"  role="form" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Email:</label>
-                            <div class="col-lg-8">
-                                <input id="user_email" name="email" class="form-control" type="text" value="${sessionScope.user.email}" required onkeyup="emailValidate()">
-                                <div style="text-align:center">
-                                    <span id="email-erorr"></span>
-                                </div>
-                            </div>
-                        </div> 
+                    </c:if>  
+                <form action="userUpdate" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                   
+                    <!-- left column -->
 
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Your Name:</label>
-                            <div class="col-lg-8">
-                                <input id="full_name" name="full_name" class="form-control" type="text" value="${sessionScope.user.full_name}" required onkeyup="validateName()">
-                                <div style="text-align:center">
-                                    <span id="name-erorr"></span>
-                                </div>
+                    <div class="col-md-3" style="padding-top: 50px;">
+                        <div class="text-center">
+                            <div class="" style="width: 100%; height: 100%;">
+                                <img  alt="imagePreview" src="./images/<%= gotUser.getAvatar_link() %>" 
+                                      id="imagePreview" style="width: 100%; height: 100%;">
                             </div>
+                            <input name="avatarProfile" type="file" class="form-control"  id="imageInput" onchange="previewImage(event)">
+
                         </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Your Phone Number:</label>
-                            <div class="col-lg-8">
-                                <input id="phone_number" name="phone_number" class="form-control" type="text" value="${sessionScope.user.phone_number}" required onkeyup="validatePhoneNumber()">
-                                <div style="text-align:center">
-                                    <span id="phone-erorr"></span>
-                                </div>
-                            </div>  
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Address:</label>
-                            <div class="col-lg-8">
-                                <input name="address" class="form-control" type="text" value="${sessionScope.user.address}" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-3 control-label">Your Avatar Link</label>
-                            <div class="col-lg-8">
-                                <input name="avatar_link" class="form-control" type="text" value="${sessionScope.user.avatar_link}" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-lg-3" style="padding-top: 10px;">
-                                <button type="submit" onclick="return (emailValidate() && validatePassword() && validateName() && validatePhoneNumber())" class="btn btn-primary py-2 px-5">Update</button>
-                            </div>
-                        </div>                               
-                    </form>
-                    <div class="col-lg-3" style="padding-top: 10px;">
-                        <a href="deleteAccountRequest.jsp">
-                            <button  class="btn btn-primary py-2 px-5">Delete Your Account</button>
-                        </a> 
                     </div>
+
+                    <div class="col-md-9 personal-info" style="padding-top: 50px;">
+
+
+                        <div class="col-md-9 personal-info" style="padding-top: 50px;">
+                            <!--                        <div class="alert alert-info alert-dismissable">
+                                                        <a class="panel-close close" data-dismiss="alert">×</a> 
+                                                        <i class="fa fa-coffee"></i>
+                                                        This is an <strong>.alert</strong>. Use this to show important messages to the user.
+                                                    </div>-->
+
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Email:</label>
+                                <div class="col-lg-8">
+                                    <input id="user_email" name="email" class="form-control" type="text" value="<%= gotUser.getEmail() %>" required onkeyup="emailValidate()">
+                                    <div style="text-align:center">
+                                        <span id="email-erorr"></span>
+                                    </div>
+                                </div>
+                            </div> 
+
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Your Name:</label>
+                                <div class="col-lg-8">
+                                    <input id="full_name" name="full_name" class="form-control" type="text" value="<%= gotUser.getFull_name() %>" required onkeyup="validateName()">
+                                    <div style="text-align:center">
+                                        <span id="name-erorr"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Your Phone Number:</label>
+                                <div class="col-lg-8">
+                                    <input id="phone_number" name="phone_number" class="form-control" type="text" value="<%= gotUser.getPhone_number() %>" required onkeyup="validatePhoneNumber()">
+                                    <div style="text-align:center">
+                                        <span id="phone-erorr"></span>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Address:</label>
+                                <div class="col-lg-8">
+                                    <input name="address" class="form-control" type="text" value="<%= gotUser.getAddress() %>" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-lg-3" style="padding-top: 10px;">
+                                    <button type="submit" onclick="return (emailValidate() && validatePassword() && validateName() && validatePhoneNumber())" class="btn btn-primary py-2 px-5">Update</button>
+                                </div>
+                            </div>                               
+
+                            <div class="col-lg-3" style="padding-top: 10px;">
+                                <a href="deleteAccountRequest.jsp">
+                                    <button  class="btn btn-primary py-2 px-5">Delete Your Account</button>
+                                </a> 
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
+            </form>
         </div>
 
 
@@ -217,7 +203,7 @@
             function validatePhoneNumber() {
                 var phone_number = document.getElementById("phone_number").value;
                 var text = document.getElementById("phone-erorr");
-                
+
                 if (phone_number.length !== 10) {
                     text.innerHTML = "Phone number must be 10 digits!";
                     text.style.color = "#ff0000";
@@ -225,6 +211,22 @@
                 } else {
                     text.innerHTML = "";
                     return true;
+                }
+            }
+        </script>
+        <script>
+            function previewImage(event) {
+                var input = event.target;
+                var preview = document.getElementById('imagePreview');
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        preview.src = e.target.result;
+                    };
+
+                    reader.readAsDataURL(input.files[0]);
                 }
             }
         </script>
