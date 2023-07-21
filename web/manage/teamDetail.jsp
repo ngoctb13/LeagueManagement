@@ -529,6 +529,8 @@
                                                                             <th>Shirt number</th>
                                                                             <th>Position</th>
                                                                             <th>Status</th>
+                                                                            <th>Level</th>
+                                                                            <th>Age</th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -540,6 +542,8 @@
                                                                                     <td>${rq.shirt_number}</td>
                                                                                     <td>${rq.position}</td>
                                                                                     <td>${rq.status}</td>
+                                                                                    <td>${rq.level}</td>
+                                                                                    <td>${rq.age}</td>
                                                                                     <td class="text-end">
                                                                                         <a href="responseTeamRequest?requestID=${rq.requestID}" class="btn btn-outline-info btn-rounded">Accept</a>
                                                                                         <a href="declineTeamRequest?requestID=${rq.requestID}" class="btn btn-outline-danger btn-rounded">Decline</a>
