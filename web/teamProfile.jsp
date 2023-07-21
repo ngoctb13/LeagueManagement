@@ -1,5 +1,6 @@
 <%@page import="model.Team"%>
 <%@page import="model.User"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +81,7 @@
                 border: none;
 
             }
-            .modal_inner form table tr td input, .modal_inner form input {
+            .modal_inner form table tr td input, .modal_inner form input,select  {
                 padding: 10px;
                 border-radius: 10px;
                 border: none;
@@ -107,11 +108,17 @@
             .row_card{
                 padding: 0;
             }
+            .container.main_product {
+                justify-content: center;
+                align-items: center;
+            }
         </style>
 
         <div class="modal1 hide">
+
             <div class="modal_inner">
-                <form id="myForm" action="joinTeamRequest" method=""><div class="modal_header3">
+
+                <form id="myForm" action="joinTeamRequest" method=""><div class="modal_header3" onsubmit="validateAndSubmit()" >
                         <div class="icon_exit"><span class="fa fa-times"></span></div>
                         <table class="table">
                             <tr>
@@ -122,15 +129,56 @@
                                 <th><label for="">Enter Your Position: </label></th>
                                 <td><input type="text" name="position" id="" value= "" required="Not empty"></td>
                             </tr>
+                            <tr>
+                                <th><label for="">Please select Level: </label></th>
+                                <td>
+                                    <select name="level" id="level">
+                                        <option value="hide" hidden></option>
+                                        <option value="Professional">Professional</option>
+                                        <option value="Semi Professional">Semi Professional</option>
+                                        <option value="High level">High level</option>
+                                        <option value="Intermediate">Intermediate</option>
+                                        <option value="Recreational">Recreational</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label for="">Please select Age: </label></th>
+                                <td>
+                                    <select name="age" id="age">
+                                        <option value="hide" hidden></option>
+                                        <option value="15-20">15-20</option>
+                                        <option value="21-25">21-25</option>
+                                        <option value="25-30">25-30</option>
+                                        <option value=">30">>30</option>
+                                    </select>
+                                </td>
+                            </tr>
                         </table>    
-                        <input type="submit" name="" id="" value= "Submit" style="width: 30%;">
+                        <input type="submit" name="" id="" value= "Submit"  style="width: 30%;">
 
                     </div> 
                 </form>
             </div>
         </div>
+        <c:if test="${error.equals('fail')}">
+            <div class="alert alert-info alert-dismissable">
+                <i class="fa fa-coffee"></i>
+                Sent request failed! <strong> Please choose your level and your age!</strong>.
+            </div>
+        </c:if>
+        <c:if test="${error.equals('ok')}">
+            <div class="alert alert-info alert-dismissable">
+                <i class="fa fa-coffee"></i>
+                Sent request<strong> successfully!</strong>.
+            </div>
+        </c:if>
+        
+       
+        
 
         <div class="site-wrap">
+            
 
             <div class="site-mobile-menu site-navbar-target">
                 <div class="site-mobile-menu-header">
@@ -402,16 +450,15 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
 
-        <script src="js/main.js"></script>
-        
+
         <script>
-            var form = document.getElementById("myForm");
-            var team_id = '<%= session.getAttribute("team_id")%>';
-            var hiddenInput = document.createElement("input");
-            hiddenInput.type = "hidden";
-            hiddenInput.name = "team_id";
-            hiddenInput.value = team_id;
-            form.appendChild(hiddenInput);
+                                        var form = document.getElementById("myForm");
+                                        var team_id = '<%= session.getAttribute("team_id")%>';
+                                        var hiddenInput = document.createElement("input");
+                                        hiddenInput.type = "hidden";
+                                        hiddenInput.name = "team_id";
+                                        hiddenInput.value = team_id;
+                                        form.appendChild(hiddenInput);
         </script>
         <script>
             var modal = document.querySelector('.modal1')
@@ -426,7 +473,21 @@
             andi.addEventListener('click', toggModal);
 
         </script>
+        <script>
+            // Hàm xử lý khi form submit
+            function validateAndSubmit() {
+                var selectedLevel = document.getElementById("level").value;
 
+                // Kiểm tra xem level có phải là "hidden"
+                if (selectedLevel === "hidden") {
+                    // Hiển thị thông báo alert yêu cầu chọn lại level
+                    alert("Please choose a valid level.");
+                    return false; // Chặn việc gửi yêu cầu form
+                }
+                // Nếu level hợp lệ, form sẽ được gửi lên server và xử lý bởi Servlet
+                return true;
+            }
+        </script>
     </body>
 
 </html>
