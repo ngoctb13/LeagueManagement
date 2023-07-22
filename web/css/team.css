@@ -21,17 +21,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
       display: flex;
       flex-wrap: wrap;
   } 
-  .main h2{color: #333;
+  .main h2 {
+    color: #333;
     font-weight: bold;
     text-transform: uppercase;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 }
-.main a{
+.main a {
     text-decoration: none;
     color: #ccc;
+    white-space: nowrap;
 }
-.main a:hover{
-    color: rgb(0 255 234 / 40%);
-    border-bottom: 1px dashed #11dce7;
+.main a:hover {
+    color: #ee1e46;
+    border-bottom: 1px dashed #ee1e46;
     font-weight: bolder;
 }
 .sanpham{
