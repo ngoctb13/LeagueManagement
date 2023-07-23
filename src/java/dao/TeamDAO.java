@@ -158,6 +158,21 @@ public class TeamDAO extends DBContext {
         }
         return status;
     }
+    public void acceptTeam(int team_id, int tour_id) throws Exception {
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("UPDATE team SET tour = ? WHERE team_id = ?;");           
+            ps.setInt(1, tour_id);
+            ps.setInt(2, team_id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
 
     public ArrayList<TeamSchedule> getTeamScheduleList(int team_id) throws Exception {
         try {
