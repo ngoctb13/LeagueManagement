@@ -122,11 +122,11 @@
                         <div class="icon_exit"><span class="fa fa-times"></span></div>
                         <table class="table">
                             <tr>
-                                <th><label for="" >Enter Your Shirt Number: </label></th>
+                                <th><label for="" >Enter Shirt Number You Want: </label></th>
                                 <td><input type="text" name="shirt_number" id="" value= "" required="Not empty"></td>
                             </tr>
                             <tr>
-                                <th><label for="">Enter Your Position: </label></th>
+                                <th><label for="">Enter Position You Want: </label></th>
                                 <td><input type="text" name="position" id="" value= "" required="Not empty"></td>
                             </tr>
                             <tr>
