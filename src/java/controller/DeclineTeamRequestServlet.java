@@ -47,11 +47,11 @@ public class DeclineTeamRequestServlet extends HttpServlet {
         if (decline > 0) {
             request.setAttribute("gotTeam", team);
             request.setAttribute("ms", "SUCCESS");
-            request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);
+            response.sendRedirect("teamDetail?team_id="+team_id+"&coach="+team.getCoach());
         } else {
             request.setAttribute("gotTeam", team);
             request.setAttribute("ms", "FAILED");
-            request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);
+            response.sendRedirect("teamDetail?team_id="+team_id+"&coach="+team.getCoach());
         }
     }
 
