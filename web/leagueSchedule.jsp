@@ -75,7 +75,7 @@
                                                 <tbody>
                                                     <tr>                                                           
                                                         <td>${match.hometeam.team_name}</td>
-                                                        <td rowspan="2">${match.home_score} - ${match.away_score}</td>                                                          
+                                                        <td rowspan="2">${match.match_date}<br>${match.match_time}</td>                                                          
                                                     </tr>
                                                     <tr>                                                            
                                                         <td>${match.awayteam.team_name}</td>                                                           

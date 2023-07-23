@@ -64,18 +64,13 @@
             <file>file:/C:/Users/admin2/OneDrive/Desktop/LeagueManagement-sonne/LeagueManagement-sonne/src/java/controller/MyLeaugeListServlet.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/src/java/dao/TourDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/manage/myleauge.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/createLeauge.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/createTeam.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/src/java/controller/LeaugeCreateServlet.java</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/src/java/controller/ForgotPasswordServlet.java</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/tournament.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/web/leaugeSetting.jsp</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/src/java/dao/PlayerDAO.java</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/src/java/controller/LeaugeSettingServlet.java</file>
-            <file>file:/C:/Users/Admin/Desktop/LeagueManagement/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/Admin/Downloads/LeagueManagement/src/java/controller/UpdateMatchesServlet.java</file>
+            <file>file:/C:/Users/Admin/Downloads/LeagueManagement/src/java/controller/TeamScheduleController/AddTeamScheduleServlet.java</file>
+            <file>file:/C:/Users/Admin/Downloads/LeagueManagement/src/java/controller/ListMatchServlet.java</file>
+            <file>file:/C:/Users/Admin/Downloads/LeagueManagement/web/matches.jsp</file>
+            <file>file:/C:/Users/Admin/Downloads/LeagueManagement/src/java/controller/ArrangeMatchServlet.java</file>
+            <file>file:/C:/Users/Admin/Downloads/LeagueManagement/src/java/controller/UpdateMatchesScheduleServlet.java</file>
+            <file>file:/C:/Users/Admin/Downloads/LeagueManagement/web/arrangeMatches.jsp</file>
         </group>
     </open-files>
 </project-private>

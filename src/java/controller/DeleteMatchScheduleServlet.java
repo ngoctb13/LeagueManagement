@@ -16,14 +16,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Match;
 import model.Team;
+import model.Tour;
 
 /**
  *
  * @author Admin
  */
-public class ListMatchServlet extends HttpServlet {
+public class DeleteMatchScheduleServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,15 +39,22 @@ public class ListMatchServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        int tour_id = Integer.parseInt(request.getParameter("tour_id"));
-        MatchDAO matchDAO = new MatchDAO();
-        TourDAO dao = new TourDAO();
+        HttpSession session = request.getSession();
+        Tour tour = (Tour) session.getAttribute("recentTour");
+        int match_id = Integer.parseInt(request.getParameter("match_id"));
         
-        List<Match> matches = matchDAO.getMatchSchedules(tour_id);
-        ArrayList<Team> teamList = dao.getListTeamByTour(tour_id);
+        MatchDAO dao = new MatchDAO();
+        
+        dao.deleteMatch(match_id);
+        
+        TourDAO tdao = new TourDAO();
+        
+        List<Match> matches = dao.getMatchSchedules(tour.getTour_id());
+        ArrayList<Team> teamList = tdao.getListTeamByTour(tour.getTour_id());
         
         request.setAttribute("matches", matches);
         request.setAttribute("teamList", teamList);
+        
         request.getRequestDispatcher("matchesSchedule.jsp").forward(request, response);
     }
 
@@ -64,7 +73,7 @@ public class ListMatchServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ListMatchServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeleteMatchScheduleServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -82,7 +91,7 @@ public class ListMatchServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ListMatchServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeleteMatchScheduleServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

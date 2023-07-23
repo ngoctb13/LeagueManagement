@@ -23,7 +23,7 @@ import model.Team;
  *
  * @author Admin
  */
-public class ListMatchServlet extends HttpServlet {
+public class MatchesServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,7 +46,7 @@ public class ListMatchServlet extends HttpServlet {
         
         request.setAttribute("matches", matches);
         request.setAttribute("teamList", teamList);
-        request.getRequestDispatcher("matchesSchedule.jsp").forward(request, response);
+        request.getRequestDispatcher("matches.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,7 +64,7 @@ public class ListMatchServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ListMatchServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MatchesServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -82,7 +82,7 @@ public class ListMatchServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ListMatchServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MatchesServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

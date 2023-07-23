@@ -57,8 +57,6 @@ public class UpdateMatchesScheduleServlet extends HttpServlet {
                     int match_id = Integer.parseInt(paramName.substring("homeTeam_".length()));
                     int homeTeamId = Integer.parseInt(request.getParameter(paramName));
                     int awayTeamId = Integer.parseInt(request.getParameter("awayTeam_" + match_id));
-                    int homeScore = Integer.parseInt(request.getParameter("home_score_" + match_id));
-                    int awayScore = Integer.parseInt(request.getParameter("away_score_" + match_id));
                     String matchDate = request.getParameter("match_date_" + match_id);
                     String matchTime = request.getParameter("match_time_" + match_id);
 
@@ -69,8 +67,6 @@ public class UpdateMatchesScheduleServlet extends HttpServlet {
 
                             match.setHometeam(homeTeam);
                             match.setAwayteam(awayTeam);
-                            match.setHome_score(homeScore);
-                            match.setAway_score(awayScore);
                             match.setMatch_date(matchDate);
                             match.setMatch_time(matchTime);
 
@@ -85,7 +81,7 @@ public class UpdateMatchesScheduleServlet extends HttpServlet {
 
             request.setAttribute("matches", updatedMatches);
             request.setAttribute("teamList", teamList);
-            request.getRequestDispatcher("matches.jsp").forward(request, response);
+            request.getRequestDispatcher("matchesSchedule.jsp").forward(request, response);
         } catch (Exception e) {
             System.out.println("loi vai ca lon");
         }

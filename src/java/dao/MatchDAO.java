@@ -188,6 +188,21 @@ public class MatchDAO extends DBContext {
             closePreparedStatement(ps);
         }
     }
+    
+    public void deleteMatch(int match_id) throws Exception {
+        try {
+            con = getConnection();
+            String query = "DELETE FROM matches WHERE match_id = ?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, match_id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
 
     public void updateMatch(List<Match> updatedMatches) throws Exception {
         try {
@@ -213,7 +228,7 @@ public class MatchDAO extends DBContext {
     public void updateMatchSchedule(List<Match> updatedMatches) throws Exception {
         try {
             con = getConnection();
-            String query = "UPDATE matches SET hometeam_id = ?, awayteam_id = ?, match_date = ?, match_time = ?,  home_score = ?, away_score = ? WHERE match_id = ?";
+            String query = "UPDATE matches SET hometeam_id = ?, awayteam_id = ?, match_date = ?, match_time = ? WHERE match_id = ?";
             ps = con.prepareStatement(query);
 
             for (Match match : updatedMatches) {
@@ -221,9 +236,7 @@ public class MatchDAO extends DBContext {
                 ps.setInt(2, match.getAwayteam().getTeam_id());
                 ps.setString(3, match.getMatch_date());
                 ps.setString(4, match.getMatch_time());
-                ps.setInt(5, match.getHome_score());
-                ps.setInt(6, match.getAway_score());
-                ps.setInt(7, match.getMatch_id());
+                ps.setInt(5, match.getMatch_id());
                 ps.addBatch();
             }
             ps.executeBatch();
