@@ -82,7 +82,9 @@ public class AcceptInviteToTour extends HttpServlet {
             TourJoinRequestDAO tourJoinRequestDAO = new TourJoinRequestDAO();
             TourJoinRequest tour = new TourJoinRequest(teamid, tourid, 0);
             tourJoinRequestDAO.addTour(tour);
-
+            
+            TeamDAO teamDAO = new TeamDAO();
+            teamDAO.acceptTeam(teamid, tourid);
             response.sendRedirect("InviteOfMyTeam");
         } catch (Exception ex) {
             Logger.getLogger(InviteOfMyTeam.class.getName()).log(Level.SEVERE, null, ex);
