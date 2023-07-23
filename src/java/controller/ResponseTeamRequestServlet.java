@@ -56,11 +56,11 @@ public class ResponseTeamRequestServlet extends HttpServlet {
                 int accept=userDao.updateStatusAcceptTeamRequest(user_id);
                 request.setAttribute("gotTeam", team);
                 request.setAttribute("message", "SUCCESS");
-                request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);
+                response.sendRedirect("teamDetail?team_id="+team_id+"&coach="+team.getCoach());
             } else {
                 request.setAttribute("gotTeam", team);
                 request.setAttribute("message", "FAILED");
-                request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);
+                response.sendRedirect("teamDetail?team_id="+team_id+"&coach="+team.getCoach());
             } 
     }
 

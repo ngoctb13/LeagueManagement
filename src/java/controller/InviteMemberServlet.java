@@ -55,7 +55,7 @@ public class InviteMemberServlet extends HttpServlet {
             if (sign > 0) {
                 request.setAttribute("ms", "SUCCESS");
                 request.setAttribute("gotTeam", team);                
-                request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);
+                response.sendRedirect("teamDetail?team_id="+team_id+"&coach="+team.getCoach());
             } else {
                 request.setAttribute("ms", "FAILED");
                 request.getRequestDispatcher("manage/teamDetail.jsp").forward(request, response);
