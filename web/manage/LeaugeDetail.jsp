@@ -182,7 +182,7 @@
                                                                                 <td>${t0.team.address}</td>
                                                                                 <td>${t0.team.description}</td>
                                                                                 <td>
-                                                                                    <a href="DeclineRequestJoinTour?id=${t0.request_id}" >Delete</a>
+                                                                                    <a href="DeclineRequestJoinTour?id=${t0.request_id}"class="btn btn-outline-danger btn-rounded" >Delete</a>
                                                                                 </td>
                                                                             </tr>
                                                                         </c:forEach>
@@ -282,7 +282,13 @@
                                                                                 <td>${t1.team.address}</td>
                                                                                 <td>${t1.team.description}</td>
                                                                                 <td>
-                                                                                    <a href="AcceptRequestJoinTour?id=${t1.request_id}" >Accept</a>
+                                                                                    <a href="AcceptRequestJoinTour?id=${t1.request_id}"class="btn btn-outline-info btn-rounded" >Accept</a>
+                                                                                </td>
+                                                                                <td>
+<!--                                                                                    <a href="DeclineRequestJoinTour?id=${t1.request_id}"class="btn btn-outline-danger btn-rounded" >Decline</a>-->
+                                                                                </td>
+                                                                                <td>
+                                                                                    <a href="teamProfile?team_ID=${t1.team_id}" >Team Profile</a>
                                                                                 </td>
                                                                             </tr>
                                                                         </c:forEach>
