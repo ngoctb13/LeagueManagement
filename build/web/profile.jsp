@@ -73,12 +73,13 @@
                     </c:if>  
                 <form action="userUpdate" method="post" enctype="multipart/form-data">
                     <div class="row">
-                   
+                    
                     <!-- left column -->
-
+                    
                     <div class="col-md-3" style="padding-top: 50px;">
                         <div class="text-center">
                             <div class="" style="width: 100%; height: 100%;">
+                                <label class="col-md-3 control-label">Avatar:</label>
                                 <img  alt="imagePreview" src="./images/<%= gotUser.getAvatar_link() %>" 
                                       id="imagePreview" style="width: 100%; height: 100%;">
                             </div>
@@ -139,11 +140,7 @@
                                 </div>
                             </div>                               
 
-                            <div class="col-lg-3" style="padding-top: 10px;">
-                                <a href="deleteAccountRequest.jsp">
-                                    <button  class="btn btn-primary py-2 px-5">Delete Your Account</button>
-                                </a> 
-                            </div>
+                            
                         </div>
                     </div>
 

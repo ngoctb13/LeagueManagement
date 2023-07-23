@@ -2,6 +2,7 @@
 <%@page import="model.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,6 +42,8 @@
     </head>
     <%
         Team recentTeam = (Team) session.getAttribute("recentTeam");
+        User curUser = (User) session.getAttribute("user");
+        
     %>
     <body>
         <style>
@@ -228,16 +231,20 @@
                         </form>
                     </div>
 
-
+                    
                     <div class="container btn_thamgiadoibong" id = "joinButton" >
 
                         <div class="row">
+                            
                             <div  style="z-index: 0;" class="thamgiadoi">
+                                
                                 <button type="submit" >Tham gia đội</button>
-                            </div>
+                                                             </div>
+                           
                         </div>
 
                     </div>
+                     
 
 
 
