@@ -142,10 +142,10 @@
                                                 ${t.team_quantity}
                                             </td>
                                             <td>
-                                                <a href="AcceptInviteToTour?tourId=${t.tour_id}&teamId=${t.team_id}" >Accept</a>
+                                                <a href="AcceptInviteToTour?tourId=${t.tour_id}&teamId=${t.team_id}" class="btn btn-outline-info btn-rounded" >Accept</a>
                                             </td>
                                             <td>
-                                                <a href="DeclineInviteToTour?tourId=${t.tour_id}&teamId=${t.team_id}" >Decline</a>
+                                                <a href="DeclineInviteToTour?tourId=${t.tour_id}&teamId=${t.team_id}" class="btn btn-outline-danger btn-rounded">Decline</a>
                                             </td>
                                         </tr>
                                     </c:forEach>
