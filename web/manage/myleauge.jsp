@@ -144,7 +144,7 @@
                                             <h5 class="title">League Name: ${t.tour_name}</h5>
                                             <h5 class="title">Address: ${t.address}</h5>
                                             <h5 class="title">Phone Number: ${t.phone_number}</h5>                                            
-                                            <a href="MyTourDetail?tourId=${t.tour_id}" class="btn btn-primary">Manage</a>
+                                            <a href="leaugeProfile?tour_id=${t.tour_id}" class="btn btn-primary">Manage</a>
                                         </div>
                                     </div>
                                 </div>

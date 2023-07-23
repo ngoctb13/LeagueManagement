@@ -15,25 +15,31 @@ public class Join_Team_Request {
     String status;
     String shirt_number;
     String position;
+    String level;
+    String age;
 
     public Join_Team_Request() {
     }
 
-    public Join_Team_Request(int requestID, int userID, int teamID, String status, String shirt_number, String position) {
+    public Join_Team_Request(int requestID, int userID, int teamID, String status, String shirt_number, String position, String level, String age) {
         this.requestID = requestID;
         this.userID = userID;
         this.teamID = teamID;
         this.status = status;
         this.shirt_number = shirt_number;
         this.position = position;
+        this.level = level;
+        this.age = age;
     }
-    public Join_Team_Request(int userID, int teamID, String status, String shirt_number, String position) {
-       
+    public Join_Team_Request( int userID, int teamID, String status, String shirt_number, String position, String level, String age) {
+        
         this.userID = userID;
         this.teamID = teamID;
         this.status = status;
         this.shirt_number = shirt_number;
         this.position = position;
+        this.level = level;
+        this.age = age;
     }
 
     public int getRequestID() {
@@ -83,6 +89,24 @@ public class Join_Team_Request {
     public void setPosition(String position) {
         this.position = position;
     }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+   
     
 
     

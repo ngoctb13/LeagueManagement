@@ -36,11 +36,12 @@
                 <li>
                 <a href="javascript:void(0)"><i class="ti-pie-chart"></i><span>Setting</span></a>
                 <ul class="submenu">
-                    <li><a href="leaugeSetting.jsp?tour_id=<%=recentTour.getTour_id()%>">Leauge Update</a></li>
+                    <li><a href="leaugeSetting.jsp?tour_id=<%=recentTour.getTour_id()%>">League Update</a></li>
                     <li><a href="#">Authorization</a></li>
                     <li><a href="sponsorList?tour_id=<%=recentTour.getTour_id()%>">Sponsor</a></li>
                     <li><a href="arrangeMatch?tour_id=<%=recentTour.getTour_id()%>">Arrange Matches</a></li>
                     <li><a href="listMatch?tour_id=<%=recentTour.getTour_id()%>">Setting Schedule</a></li>
+                    <li><a href="MyTourDetail?tourId=<%=recentTour.getTour_id()%>">Manage Invite And Request</a></li>
                 </ul>
             </li>
             <%}%>

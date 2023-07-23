@@ -4,7 +4,6 @@ package controller;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 import dao.TeamDAO;
 import dao.UserDAO;
 import java.io.IOException;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 
 import model.Join_Team_Request;
 
@@ -41,20 +39,29 @@ public class JoinTeamRequestServlet extends HttpServlet {
             throws ServletException, IOException, Exception {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
-
         int team_id = Integer.parseInt(request.getParameter("team_id"));
         int userID = user.getUser_id();
         String shirt_number = request.getParameter("shirt_number");
         String position = request.getParameter("position");
         UserDAO userDAO = new UserDAO();
         String status = "PENDING";
-        Join_Team_Request JoinRequest = new Join_Team_Request(userID, team_id, status, shirt_number, position);
-        System.out.println(JoinRequest);
-        int r = userDAO.addJoinTeamRequest(JoinRequest);
-        if (r > 0) {
-            response.sendRedirect("teamProfile?team_ID="+team_id);
-        }else{ 
-            response.sendRedirect("teamProfile?team_ID="+team_id);
+        String level = request.getParameter("level");
+        String age = request.getParameter("age");
+        if (level.equalsIgnoreCase("hide")||age.equalsIgnoreCase("hide")) {
+            request.setAttribute("error", "fail");
+            request.getRequestDispatcher("teamProfile?team_ID=" + team_id).forward(request, response);
+        } else {
+            Join_Team_Request JoinRequest = new Join_Team_Request(userID, team_id, status, shirt_number, position, level, age);
+            System.out.println(JoinRequest);
+            int r = userDAO.addJoinTeamRequest(JoinRequest);
+            if (r > 0) {
+                request.setAttribute("error", "ok");
+                response.sendRedirect("teamProfile?team_ID=" + team_id);
+               
+            } else {
+                response.sendRedirect("teamProfile?team_ID=" + team_id);
+                
+            }
         }
 
     }
@@ -89,6 +96,7 @@ public class JoinTeamRequestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         try {
             processRequest(request, response);
         } catch (Exception ex) {

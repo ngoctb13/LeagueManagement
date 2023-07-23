@@ -112,7 +112,7 @@ public class SendRequestJoinTour extends HttpServlet {
                 request.setAttribute("notice", notice);
                 request.getRequestDispatcher("notice.jsp").forward(request, response);
             } else {
-                String notice = "Joined before.";
+                String notice = "Joined or request is pending.";
                 request.setAttribute("notice", notice);
                 request.getRequestDispatcher("notice.jsp").forward(request, response);
             }

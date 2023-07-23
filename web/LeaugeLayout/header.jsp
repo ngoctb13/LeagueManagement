@@ -22,7 +22,7 @@
                         <h4 class="user-name dropdown-toggle" data-toggle="dropdown">${sessionScope.user.full_name} <i class="fa fa-angle-down"></i></h4>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="home.jsp">Home</a>
-                            <a class="dropdown-item" href="leaugeList">My Leauge</a>
+                            <a class="dropdown-item" href="myLeauge">My Leauge</a>
                             <a class="dropdown-item" href="logout">Log Out</a>
                         </div>
                     </div>

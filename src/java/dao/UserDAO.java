@@ -173,7 +173,7 @@ public class UserDAO extends DBContext {
         int status = 0;
         try {
             con = getConnection();
-            ps = con.prepareStatement("insert IGNORE INTO team_invite ( team_id, user_id, message, status) values (?,?,?,?)");
+            ps = con.prepareStatement("insert INTO team_invite ( team_id, user_id, message, status) values (?,?,?,?)");
             ps.setInt(1, a.getTeamID());
             ps.setInt(2, a.getUserID());
             ps.setString(3, a.getMess());
@@ -193,12 +193,14 @@ public class UserDAO extends DBContext {
         int status = 0;
         try {
             con = getConnection();
-            ps = con.prepareStatement("insert IGNORE INTO team_join_request ( user_id, team_id, status, shirt_number, position) values (?,?,?,?,?)");
+            ps = con.prepareStatement("insert INTO team_join_request ( user_id, team_id, status, shirt_number, position, level, age) values (?,?,?,?,?,?,?)");
             ps.setInt(1, a.getUserID());
             ps.setInt(2, a.getTeamID());
             ps.setString(3, a.getStatus());
             ps.setString(4, a.getShirt_number());
             ps.setString(5, a.getPosition());
+            ps.setString(6, a.getLevel());
+            ps.setString(7, a.getAge());
             status = ps.executeUpdate();
         } catch (Exception e) {
             throw e;
@@ -294,6 +296,8 @@ public class UserDAO extends DBContext {
                 teamRequest.setStatus(rs.getString("status"));
                 teamRequest.setShirt_number(rs.getString("shirt_number"));
                 teamRequest.setPosition(rs.getString("position"));
+                teamRequest.setLevel(rs.getString("level"));
+                teamRequest.setAge(rs.getString("age"));
             }
         } catch (Exception e) {
             throw e;
@@ -346,6 +350,8 @@ public class UserDAO extends DBContext {
                 rq.setStatus(rs.getString("status"));
                 rq.setShirt_number(rs.getString("shirt_number"));
                 rq.setPosition(rs.getString("position"));
+                rq.setLevel(rs.getString("level"));
+                rq.setAge(rs.getString("age"));
                 list.add(rq);
             }
             return list;
@@ -374,6 +380,8 @@ public class UserDAO extends DBContext {
                 rq.setStatus(rs.getString("status"));
                 rq.setShirt_number(rs.getString("shirt_number"));
                 rq.setPosition(rs.getString("position"));
+                rq.setLevel(rs.getString("level"));
+                rq.setAge(rs.getString("age"));
                 list.add(rq);
             }
             return list;
@@ -385,13 +393,7 @@ public class UserDAO extends DBContext {
             closeConnection(con);
         }
     }
-    public static void main(String[] args) throws Exception {
-        Join_Team_Request j=new Join_Team_Request(2,6,"Pending","12","Striker");
-        UserDAO dao=new UserDAO();
-        List<Join_Team_Request>list=dao.getListJoinRequestByTeamID(2);
-        System.out.println(list.toString());
-       
-    }
+    
 
     public List<Invite_member> getListInvitationByTeamID(int input_id) throws Exception {
         try {
