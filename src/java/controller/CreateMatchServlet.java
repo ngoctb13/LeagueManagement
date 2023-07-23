@@ -16,14 +16,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Match;
 import model.Team;
+import model.Tour;
 
 /**
  *
  * @author Admin
  */
-public class ListMatchServlet extends HttpServlet {
+public class CreateMatchServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,16 +39,39 @@ public class ListMatchServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, Exception {
         response.setContentType("text/html;charset=UTF-8");
-        int tour_id = Integer.parseInt(request.getParameter("tour_id"));
+        HttpSession session = request.getSession();
+        Tour tour = (Tour) session.getAttribute("recentTour");
+        TourDAO tourDAO = new TourDAO();
+        ArrayList<Team> teamList = tourDAO.getListTeamByTour(tour.getTour_id());
+        // Retrieve the form data
+        int homeTeamId = Integer.parseInt(request.getParameter("homeTeam"));
+        int awayTeamId = Integer.parseInt(request.getParameter("awayTeam"));
+        String matchDate = request.getParameter("match_date");
+        String matchTime = request.getParameter("match_time");
+
+        // Create a new Match object
+        Team hometeam = getTeamById(teamList, homeTeamId);
+        Team awayteam = getTeamById(teamList, awayTeamId);
+        Match match = new Match(hometeam, awayteam, matchDate, matchTime, tour.getTour_id());
+
+        // Insert the new match into the database
         MatchDAO matchDAO = new MatchDAO();
-        TourDAO dao = new TourDAO();
+        matchDAO.addMatchSchedule(match);
+        List<Match> matches = matchDAO.getMatchSchedules(tour.getTour_id());
         
-        List<Match> matches = matchDAO.getMatchSchedules(tour_id);
-        ArrayList<Team> teamList = dao.getListTeamByTour(tour_id);
         
-        request.setAttribute("matches", matches);
         request.setAttribute("teamList", teamList);
+        request.setAttribute("matches", matches);
         request.getRequestDispatcher("matchesSchedule.jsp").forward(request, response);
+    }
+    
+    public Team getTeamById(ArrayList<Team> teamList, int id) {
+        for (Team team : teamList) {
+            if (team.getTeam_id() == id) {
+                return team;
+            }
+        }
+        return null; // Return null if team with the given ID is not found
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -64,7 +89,7 @@ public class ListMatchServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ListMatchServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreateMatchServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -82,7 +107,7 @@ public class ListMatchServlet extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (Exception ex) {
-            Logger.getLogger(ListMatchServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CreateMatchServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

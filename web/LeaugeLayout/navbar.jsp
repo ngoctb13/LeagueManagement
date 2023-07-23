@@ -27,10 +27,10 @@
                 <a href="participantList?tour_id=<%=recentTour.getTour_id()%>"><i class="ti-pie-chart"></i><span>Participant List</span></a>
             </li>
             <li>
-                <a href="listMatch?tour_id=<%=recentTour.getTour_id()%>"><i class="ti-pie-chart"></i><span>Matches</span></a>
+                <a href="matches?tour_id=<%=recentTour.getTour_id()%>"><i class="ti-pie-chart"></i><span>Matches</span></a>
             </li>
             <li>
-                <a href="#"><i class="ti-pie-chart"></i><span>Standings</span></a>
+                <a href="leagueSchedule?tour_id=<%=recentTour.getTour_id()%>"><i class="ti-pie-chart"></i><span>Schedule</span></a>
             </li>
             <%if(curUser.getUser_id() == recentTour.getHost()) {%>            
                 <li>
@@ -40,6 +40,7 @@
                     <li><a href="#">Authorization</a></li>
                     <li><a href="sponsorList?tour_id=<%=recentTour.getTour_id()%>">Sponsor</a></li>
                     <li><a href="arrangeMatch?tour_id=<%=recentTour.getTour_id()%>">Arrange Matches</a></li>
+                    <li><a href="listMatch?tour_id=<%=recentTour.getTour_id()%>">Setting Schedule</a></li>
                     <li><a href="MyTourDetail?tourId=<%=recentTour.getTour_id()%>">Manage Invite And Request</a></li>
                 </ul>
             </li>

@@ -191,7 +191,7 @@
     <servlet>
         <servlet-name>UpdateTeamScheduleServlet</servlet-name>
         <servlet-class>controller.TeamScheduleController.UpdateTeamScheduleServlet</servlet-class>
-      </servlet>
+    </servlet>
     <servlet>
         <servlet-name>ArrangeMatchServlet</servlet-name>
         <servlet-class>controller.ArrangeMatchServlet</servlet-class>
@@ -227,6 +227,22 @@
     <servlet>
         <servlet-name>DeleteSponsorServlet</servlet-name>
         <servlet-class>controller.DeleteSponsorServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LeagueScheduleServlet</servlet-name>
+        <servlet-class>controller.LeagueScheduleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MatchesServlet</servlet-name>
+        <servlet-class>controller.MatchesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateMatchServlet</servlet-name>
+        <servlet-class>controller.CreateMatchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteMatchScheduleServlet</servlet-name>
+        <servlet-class>controller.DeleteMatchScheduleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -422,7 +438,7 @@
     <servlet-mapping>
         <servlet-name>UpdateTeamScheduleServlet</servlet-name>
         <url-pattern>/updateTeamSchedule</url-pattern>
-      </servlet-mapping>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ArrangeMatchServlet</servlet-name>
         <url-pattern>/arrangeMatch</url-pattern>
@@ -458,6 +474,22 @@
     <servlet-mapping>
         <servlet-name>DeleteSponsorServlet</servlet-name>
         <url-pattern>/deleteSponsor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LeagueScheduleServlet</servlet-name>
+        <url-pattern>/leagueSchedule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MatchesServlet</servlet-name>
+        <url-pattern>/matches</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateMatchServlet</servlet-name>
+        <url-pattern>/createMatch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMatchScheduleServlet</servlet-name>
+        <url-pattern>/deleteMatchSchedule</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
