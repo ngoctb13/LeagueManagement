@@ -244,6 +244,10 @@
         <servlet-name>DeleteMatchScheduleServlet</servlet-name>
         <servlet-class>controller.DeleteMatchScheduleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateMatchScoreServlet</servlet-name>
+        <servlet-class>controller.UpdateMatchScoreServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -490,6 +494,10 @@
     <servlet-mapping>
         <servlet-name>DeleteMatchScheduleServlet</servlet-name>
         <url-pattern>/deleteMatchSchedule</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateMatchScoreServlet</servlet-name>
+        <url-pattern>/updateMatchScore</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
