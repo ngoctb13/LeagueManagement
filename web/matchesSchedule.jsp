@@ -148,6 +148,7 @@
                                                                 </select></td>
                                                             <td><input type="date" name="match_date_${match.match_id}" value="${match.match_date}"> - <input type="time" name="match_time_${match.match_id}" value="${match.match_time}"></td>
                                                             <td><a href="deleteMatchSchedule?match_id=${match.match_id}">Delete</a></td>
+                                                            <td><a href="#" data-toggle="modal" data-target="#updateModal_${match.match_id}">Update</a></td>
                                                         </tr>
                                                     </c:forEach>
                                                 </tbody>
@@ -167,6 +168,39 @@
 
             </div>
         </div>
+        <c:forEach var="match" items="${matches}">
+            <div class="modal fade" id="updateModal_${match.match_id}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form action="updateMatchScore">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Update Score</h5>
+                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                            </div>
+                            <div class="modal-body">
+                                <input type="hidden" name="match_id" value="${match.match_id}">
+                                <table class="table text-center">
+                                    <tbody>
+                                        <tr>                                                           
+                                            <td>${match.hometeam.team_name}</td>
+                                            <td rowspan="2"><input type="text" name="home_score" value="${match.home_score}"> <br><br> <input type="text" name="away_score" value="${match.away_score}"></td>                                                          
+                                        </tr>
+                                        <tr>                                                            
+                                            <td>${match.awayteam.team_name}</td>                                                           
+                                        </tr>                                                  
+                                    </tbody>
+                                </table>                        
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+        
         <!-- main content area end -->
         <!-- footer area start-->
 

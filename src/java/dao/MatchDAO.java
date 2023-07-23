@@ -98,6 +98,7 @@ public class MatchDAO extends DBContext {
         }
         return matchList;
     }
+
     public List<Match> getMatchSchedules(int tour_id) throws Exception {
         List<Match> matchList = new ArrayList<>();
 
@@ -188,7 +189,7 @@ public class MatchDAO extends DBContext {
             closePreparedStatement(ps);
         }
     }
-    
+
     public void deleteMatch(int match_id) throws Exception {
         try {
             con = getConnection();
@@ -217,6 +218,23 @@ public class MatchDAO extends DBContext {
                 ps.addBatch();
             }
             ps.executeBatch();
+        } catch (SQLException e) {
+            throw e;
+        } finally {
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+
+    public void updateMatchScore(int match_id, int home_score, int away_score) throws Exception {
+        try {
+            con = getConnection();
+            String query = "UPDATE matches SET home_score = ?, away_score = ? WHERE match_id = ?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, home_score);
+            ps.setInt(2, away_score);
+            ps.setInt(3, match_id);
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw e;
         } finally {
