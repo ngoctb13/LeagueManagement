@@ -9,7 +9,6 @@ package model.DTO;
  * @author Admin
  */
 public class ParticipantProfile {
-    private int participant_id;
     private int team_id;
     private int tour_id;
     private String team_name;
@@ -20,22 +19,13 @@ public class ParticipantProfile {
     public ParticipantProfile() {
     }
 
-    public ParticipantProfile(int participant_id, int team_id, int tour_id, String team_name, String phone_number, String email, String description) {
-        this.participant_id = participant_id;
+    public ParticipantProfile(int team_id, int tour_id, String team_name, String phone_number, String email, String description) {
         this.team_id = team_id;
         this.tour_id = tour_id;
         this.team_name = team_name;
         this.phone_number = phone_number;
         this.email = email;
         this.description = description;
-    }
-
-    public int getParticipant_id() {
-        return participant_id;
-    }
-
-    public void setParticipant_id(int participant_id) {
-        this.participant_id = participant_id;
     }
 
     public int getTeam_id() {
@@ -85,6 +75,5 @@ public class ParticipantProfile {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
+
 }

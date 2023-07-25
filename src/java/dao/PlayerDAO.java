@@ -228,8 +228,8 @@ public class PlayerDAO extends DBContext {
 
     public static void main(String[] args) throws Exception {
         PlayerDAO dao = new PlayerDAO();
-        List<Player> list = dao.FindMyTeam(7);
-        for (Player player : list) {
+        List<PlayerProfile> list = dao.getListPlayerProfileByTeam(24);
+        for (PlayerProfile player : list) {
             System.out.println(player.toString());
         }
     }

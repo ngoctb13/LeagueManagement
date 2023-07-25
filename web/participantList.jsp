@@ -91,7 +91,7 @@
                                                 <td>${p.phone_number}</td>
                                                 <td>${p.description}</td>
                                                 <td>
-                                                    <a href="#" onclick="showMess(${p.tour_id},<%=user.getUser_id()%>,${p.participant_id})">Delete Participant</a>
+                                                    <a href="#" onclick="showMess(${p.tour_id},<%=user.getUser_id()%>,${p.team_id})">Delete Participant</a>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -125,10 +125,10 @@
         <!-- main wrapper start -->
         <!-- offset area start -->
         <script>
-            function showMess(tour_id, user_id, paticipant_id) {
+            function showMess(tour_id, user_id, team_id) {
                 var option = confirm('Are you sure to delete this participant?');
                 if (option === true) {
-                    window.location.href = 'deleteParticipant?tour_id=' + tour_id + '&user_id=' + user_id + '&participant_id=' + paticipant_id;
+                    window.location.href = 'deleteParticipant?tour_id=' + tour_id + '&user_id=' + user_id + '&team_id=' + team_id;
                 }
             }
         </script>

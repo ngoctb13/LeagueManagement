@@ -6,6 +6,7 @@ package controller;
 
 import dao.ParticipantDAO;
 import dao.PlayerDAO;
+import dao.TeamDAO;
 import dao.TourDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,11 +41,12 @@ public class DeleteParticipantServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         int user_id = Integer.parseInt(request.getParameter("user_id"));
-        int participant_id = Integer.parseInt(request.getParameter("participant_id"));
         int tour_id = Integer.parseInt(request.getParameter("tour_id"));
+        int team_id = Integer.parseInt(request.getParameter("team_id"));
 
         try {
             ParticipantDAO participantDAO = new ParticipantDAO();
+            TeamDAO teamDAO = new TeamDAO();
             TourDAO tourDAO = new TourDAO();
             Tour tour = tourDAO.getTourByID(tour_id);
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -53,7 +55,7 @@ public class DeleteParticipantServlet extends HttpServlet {
 
             if (startDate.after(date)) {
                 if (participantDAO.IsTourManager(user_id, tour_id)) {
-                    participantDAO.deleteParticipant(participant_id);
+                    teamDAO.removeTeamOutOfLeague(team_id);
                 }
             }
             response.sendRedirect("participantList?tour_id="+tour_id);

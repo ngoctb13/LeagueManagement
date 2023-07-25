@@ -50,11 +50,9 @@ public class ParticipantDAO extends DBContext {
 
     public ArrayList<ParticipantProfile> getListParticipantProfileByTour(int tour_id) throws Exception {
         try {
-            String query = "select t.team_id, t.team_name, t.phone_number, t.email, t.description, p.id, p.tour_id \n"
-                    + "from test.team as t\n"
-                    + "join test.participant as p\n"
-                    + "on t.team_id = p.team_id\n"
-                    + "where p.tour_id = ?";
+            String query = "select t.team_id, t.team_name, t.phone_number, t.email, t.description\n" +
+"                    from team as t\n" +
+"                    where t.tour = ?";
             con = getConnection();
             ps = con.prepareStatement(query);
             ps.setInt(1, tour_id);
@@ -62,8 +60,7 @@ public class ParticipantDAO extends DBContext {
             ArrayList<ParticipantProfile> list = new ArrayList<>();
             while (rs.next()) {
                 ParticipantProfile participantProfile = new ParticipantProfile();
-                participantProfile.setParticipant_id(rs.getInt("id"));
-                participantProfile.setTour_id(rs.getInt("tour_id"));
+                participantProfile.setTour_id(tour_id);
                 participantProfile.setTeam_id(rs.getInt("team_id"));
                 participantProfile.setTeam_name(rs.getString("team_name"));
                 participantProfile.setEmail(rs.getString("email"));
@@ -83,7 +80,7 @@ public class ParticipantDAO extends DBContext {
 
     public Boolean IsTourManager(int user_id, int tour_id) throws Exception {
         try {
-            String query = "SELECT * FROM test.manager where user_id = ? AND tour_id = ?";
+            String query = "SELECT * FROM tournament where host = ? AND tour_id = ?";
             con = getConnection();
             ps = con.prepareStatement(query);
             ps.setInt(1, user_id);
@@ -118,7 +115,7 @@ public class ParticipantDAO extends DBContext {
     
     public static void main(String[] args) throws Exception {
         ParticipantDAO dao = new ParticipantDAO();
-        ArrayList<ParticipantProfile> list = dao.getListParticipantProfileByTour(1);
+        ArrayList<ParticipantProfile> list = dao.getListParticipantProfileByTour(10);
         System.out.println(list);
 //        System.out.println(dao.IsTourManager(4, 1));
     }

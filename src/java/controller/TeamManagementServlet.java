@@ -56,7 +56,7 @@ public class TeamManagementServlet extends HttpServlet {
 
             if (add > 0) {
                 request.setAttribute("your_team", team);
-                request.getRequestDispatcher("manage/team.jsp").forward(request, response);
+                response.sendRedirect("teamList");
             }
         } else {
             response.sendRedirect("login.jsp");

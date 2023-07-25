@@ -158,10 +158,11 @@ public class TeamDAO extends DBContext {
         }
         return status;
     }
+
     public void acceptTeam(int team_id, int tour_id) throws Exception {
         try {
             con = getConnection();
-            ps = con.prepareStatement("UPDATE team SET tour = ? WHERE team_id = ?;");           
+            ps = con.prepareStatement("UPDATE team SET tour = ? WHERE team_id = ?;");
             ps.setInt(1, tour_id);
             ps.setInt(2, team_id);
             ps.executeUpdate();
@@ -174,11 +175,26 @@ public class TeamDAO extends DBContext {
         }
     }
 
+    public void removeTeamOutOfLeague(int team_id) throws Exception {
+        try {
+            con = getConnection();
+            ps = con.prepareStatement("UPDATE team SET tour = null WHERE team_id = ?;");
+            ps.setInt(1, team_id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            closeResultSet(rs);
+            closePreparedStatement(ps);
+            closeConnection(con);
+        }
+    }
+
     public ArrayList<TeamSchedule> getTeamScheduleList(int team_id) throws Exception {
         try {
-            String query = "SELECT * FROM test.team_schedule\n"
-                    + "where team_id = ?\n"
-                    + "order by time DESC;";
+            String query = "SELECT * FROM team_schedule\n"
+                    + "where team_id = ? and time >= DATE(NOW())\n"
+                    + "order by time ASC;";
             con = getConnection();
             ps = con.prepareStatement(query);
             ps.setInt(1, team_id);
@@ -207,7 +223,7 @@ public class TeamDAO extends DBContext {
         int status = 0;
         try {
             con = getConnection();
-            ps = con.prepareStatement("INSERT INTO `test`.`team_schedule`\n"
+            ps = con.prepareStatement("INSERT INTO team_schedule\n"
                     + "(team_id, title, location, time)\n"
                     + "VALUES (?,?,?,?);");
 
@@ -248,7 +264,7 @@ public class TeamDAO extends DBContext {
 
     public void deleteTeamSchedule(int team_schedule_id) throws Exception {
         try {
-            String query = "DELETE FROM `test`.`team_schedule`\n"
+            String query = "DELETE FROM team_schedule\n"
                     + "WHERE team_schedule_id = ?;";
             con = getConnection();
             ps = con.prepareStatement(query);
@@ -298,7 +314,6 @@ public class TeamDAO extends DBContext {
 //        Date time =  new java.sql.Date(sdf.parse("2023-07-19").getTime());
 //        int status = tDao.addTeamSchedule(new TeamSchedule(2, "title", "phong 401L",time ));
 //        System.out.println(status);
-        tDao.deleteTeamSchedule(14);
 
     }
 }
